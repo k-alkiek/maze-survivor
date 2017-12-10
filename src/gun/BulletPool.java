@@ -9,15 +9,11 @@ import java.util.Stack;
  */
 public class BulletPool {
 
-	private static final int BULLET_POOL_SIZE = 3;
 	private static BulletPool instance;
 	private Stack<Bullet> pool;
 
 	private BulletPool() {
 		pool = new Stack<Bullet>();
-		for (int i = 0; i < BULLET_POOL_SIZE; i++) {
-			pool.add(new Bullet());
-		}
 	}
 
 	public static BulletPool getInstance() {
@@ -33,7 +29,7 @@ public class BulletPool {
 
 	public Bullet acquireReusable() {
 		if (pool.isEmpty()) {
-			return null;
+			return new Bullet();
 		} else {
 			return pool.pop();
 		}

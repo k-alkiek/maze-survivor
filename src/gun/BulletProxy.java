@@ -8,4 +8,7 @@ package gun;
  */
 public class BulletProxy {
 
+	public void fire() {
+		//TODO
+	}
 }
