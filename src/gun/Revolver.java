@@ -11,6 +11,7 @@ public class Revolver implements Weapon {
 	 * Size of the full magazine.
 	 */
 	private final static int MAG_SIZE = 6;
+
 	/**
 	 * Number of available bullets.
 	 */
@@ -19,13 +20,20 @@ public class Revolver implements Weapon {
 	private Magazine mag;
 
 	public Revolver(final int bullets) {
-		mag = new Magazine(MAG_SIZE);
+		mag = new InGunMag(MAG_SIZE);
 		this.bullets = bullets;
 	}
 
 	@Override
 	public void reload() {
-		// TODO Fix reload time and make reloading state.
+		//TODO: Fix reload time and make reloading state.
+		if (bullets == 0) {
+			//TODO: RELOADING DOESN'T WORK.
+		} else if (bullets > MAG_SIZE) {
+			bullets -= mag.reload();
+		} else {
+			bullets -= mag.reload(bullets);
+		}
 	}
 
 	@Override
