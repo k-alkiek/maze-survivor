@@ -9,6 +9,9 @@ package gun;
 public class BulletProxy {
 
 	public void fire() {
-		//TODO
+		BulletPool pool = BulletPool.getInstance();
+		Bullet firedBullet = pool.acquireReusable();
+		firedBullet.setOnFire(true);
 	}
+
 }
