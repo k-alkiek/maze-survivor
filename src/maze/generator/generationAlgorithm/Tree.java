@@ -5,25 +5,25 @@ package maze.generator.generationAlgorithm;
  */
 class Tree {
 
-    private Tree _parent = null;
+	private Tree _parent = null;
 
-    public Tree() {
+	public Tree() {
 
-    }
+	}
 
-    public Tree root() {
-        return _parent != null ? _parent.root() : this;
-    }
+	public void connect(final Tree tree) {
+		tree.root().setParent(this);
+	}
 
-    public boolean connected(Tree tree) {
-        return this.root() == tree.root();
-    }
+	public boolean connected(final Tree tree) {
+		return this.root() == tree.root();
+	}
 
-    public void connect(Tree tree) {
-        tree.root().setParent(this);
-    }
+	public Tree root() {
+		return _parent != null ? _parent.root() : this;
+	}
 
-    public void setParent(Tree parent) {
-        this._parent = parent;
-    }
+	public void setParent(final Tree parent) {
+		this._parent = parent;
+	}
 }

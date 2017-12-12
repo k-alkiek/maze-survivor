@@ -2,29 +2,36 @@ package gun;
 
 import java.util.Stack;
 
+import characters.Player;
+
 /**
  * Magazine holding the bullets inside the player's gun.
+ * 
  * @author H
  *
  */
 public abstract class Magazine {
 
+	protected Weapon weapon;
+	protected Player shooter;
 	protected int magSize;
 	protected Stack<BulletProxy> bullets;
 	protected Stack<BulletProxy> objectsPool;
 
-	public Magazine(int gunMagSize) {
+	public Magazine(final Player shooter, final Weapon weapon, int gunMagSize) {
+		this.weapon = weapon;
+		this.shooter = shooter;
 		magSize = gunMagSize;
-		bullets = new Stack<BulletProxy>();
-		objectsPool = new Stack<BulletProxy>();
+		bullets = new Stack<>();
+		objectsPool = new Stack<>();
 		while (gunMagSize-- != 0) {
-			objectsPool.push(new BulletProxy());
+			objectsPool.push(new BulletProxy(weapon));
 		}
 	}
 
 	public void fire() {
-		BulletProxy fired = bullets.pop();
-		fired.fire();
+		final BulletProxy fired = bullets.pop();
+		fired.fire(shooter);
 	}
 
 	public abstract int reload();

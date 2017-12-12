@@ -1,5 +1,5 @@
 package wall;
 
-public class DWall extends DestructableWall{
+public class DWall extends DestructableWall {
 
 }

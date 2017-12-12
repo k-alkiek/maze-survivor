@@ -1,19 +1,23 @@
 package gun;
 
+import characters.Player;
+
 /**
  * Magazine of a shotgun.
+ * 
  * @author H
  *
  */
 public class InGunMag extends Magazine {
 
-	public InGunMag(int gunMagSize) {
-		super(gunMagSize);
+
+	public InGunMag(Player shooter, Weapon weapon, int gunMagSize) {
+		super(shooter, weapon, gunMagSize);
 	}
 
 	@Override
 	public int reload() {
-		int usedBullets = objectsPool.size();
+		final int usedBullets = objectsPool.size();
 		while (!objectsPool.isEmpty()) {
 			bullets.push(objectsPool.pop());
 		}
@@ -28,6 +32,11 @@ public class InGunMag extends Magazine {
 			usedBullets++;
 		}
 		return usedBullets;
+	}
+
+	@Override
+	public String toString() {
+		return "In-Gun Magazine";
 	}
 
 }
