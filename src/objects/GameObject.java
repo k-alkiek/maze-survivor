@@ -23,6 +23,8 @@ public abstract class GameObject {
 		this.x = 0;
 		this.y = 0;
 		this.angle = 0;
+
+		gameEngine.addGameObject(this);
 	}
 
 	public GameObject (GameEngine gameEngine, double x, double y) {
@@ -30,6 +32,8 @@ public abstract class GameObject {
 		this.x = x;
 		this.y = y;
 		this.angle = 0;
+
+		gameEngine.addGameObject(this);
 	}
 
 	public GameObject (GameEngine gameEngine, double x, double y, double angle) {
@@ -37,6 +41,8 @@ public abstract class GameObject {
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
+
+		gameEngine.addGameObject(this);
 	}
 
 	/**

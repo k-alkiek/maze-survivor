@@ -31,14 +31,21 @@ public class GameEngine {
         createGameLoop();
     }
 
+    public void addGameObject(GameObject gameObject) {
+        gameObjects.add(gameObject);
+    }
+
+    public void removeGameObject(GameObject gameObject) {
+        gameObjects.remove(gameObject);
+    }
+
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-
-                // game.Game Loop
-                // Iterate on all game object and run their update
-                // Render all game objects
+                for (GameObject gameObject : gameObjects) {
+                    gameObject.update();
+                }
                 refreshFrameRate(now);
             }
         }.start();
