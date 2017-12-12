@@ -1,5 +1,6 @@
 package characters;
 
+import game.GameEngine;
 import gun.Weapon;
 import objects.*;
 
@@ -13,8 +14,8 @@ public class Player extends CollidableGameObject {
 
 	private Weapon weapon;
 
-	public Player(double x, double y, Weapon weapon) {
-		super(x, y);
+	public Player(GameEngine gameEngine, double x, double y, Weapon weapon) {
+		super(gameEngine, x, y);
 		this.weapon = weapon;
 	}
 
