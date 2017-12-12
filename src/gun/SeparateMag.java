@@ -1,5 +1,7 @@
 package gun;
 
+import characters.Player;
+
 /**
  * Represents the magazine that gets thrown on reload.
  * 
@@ -8,8 +10,8 @@ package gun;
  */
 public class SeparateMag extends Magazine {
 
-	public SeparateMag(final int gunMagSize) {
-		super(gunMagSize);
+	public SeparateMag(Player shooter, Weapon weapon, int gunMagSize) {
+		super(shooter, weapon, gunMagSize);
 	}
 
 	@Override

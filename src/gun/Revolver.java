@@ -1,27 +1,23 @@
 package gun;
 
+import characters.Player;
+
 /**
  * Gun with magazines carried by the player.
  * 
  * @author H
  *
  */
-public class Revolver implements Weapon {
+public class Revolver extends Weapon {
 
 	/**
 	 * Size of the full magazine.
 	 */
 	private final static int MAG_SIZE = 6;
 
-	/**
-	 * Number of available bullets.
-	 */
-	private int bullets;
-
-	private final Magazine mag;
-
-	public Revolver(final int bullets) {
-		mag = new InGunMag(Revolver.MAG_SIZE);
+	public Revolver(final Player shooter, final int bullets) {
+		super(shooter);
+		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
 		this.bullets = bullets;
 	}
 

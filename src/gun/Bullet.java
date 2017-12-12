@@ -1,5 +1,6 @@
 package gun;
 
+import characters.Player;
 import objects.CollidableGameObject;
 
 /**
@@ -19,19 +20,19 @@ public class Bullet extends CollidableGameObject {
 		// TODO: Make fxShape.
 	}
 
+	public void fire(Player shooter, Weapon weapon) {
+		x = shooter.getX();
+		y = shooter.getY();
+		angle = shooter.getAngle();
+		onFire = true;
+		//TODO: Set damage.
+	}
+
 	/**
 	 * @return the onFire
 	 */
 	public final boolean isOnFire() {
 		return onFire;
-	}
-
-	/**
-	 * @param onFire
-	 *            the onFire to set
-	 */
-	public final void setOnFire(final boolean onFire) {
-		this.onFire = onFire;
 	}
 
 	@Override

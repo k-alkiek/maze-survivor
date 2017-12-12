@@ -12,6 +12,26 @@ public abstract class GameObject {
 
 	protected double y;
 
+	protected double angle;
+
+	public GameObject () {
+		this.x = 0;
+		this.y = 0;
+		this.angle = 0;
+	}
+
+	public GameObject (double x, double y) {
+		this.x = x;
+		this.y = y;
+		this.angle = 0;
+	}
+
+	public GameObject (double x, double y, double angle) {
+		this.x = x;
+		this.y = y;
+		this.angle = angle;
+	}
+
 	/**
 	 * @return the x
 	 */
@@ -53,8 +73,6 @@ public abstract class GameObject {
 	public void setAngle(double angle) {
 		this.angle = angle;
 	}
-
-	protected double angle;
 
 	/**
 	 * Updates the game object.

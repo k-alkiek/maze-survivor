@@ -1,5 +1,7 @@
 package gun;
 
+import characters.Player;
+
 /**
  * Proxy for bullet representing a bullet in the player's magazine before
  * firing. Following the Proxy design pattern.
@@ -9,10 +11,16 @@ package gun;
  */
 public class BulletProxy {
 
-	public void fire() {
+	private Weapon weapon;
+
+	public BulletProxy(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
+	public void fire(Player shooter) {
 		final BulletPool pool = BulletPool.getInstance();
 		final Bullet firedBullet = pool.acquireReusable();
-		firedBullet.setOnFire(true);
+		firedBullet.fire(shooter, weapon);
 	}
 
 }

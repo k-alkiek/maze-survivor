@@ -1,5 +1,7 @@
 package gun;
 
+import characters.Player;
+
 /**
  * Magazine of a shotgun.
  * 
@@ -8,8 +10,9 @@ package gun;
  */
 public class InGunMag extends Magazine {
 
-	public InGunMag(final int gunMagSize) {
-		super(gunMagSize);
+
+	public InGunMag(Player shooter, Weapon weapon, int gunMagSize) {
+		super(shooter, weapon, gunMagSize);
 	}
 
 	@Override

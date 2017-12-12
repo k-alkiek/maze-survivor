@@ -15,6 +15,14 @@ public abstract class CollidableGameObject extends GameObject {
 	 */
 	protected Shape fxShape;
 
+	public CollidableGameObject () {
+		super();
+	}
+
+	public CollidableGameObject (double x, double y) {
+		super(x, y);
+	}
+
 	/**
 	 * Checks whether this game object collides with another game object.
 	 *
