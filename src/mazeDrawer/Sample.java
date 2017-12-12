@@ -21,10 +21,7 @@ import maze.generator.generationAlgorithm.Kruskal;
  */
 public class Sample extends Application {
 
-    public void drawCells(int[][] maze) {
-
-    }
-
+	int size = 25;
     @Override
     public void start(Stage primaryStage) {
         Group root = new Group();
@@ -44,31 +41,40 @@ public class Sample extends Application {
             e.printStackTrace();
         }
 
-        int[][] maze;
-        Kruskal tmp = new Kruskal(5, 5);
-        tmp.draw();
-        MazeGenerator m = new MazeGenerator(10, 10);
-        m.display();
-        maze = m.grid;
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[0].length; j++) {
-                System.out.print(maze[i][j] + " ");
-            }
-            System.out.println();
+        char[][] maze = new char[size][size];
+        MazeGenerator m = new MazeGenerator((size - 1) / 2, (size - 1) /2 );
+        String printedMaze = m.display();
+        int index = 0;
+        int row = 0;
+        int column = 0;
+        try {
+	        while (true) {
+	        	if (!(printedMaze.charAt(index) == '\n')) {
+	        		maze[row][column] = printedMaze.charAt(index++);
+	        		column++;
+	        	} else {
+	        		column = 0;
+	        		index++;
+	        		row++;
+	        	}
+	        }
+        } catch (Exception e) {
+        	//e.printStackTrace();
         }
+
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
                 //Setting the image view
-                if (maze[i][j] == 1) {
+                if (maze[i][j] == '1') {
                     ImageView imageView = new ImageView(image);
 
                     //Setting the position of the image
-                    imageView.setX(5 + j * 50);
-                    imageView.setY(5 + i * 50);
+                    imageView.setX(5 + j * 25);
+                    imageView.setY(5 + i * 25);
 
                     //setting the fit height and width of the image view
-                    imageView.setFitHeight(50);
-                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
 
                     //Setting the preserve ratio of the image view
                     imageView.setPreserveRatio(true);
@@ -98,28 +104,31 @@ public class Sample extends Application {
             generateMaze(0, 0);
         }
 
-        public void display() {
+        public String display() {
+        	StringBuilder printedMaze = new StringBuilder();
             for (int i = 0; i < y; i++) {
                 // draw the north edge
                 for (int j = 0; j < x; j++) {
-                    System.out.print((maze[j][i] & 1) == 0 ? "+-" : "+ ");
+                	printedMaze.append((maze[j][i] & 1) == 0 ? "11" : "1 ");
                     if ((maze[j][i] & 1) == 0)
                         grid[j][i] = 1;
                 }
-                System.out.println("+");
+                printedMaze.append("1\n");
                 // draw the west edge
                 for (int j = 0; j < x; j++) {
-                    System.out.print((maze[j][i] & 8) == 0 ? "| " : "  ");
+                	printedMaze.append((maze[j][i] & 8) == 0 ? "1 " : "  ");
                     if ((maze[j][i] & 8) == 0)
                         grid[j][i] = 1;
                 }
-                System.out.println("|");
+                printedMaze.append("1\n");
             }
             // draw the bottom line
             for (int j = 0; j < x; j++) {
-                System.out.print("+-");
+            	printedMaze.append("11");
             }
-            System.out.println("+");
+            printedMaze.append("1\n");
+            System.out.println(printedMaze);
+            return printedMaze.toString();
         }
 
         private void generateMaze(int cx, int cy) {
