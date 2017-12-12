@@ -205,4 +205,8 @@ public class Kruskal extends VirtualMaze {
             args.set(pos, tmp1);
         }
     }
+
+    public int[][] getMaze() {
+        return this.maze;
+    }
 }
