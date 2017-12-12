@@ -10,6 +10,8 @@ import characters.Player;
  */
 public class Revolver extends Weapon {
 
+	private final static int DAMAGE = 100;
+
 	/**
 	 * Size of the full magazine.
 	 */
@@ -19,6 +21,8 @@ public class Revolver extends Weapon {
 		super(shooter);
 		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
 		this.bullets = bullets;
+		ranged = false;
+		damage = DAMAGE;
 	}
 
 	@Override
@@ -36,6 +40,15 @@ public class Revolver extends Weapon {
 		} else {
 			bullets -= mag.reload(bullets);
 		}
+	}
+
+	public void addBullets(final int addedBullets) {
+		bullets += addedBullets;
+	}
+
+	@Override
+	public int getDamage() {
+		return damage;
 	}
 
 	@Override
