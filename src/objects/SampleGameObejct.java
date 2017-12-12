@@ -12,6 +12,6 @@ public class SampleGameObejct extends GameObject {
 
     @Override
     public void update() {
-        System.out.println("Update");
+        System.out.println("I am a game object");
     }
 }
