@@ -2,6 +2,8 @@ package gun;
 
 import java.util.Stack;
 
+import characters.Player;
+
 /**
  * Pool of bullets following the Pool Design Pattern.
  * 
@@ -12,8 +14,11 @@ public class BulletPool {
 
 	private static BulletPool instance;
 
-	public static BulletPool getInstance() {
-		if (BulletPool.instance == null) {
+	private static Player shooter;
+
+	public static BulletPool getInstance(Player shooterIn) {
+		if (BulletPool.instance == null || shooter != shooterIn) {
+			shooter = shooterIn;
 			BulletPool.instance = new BulletPool();
 		}
 		return BulletPool.instance;
@@ -27,7 +32,7 @@ public class BulletPool {
 
 	public Bullet acquireReusable() {
 		if (pool.isEmpty()) {
-			return new Bullet();
+			return new Bullet(shooter.getGameEngine());
 		} else {
 			return pool.pop();
 		}

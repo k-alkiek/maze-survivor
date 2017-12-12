@@ -18,7 +18,7 @@ public class BulletProxy {
 	}
 
 	public void fire(Player shooter) {
-		final BulletPool pool = BulletPool.getInstance();
+		final BulletPool pool = BulletPool.getInstance(shooter);
 		final Bullet firedBullet = pool.acquireReusable();
 		firedBullet.fire(shooter, weapon);
 	}

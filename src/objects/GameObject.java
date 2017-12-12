@@ -18,6 +18,13 @@ public abstract class GameObject {
 
 	protected GameEngine gameEngine;
 
+	/**
+	 * @return the gameEngine
+	 */
+	public GameEngine getGameEngine() {
+		return gameEngine;
+	}
+
 	public GameObject (GameEngine gameEngine) {
 		this.gameEngine = gameEngine;
 		this.x = 0;
