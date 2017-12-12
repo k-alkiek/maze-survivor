@@ -4,27 +4,25 @@ import java.util.Stack;
 
 /**
  * Pool of bullets following the Pool Design Pattern.
+ * 
  * @author H
  *
  */
 public class BulletPool {
 
 	private static BulletPool instance;
-	private Stack<Bullet> pool;
-
-	private BulletPool() {
-		pool = new Stack<Bullet>();
-	}
 
 	public static BulletPool getInstance() {
-		if (instance == null) {
-			instance = new BulletPool();
+		if (BulletPool.instance == null) {
+			BulletPool.instance = new BulletPool();
 		}
-		return instance;
+		return BulletPool.instance;
 	}
 
-	public void releaseReusable(final Bullet returned) {
-		pool.add(returned);
+	private final Stack<Bullet> pool;
+
+	private BulletPool() {
+		pool = new Stack<>();
 	}
 
 	public Bullet acquireReusable() {
@@ -33,5 +31,9 @@ public class BulletPool {
 		} else {
 			return pool.pop();
 		}
+	}
+
+	public void releaseReusable(final Bullet returned) {
+		pool.add(returned);
 	}
 }

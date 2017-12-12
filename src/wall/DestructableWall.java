@@ -1,5 +1,5 @@
 package wall;
 
-public abstract class DestructableWall extends Wall implements IDestructable{
-	
+public abstract class DestructableWall extends Wall implements IDestructable {
+
 }

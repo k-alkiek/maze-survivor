@@ -2,6 +2,7 @@ package objects;
 
 /**
  * Represents any game object that requires being updated every frame.
+ * 
  * @author H
  *
  */

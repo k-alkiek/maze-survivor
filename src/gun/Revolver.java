@@ -2,6 +2,7 @@ package gun;
 
 /**
  * Gun with magazines carried by the player.
+ * 
  * @author H
  *
  */
@@ -17,19 +18,24 @@ public class Revolver implements Weapon {
 	 */
 	private int bullets;
 
-	private Magazine mag;
+	private final Magazine mag;
 
 	public Revolver(final int bullets) {
-		mag = new InGunMag(MAG_SIZE);
+		mag = new InGunMag(Revolver.MAG_SIZE);
 		this.bullets = bullets;
 	}
 
 	@Override
+	public void fire() {
+		mag.fire();
+	}
+
+	@Override
 	public void reload() {
-		//TODO: Fix reload time and make reloading state.
+		// TODO: Fix reload time and make reloading state.
 		if (bullets == 0) {
-			//TODO: RELOADING DOESN'T WORK.
-		} else if (bullets > MAG_SIZE) {
+			// TODO: RELOADING DOESN'T WORK.
+		} else if (bullets > Revolver.MAG_SIZE) {
 			bullets -= mag.reload();
 		} else {
 			bullets -= mag.reload(bullets);
@@ -37,8 +43,8 @@ public class Revolver implements Weapon {
 	}
 
 	@Override
-	public void fire() {
-		mag.fire();
+	public String toString() {
+		return "Revolver";
 	}
 
 }

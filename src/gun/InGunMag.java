@@ -2,18 +2,19 @@ package gun;
 
 /**
  * Magazine of a shotgun.
+ * 
  * @author H
  *
  */
 public class InGunMag extends Magazine {
 
-	public InGunMag(int gunMagSize) {
+	public InGunMag(final int gunMagSize) {
 		super(gunMagSize);
 	}
 
 	@Override
 	public int reload() {
-		int usedBullets = objectsPool.size();
+		final int usedBullets = objectsPool.size();
 		while (!objectsPool.isEmpty()) {
 			bullets.push(objectsPool.pop());
 		}
@@ -28,6 +29,11 @@ public class InGunMag extends Magazine {
 			usedBullets++;
 		}
 		return usedBullets;
+	}
+
+	@Override
+	public String toString() {
+		return "In-Gun Magazine";
 	}
 
 }

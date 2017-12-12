@@ -7,139 +7,142 @@ package maze.generator.generationAlgorithm;
 import java.util.Random;
 
 public class VirtualMaze {
-    // Define class variables
-    public static final int N = 1;
-    public static final int S = 2;
-    public static final int E = 4;
-    public static final int W = 8;
+	// Define class variables
+	public static final int N = 1;
+	public static final int S = 2;
+	public static final int E = 4;
+	public static final int W = 8;
 
-    public static final int DEFAULT_WIDTH = 10;
-    public static final int DEFAULT_HEIGHT = 10;
+	public static final int DEFAULT_WIDTH = 10;
+	public static final int DEFAULT_HEIGHT = 10;
 
-    protected Random _random = null;
-    protected Long _seed = null;
-    protected int _w = 0;
-    protected int _h = 0;
-    protected int[][] _grid = null;
-    protected boolean[][] maze;
-    // Define class methods
-    public static int DX(int direction) {
-        switch (direction) {
-            case VirtualMaze.E:
-                return +1;
-            case VirtualMaze.W:
-                return -1;
-            case VirtualMaze.N:
-            case VirtualMaze.S:
-                return 0;
-        }
-        // error condition, but should never reach here
-        return -1;
-    }
+	// Define class methods
+	public static int DX(final int direction) {
+		switch (direction) {
+		case VirtualMaze.E:
+			return +1;
+		case VirtualMaze.W:
+			return -1;
+		case VirtualMaze.N:
+		case VirtualMaze.S:
+			return 0;
+		}
+		// error condition, but should never reach here
+		return -1;
+	}
 
-    public static int DY(int direction) {
-        switch (direction) {
-            case VirtualMaze.E:
-            case VirtualMaze.W:
-                return 0;
-            case VirtualMaze.N:
-                return -1;
-            case VirtualMaze.S:
-                return 1;
-        }
-        // error condition, but should never reach here
-        return -1;
-    }
+	public static int DY(final int direction) {
+		switch (direction) {
+		case VirtualMaze.E:
+		case VirtualMaze.W:
+			return 0;
+		case VirtualMaze.N:
+			return -1;
+		case VirtualMaze.S:
+			return 1;
+		}
+		// error condition, but should never reach here
+		return -1;
+	}
 
-    public static int OPPOSITE(int direction) {
-        switch (direction) {
-            case VirtualMaze.E:
-                return VirtualMaze.W;
-            case VirtualMaze.W:
-                return VirtualMaze.E;
-            case VirtualMaze.N:
-                return VirtualMaze.S;
-            case VirtualMaze.S:
-                return VirtualMaze.N;
-        }
-        // error condition, but should never reach here
-        return -1;
-    }
+	public static int OPPOSITE(final int direction) {
+		switch (direction) {
+		case VirtualMaze.E:
+			return VirtualMaze.W;
+		case VirtualMaze.W:
+			return VirtualMaze.E;
+		case VirtualMaze.N:
+			return VirtualMaze.S;
+		case VirtualMaze.S:
+			return VirtualMaze.N;
+		}
+		// error condition, but should never reach here
+		return -1;
+	}
 
+	protected Random _random = null;
+	protected Long _seed = null;
+	protected int _w = 0;
+	protected int _h = 0;
 
-    /**
-     * Initialize a new 2D maze with, optionally supply the width, height and seed.
-     * <p>
-     * Default seed will give "random" behavior.
-     * User-supplied seed value will give "deterministic" behavior.
-     */
-    public VirtualMaze() {
-        this(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    }
+	protected int[][] _grid = null;
 
-    public VirtualMaze(int w, int h) {
-        initialize(w, h);
-        _random = new Random();
-    }
+	protected boolean[][] maze;
 
-    public VirtualMaze(int w, int h, long seed) {
-        initialize(w, h);
-        _random = new Random(seed);
-        _seed = new Long(seed);
-    }
+	/**
+	 * Initialize a new 2D maze with, optionally supply the width, height and
+	 * seed.
+	 * <p>
+	 * Default seed will give "random" behavior. User-supplied seed value will
+	 * give "deterministic" behavior.
+	 */
+	public VirtualMaze() {
+		this(VirtualMaze.DEFAULT_WIDTH, VirtualMaze.DEFAULT_HEIGHT);
+	}
 
-    private void initialize(int w, int h) {
-        _w = w;
-        _h = h;
-        _grid = new int[h][w];
-        maze = new boolean[2 * h + 2][2 * w + 2];
-        for (int j = 0; j < h; ++j) {
-            for (int i = 0; i < w; ++i) {
-                _grid[j][i] = 0;
-            }
-        }
-    }
+	public VirtualMaze(final int w, final int h) {
+		initialize(w, h);
+		_random = new Random();
+	}
 
-    /**
-     * Draw the grid, starting in the upper-left hand corner.
-     */
-    public void draw() {
-        // draw the "top" line
+	public VirtualMaze(final int w, final int h, final long seed) {
+		initialize(w, h);
+		_random = new Random(seed);
+		_seed = new Long(seed);
+	}
 
-        System.out.print(" ");
-        for (int i = 0; i < (_w * 2 - 1); ++i) {
-            System.out.print("_");
-        }
-        System.out.println("");
+	/**
+	 * Draw the grid, starting in the upper-left hand corner.
+	 */
+	public void draw() {
+		// draw the "top" line
 
-        // draw each row
-        for (int j = 0; j < _h; ++j) {
-            System.out.print("|");
-            for (int i = 0; i < _w; ++i) {
-                // render "bottom" using the "S" switch
-                System.out.print((_grid[j][i] & VirtualMaze.S) != 0 ? " " : "=");
+		System.out.print(" ");
+		for (int i = 0; i < _w * 2 - 1; ++i) {
+			System.out.print("_");
+		}
+		System.out.println("");
 
-                // render "side" using "E" switch
-                if ((_grid[j][i] & VirtualMaze.E) != 0) {
-                    System.out.print(((_grid[j][i] | _grid[j][i + 1]) & VirtualMaze.S) != 0 ? " " : "=");
-                } else {
-                    System.out.print("|");
-                }
-            }
-            System.out.println("");
-        }
+		// draw each row
+		for (int j = 0; j < _h; ++j) {
+			System.out.print("|");
+			for (int i = 0; i < _w; ++i) {
+				// render "bottom" using the "S" switch
+				System.out.print((_grid[j][i] & VirtualMaze.S) != 0 ? " " : "=");
 
-        // output maze metadata
-        outputMetadata();
-    }
+				// render "side" using "E" switch
+				if ((_grid[j][i] & VirtualMaze.E) != 0) {
+					System.out.print(((_grid[j][i] | _grid[j][i + 1]) & VirtualMaze.S) != 0 ? " " : "=");
+				} else {
+					System.out.print("|");
+				}
+			}
+			System.out.println("");
+		}
 
-    protected void outputMetadata() {
-        String meta = " " + _w + " " + _h;
-        if (_seed != null) {
-            meta += " " + _seed;
-        } else {
-            meta += " random";
-        }
-        System.out.println(meta);
-    }
+		// output maze metadata
+		outputMetadata();
+	}
+
+	private void initialize(final int w, final int h) {
+		_w = w;
+		_h = h;
+		_grid = new int[h][w];
+		maze = new boolean[2 * h + 2][2 * w + 2];
+		for (int j = 0; j < h; ++j) {
+			for (int i = 0; i < w; ++i) {
+				_grid[j][i] = 0;
+			}
+		}
+	}
+
+	protected void outputMetadata() {
+		String meta = " " + _w + " " + _h;
+		if (_seed != null) {
+			meta += " " + _seed;
+		} else {
+			meta += " random";
+		}
+		System.out.println(meta);
+	}
 }

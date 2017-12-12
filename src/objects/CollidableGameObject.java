@@ -4,7 +4,7 @@ import javafx.scene.shape.Shape;
 
 /**
  * Represents a game object that may collide with other objects.
- * 
+ *
  * @author H
  *
  */
@@ -17,11 +17,11 @@ public abstract class CollidableGameObject extends GameObject {
 
 	/**
 	 * Checks whether this game object collides with another game object.
-	 * 
+	 *
 	 * @param other
 	 * @return
 	 */
-	public boolean collidesWith(CollidableGameObject other) {
+	public boolean collidesWith(final CollidableGameObject other) {
 		return fxShape.intersects(other.getFxShape().getBoundsInLocal());
 	}
 
