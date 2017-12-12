@@ -1,5 +1,7 @@
 package objects;
 
+import game.GameEngine;
+
 /**
  * Represents any game object that requires being updated every frame.
  * 
@@ -14,22 +16,40 @@ public abstract class GameObject {
 
 	protected double angle;
 
-	public GameObject () {
+	protected GameEngine gameEngine;
+
+	/**
+	 * @return the gameEngine
+	 */
+	public GameEngine getGameEngine() {
+		return gameEngine;
+	}
+
+	public GameObject (GameEngine gameEngine) {
+		this.gameEngine = gameEngine;
 		this.x = 0;
 		this.y = 0;
 		this.angle = 0;
+
+		gameEngine.addGameObject(this);
 	}
 
-	public GameObject (double x, double y) {
+	public GameObject (GameEngine gameEngine, double x, double y) {
+		this.gameEngine = gameEngine;
 		this.x = x;
 		this.y = y;
 		this.angle = 0;
+
+		gameEngine.addGameObject(this);
 	}
 
-	public GameObject (double x, double y, double angle) {
+	public GameObject (GameEngine gameEngine, double x, double y, double angle) {
+		this.gameEngine = gameEngine;
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
+
+		gameEngine.addGameObject(this);
 	}
 
 	/**

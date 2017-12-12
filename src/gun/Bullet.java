@@ -1,6 +1,7 @@
 package gun;
 
 import characters.Player;
+import game.GameEngine;
 import objects.CollidableGameObject;
 
 /**
@@ -16,7 +17,8 @@ public class Bullet extends CollidableGameObject {
 	 */
 	private boolean onFire;
 
-	public Bullet() {
+	public Bullet(GameEngine gameEngine) {
+		super(gameEngine);
 		// TODO: Make fxShape.
 	}
 

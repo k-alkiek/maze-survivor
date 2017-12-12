@@ -3,7 +3,6 @@ package gun;
 import characters.Player;
 
 /**
- * Gun with magazines carried by the player.
  * 
  * @author H
  *
