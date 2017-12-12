@@ -2,6 +2,7 @@ package mazeDrawer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -44,18 +45,8 @@ public class Sample extends Application {
             e.printStackTrace();
         }
 
-        int[][] maze;
-        Kruskal tmp = new Kruskal(5, 5);
-        tmp.draw();
-        MazeGenerator m = new MazeGenerator(10, 10);
-        m.display();
-        maze = m.grid;
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[0].length; j++) {
-                System.out.print(maze[i][j] + " ");
-            }
-            System.out.println();
-        }
+        int[][] maze = new int[0][];
+
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
                 //Setting the image view
@@ -63,12 +54,12 @@ public class Sample extends Application {
                     ImageView imageView = new ImageView(image);
 
                     //Setting the position of the image
-                    imageView.setX(5 + j * 50);
-                    imageView.setY(5 + i * 50);
+                    imageView.setX(5 + j * 25);
+                    imageView.setY(5 + i * 25);
 
                     //setting the fit height and width of the image view
-                    imageView.setFitHeight(50);
-                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
 
                     //Setting the preserve ratio of the image view
                     imageView.setPreserveRatio(true);
