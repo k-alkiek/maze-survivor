@@ -13,10 +13,16 @@ public class MazeDrawer {
     private Group root;
     private double percentageOfDestructableWalls;
     private double percentageOfMines;
-    char[][] maze;
-    Image image = null;
-    Image imageDestructable = null;
-    Image mine = null;
+    private char[][] maze;
+    private Image image = null;
+    private Image imageDestructable = null;
+    private Image mine = null;
+    private Image bigMineRight = null;
+    private Image bigMineLeft = null;
+    private Image bigMineUp = null;
+    private Image bigMineDown = null;
+    private Image gift = null;
+
 
     public MazeDrawer(Group root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
         super();
@@ -48,6 +54,11 @@ public class MazeDrawer {
             image = new Image(new FileInputStream("wall.png"));
             imageDestructable = new Image(new FileInputStream("wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
+            bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
+            bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
+            bigMineUp = new Image(new FileInputStream("bigMineUp.png"));
+            bigMineDown = new Image(new FileInputStream("bigMineDown.png"));
+            gift = new Image(new FileInputStream("gift.jpg"));
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -125,7 +136,81 @@ public class MazeDrawer {
                     imageView.setPreserveRatio(true);
                     root.getChildren().addAll(imageView);
 
-                }
+                } else if (maze[i][j] == '4') {
+                    ImageView imageViewLeft = new ImageView(bigMineLeft);
+                    //Setting the position of the image
+                    imageViewLeft.setX(5 + j * 25);
+                    imageViewLeft.setY(5 + i * 25);
+
+                    //setting the fit height and width of the image view
+                    imageViewLeft.setFitHeight(25);
+                    imageViewLeft.setFitWidth(25);
+
+                    //Setting the preserve ratio of the image view
+                    imageViewLeft.setPreserveRatio(true);
+                    root.getChildren().addAll(imageViewLeft);
+                                        
+                } else if (maze[i][j] == '5') {
+                	  ImageView imageViewRight = new ImageView(bigMineRight);
+
+                      //Setting the position of the image
+                      imageViewRight.setX(5 + j * 25);
+                      imageViewRight.setY(5 + i * 25);
+
+                      //setting the fit height and width of the image view
+                      imageViewRight.setFitHeight(25);
+                      imageViewRight.setFitWidth(25);
+
+                      //Setting the preserve ratio of the image view
+                      imageViewRight.setPreserveRatio(true);
+                      root.getChildren().addAll(imageViewRight);
+
+                } else if (maze[i][j] == '6') {
+	              	  ImageView imageViewRight = new ImageView(bigMineUp);
+	
+	                  //Setting the position of the image
+	                  imageViewRight.setX(5 + j * 25);
+	                  imageViewRight.setY(5 + i * 25);
+	
+	                  //setting the fit height and width of the image view
+	                  imageViewRight.setFitHeight(25);
+	                  imageViewRight.setFitWidth(25);
+	
+	                  //Setting the preserve ratio of the image view
+	                  imageViewRight.setPreserveRatio(true);
+	                  root.getChildren().addAll(imageViewRight);
+
+	            } else if (maze[i][j] == '7') {
+		          	  ImageView imageViewRight = new ImageView(bigMineDown);
+		
+		              //Setting the position of the image
+		              imageViewRight.setX(5 + j * 25);
+		              imageViewRight.setY(5 + i * 25);
+		
+		              //setting the fit height and width of the image view
+		              imageViewRight.setFitHeight(25);
+		              imageViewRight.setFitWidth(25);
+		
+		              //Setting the preserve ratio of the image view
+		              imageViewRight.setPreserveRatio(true);
+		              root.getChildren().addAll(imageViewRight);
+	
+	            } else if (maze[i][j] == '8') {
+		          	  ImageView imageViewRight = new ImageView(gift);
+		
+		              //Setting the position of the image
+		              imageViewRight.setX(5 + j * 25);
+		              imageViewRight.setY(5 + i * 25);
+		
+		              //setting the fit height and width of the image view
+		              imageViewRight.setFitHeight(25);
+		              imageViewRight.setFitWidth(25);
+		
+		              //Setting the preserve ratio of the image view
+		              imageViewRight.setPreserveRatio(true);
+		              root.getChildren().addAll(imageViewRight);
+	
+	            }
             }
 
         }
@@ -152,8 +237,83 @@ public class MazeDrawer {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (maze[randomYPos][randomXPos] != '1' && maze[randomYPos][randomXPos] != '2'
-                    && maze[randomYPos][randomXPos] != '3' && this.positionIsValid(maze, randomXPos, randomYPos)) {
+                    && maze[randomYPos][randomXPos] != '3'
+                    && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '3';
+            } else {
+                i--;
+            }
+        }
+    }
+    
+    private void spreadGifts() {
+        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
+            int randomXPos = (int) (Math.random() * maze.length);
+            int randomYPos = (int) (Math.random() * maze.length);
+            if (maze[randomYPos][randomXPos] != '1'
+            		&& maze[randomYPos][randomXPos] != '2'
+                    && maze[randomYPos][randomXPos] != '3'
+                    && maze[randomYPos][randomXPos] != '4'
+                    && maze[randomYPos][randomXPos] != '5'
+                    && maze[randomYPos][randomXPos] != '6'
+                    && maze[randomYPos][randomXPos] != '7'
+                    && maze[randomYPos][randomXPos] != '8'
+                    && this.positionIsValid(maze, randomXPos, randomYPos)) {
+                maze[randomYPos][randomXPos] = '8';
+            } else {
+                i--;
+            }
+        }
+    }
+    
+    private boolean notHorizontalMine(int randomYPos, int randomXPos) {
+    	if (maze[randomYPos][randomXPos] != '1'
+    	        && maze[randomYPos][randomXPos] != '2'
+    	        && maze[randomYPos][randomXPos] != '3'
+    	        && maze[randomYPos][randomXPos] != '4'
+    	    	&& maze[randomYPos][randomXPos] != '5'
+    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    private void spreadHorizontalBigMines() {
+        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
+            int randomXPos = (int) (Math.random() * maze.length);
+            int randomYPos = (int) (Math.random() * maze.length);
+            if (this.notHorizontalMine(randomYPos, randomXPos) && this.notHorizontalMine(randomYPos, randomXPos + 1)) {
+                maze[randomYPos][randomXPos] = '4';
+                maze[randomYPos][randomXPos + 1] = '5';
+            } else {
+                i--;
+            }
+        }
+    }
+    
+    private boolean notVerticalMine(int randomYPos, int randomXPos) {
+    	if (maze[randomYPos][randomXPos] != '1'
+    	        && maze[randomYPos][randomXPos] != '2'
+    	        && maze[randomYPos][randomXPos] != '3'
+    	        && maze[randomYPos][randomXPos] != '4'
+    	    	&& maze[randomYPos][randomXPos] != '5'
+    	    	&& maze[randomYPos][randomXPos] != '6'
+    	    	&& maze[randomYPos][randomXPos] != '7'
+    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    private void spreadVerticalBigMines() {
+        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
+            int randomXPos = (int) (Math.random() * maze.length);
+            int randomYPos = (int) (Math.random() * maze.length);
+            if (this.notVerticalMine(randomYPos, randomXPos) && this.notVerticalMine(randomYPos + 1, randomXPos)) {
+                maze[randomYPos][randomXPos] = '6';
+                maze[randomYPos + 1][randomXPos] = '7';
             } else {
                 i--;
             }
@@ -165,6 +325,9 @@ public class MazeDrawer {
         this.generateMaze();
         this.spreadDestructableWalls();
         this.spreadMines();
+        this.spreadHorizontalBigMines();
+        this.spreadVerticalBigMines();
+        this.spreadGifts();
         this.displayDrawables();
     }
 }

@@ -21,7 +21,7 @@ public class Sample extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        MazeDrawer mazeDrawer = new MazeDrawer(root, 30, 0.05, 0.01);
+        MazeDrawer mazeDrawer = new MazeDrawer(root, 30, 0.05, 0.01 /2);
         mazeDrawer.drawMaze();
     }
 
