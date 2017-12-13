@@ -3,25 +3,26 @@ package gun;
 import characters.Player;
 
 /**
+ * Rifle gun.
  * 
  * @author H
  *
  */
-public class Revolver extends Weapon {
+public class Pistol extends Weapon {
 
 	/**
 	 * Full damage.
 	 */
-	private final static int DAMAGE = 100;
+	private final static int DAMAGE = 60;
 
 	/**
 	 * Size of the full magazine.
 	 */
-	private final static int MAG_SIZE = 6;
+	private final static int MAG_SIZE = 10;
 
-	public Revolver(final Player shooter, final int bullets) {
+	public Pistol(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
+		mag = new SeparateMag(shooter, this, Pistol.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;
 	}
@@ -36,7 +37,7 @@ public class Revolver extends Weapon {
 		// TODO: Fix reload time and make reloading state.
 		if (bullets == 0) {
 			// TODO: RELOADING DOESN'T WORK.
-		} else if (bullets > Revolver.MAG_SIZE) {
+		} else if (bullets > Pistol.MAG_SIZE) {
 			bullets -= mag.reload();
 		} else {
 			bullets -= mag.reload(bullets);
@@ -54,7 +55,7 @@ public class Revolver extends Weapon {
 
 	@Override
 	public String toString() {
-		return "Revolver";
+		return "Rifle";
 	}
 
 }

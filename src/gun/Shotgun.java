@@ -7,23 +7,23 @@ import characters.Player;
  * @author H
  *
  */
-public class Revolver extends Weapon {
+public class Shotgun extends Weapon {
 
 	/**
 	 * Full damage.
 	 */
-	private final static int DAMAGE = 100;
+	private final static int DAMAGE = 300;
 
 	/**
 	 * Size of the full magazine.
 	 */
-	private final static int MAG_SIZE = 6;
+	private final static int MAG_SIZE = 7;
 
-	public Revolver(final Player shooter, final int bullets) {
+	public Shotgun(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
+		mag = new InGunMag(shooter, this, Shotgun.MAG_SIZE);
 		this.bullets = bullets;
-		ranged = false;
+		ranged = true;
 	}
 
 	@Override
@@ -36,25 +36,21 @@ public class Revolver extends Weapon {
 		// TODO: Fix reload time and make reloading state.
 		if (bullets == 0) {
 			// TODO: RELOADING DOESN'T WORK.
-		} else if (bullets > Revolver.MAG_SIZE) {
+		} else if (bullets > Shotgun.MAG_SIZE) {
 			bullets -= mag.reload();
 		} else {
 			bullets -= mag.reload(bullets);
 		}
 	}
 
-	public void addBullets(final int addedBullets) {
-		bullets += addedBullets;
+	@Override
+	public String toString() {
+		return "Shotgun";
 	}
 
 	@Override
 	public int getDamage() {
 		return DAMAGE;
-	}
-
-	@Override
-	public String toString() {
-		return "Revolver";
 	}
 
 }

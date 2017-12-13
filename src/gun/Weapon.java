@@ -11,11 +11,6 @@ import characters.Player;
 public abstract class Weapon {
 
 	/**
-	 * The player who owns and controls this weapon.
-	 */
-	private Player shooter;
-
-	/**
 	 * Number of available bullets.
 	 */
 	protected int bullets;
@@ -24,6 +19,42 @@ public abstract class Weapon {
 	 * The magazine in the weapon.
 	 */
 	protected Magazine mag;
+
+	/**
+	 * The player who owns and controls this weapon.
+	 */
+	protected Player shooter;
+
+	/**
+	 * Flag to whether the weapon's damage decays over distance.
+	 */
+	protected boolean ranged;
+
+	/**
+	 * @return the ranged
+	 */
+	public boolean isRanged() {
+		return ranged;
+	}
+
+	/**
+	 * @return the damage
+	 */
+	public abstract int getDamage();
+
+	/**
+	 * @return the bullets
+	 */
+	public int getBullets() {
+		return bullets;
+	}
+
+	/**
+	 * @return the mag
+	 */
+	public Magazine getMag() {
+		return mag;
+	}
 
 	public Weapon(Player shooter) {
 		this.shooter = shooter;
