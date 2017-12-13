@@ -5,16 +5,16 @@ import maze.generateAlgorithm.MazeGenerator;
 /**
  * Created by khaledabdelfattah on 12/12/17.
  */
-public class MazeProxy {
+public class MazeFacade {
     private int width, height;
 
-    public MazeProxy(int width, int height) {
+    public MazeFacade(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
     public String generateMaze() {
         MazeGenerator generator = new MazeGenerator(width, height);
-        return generator.display();
+        return generator.getMaze();
     }
 }
