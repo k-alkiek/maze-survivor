@@ -15,6 +15,6 @@ public class MazeProxy {
 
     public String generateMaze() {
         MazeGenerator generator = new MazeGenerator(width, height);
-        return generator.display();
+        return generator.getMaze();
     }
 }
