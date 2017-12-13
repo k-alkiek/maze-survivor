@@ -2,8 +2,10 @@ package mazeDrawer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -11,10 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import maze.generator.generationAlgorithm.Kruskal;
 
 /**
  * @web java-buddy.blogspot.com
@@ -34,8 +33,10 @@ public class Sample extends Application {
 
         //=============================
         Image image = null;
+        Image imageDestructable = null;
         try {
             image = new Image(new FileInputStream("wall.png"));
+            imageDestructable = new Image(new FileInputStream("wall.jpg"));
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -61,6 +62,21 @@ public class Sample extends Application {
         } catch (Exception e) {
         	//e.printStackTrace();
         }
+        
+        int numOfDestructableWallsInFreePath = 0;
+        for (int i = 0; i < maze.length * maze.length * 0.1; i++) {
+        	int randomXPos = (int) (Math.random() * maze.length);
+        	int randomYPos = (int) (Math.random() * maze.length);
+        	if (maze[randomYPos][randomXPos] != '2' && randomXPos != maze.length - 1 && randomYPos != maze.length - 1 && randomXPos != 0 && randomYPos != 0) {
+        		maze[randomYPos][randomXPos] = '2';
+        		if (maze[randomYPos][randomXPos] == ' ') {
+        			numOfDestructableWallsInFreePath++;
+            	} 
+        	} else {
+        		i--;
+        	}
+        }
+        
 
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
@@ -80,6 +96,21 @@ public class Sample extends Application {
                     imageView.setPreserveRatio(true);
 
                     root.getChildren().addAll(imageView);
+                } else if (maze[i][j] == '2') {
+                	ImageView imageView = new ImageView(imageDestructable);
+
+                    //Setting the position of the image
+                    imageView.setX(5 + j * 25);
+                    imageView.setY(5 + i * 25);
+
+                    //setting the fit height and width of the image view
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+
+                    //Setting the preserve ratio of the image view
+                    imageView.setPreserveRatio(true);
+                    root.getChildren().addAll(imageView);
+
                 }
             }
         }
@@ -127,7 +158,6 @@ public class Sample extends Application {
             	printedMaze.append("11");
             }
             printedMaze.append("1\n");
-            System.out.println(printedMaze);
             return printedMaze.toString();
         }
 

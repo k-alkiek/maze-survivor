@@ -1,5 +1,6 @@
 package objects;
 
+import game.GameEngine;
 import javafx.scene.shape.Shape;
 
 /**
@@ -15,12 +16,12 @@ public abstract class CollidableGameObject extends GameObject {
 	 */
 	protected Shape fxShape;
 
-	public CollidableGameObject () {
-		super();
+	public CollidableGameObject (GameEngine gameEngine) {
+		super(gameEngine);
 	}
 
-	public CollidableGameObject (double x, double y) {
-		super(x, y);
+	public CollidableGameObject (GameEngine gameEngine, double x, double y) {
+		super(gameEngine, x, y);
 	}
 
 	/**
