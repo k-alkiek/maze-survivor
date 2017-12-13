@@ -10,6 +10,11 @@ import characters.Player;
 public class Shotgun extends Weapon {
 
 	/**
+	 * Full damage.
+	 */
+	private final static int DAMAGE = 300;
+
+	/**
 	 * Size of the full magazine.
 	 */
 	private final static int MAG_SIZE = 7;
@@ -18,6 +23,7 @@ public class Shotgun extends Weapon {
 		super(shooter);
 		mag = new InGunMag(shooter, this, Shotgun.MAG_SIZE);
 		this.bullets = bullets;
+		ranged = true;
 	}
 
 	@Override
@@ -40,6 +46,11 @@ public class Shotgun extends Weapon {
 	@Override
 	public String toString() {
 		return "Shotgun";
+	}
+
+	@Override
+	public int getDamage() {
+		return DAMAGE;
 	}
 
 }

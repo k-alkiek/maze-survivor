@@ -31,11 +31,6 @@ public abstract class Weapon {
 	protected boolean ranged;
 
 	/**
-	 * Full damage.
-	 */
-	protected int damage;
-
-	/**
 	 * @return the ranged
 	 */
 	public boolean isRanged() {
