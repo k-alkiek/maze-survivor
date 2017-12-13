@@ -8,6 +8,6 @@ import characters.Player;
 public class IdleState extends State {
     @Override
     public void update(Player player) {
-
+    
     }
 }
