@@ -39,6 +39,10 @@ public class GameEngine {
         gameObjects.remove(gameObject);
     }
 
+    public Pane getPane() {
+        return pane;
+    }
+
     private void createGameLoop() {
         new AnimationTimer() {
             @Override

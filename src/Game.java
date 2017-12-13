@@ -1,10 +1,9 @@
+import characters.Player;
 import game.GameEngine;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.GameObject;
-import objects.SampleGameObejct;
 
 /**
  * Created by khaled on 12/12/17.
@@ -20,7 +19,7 @@ public class Game extends Application {
 
         gameEngine = new GameEngine(pane);
 
-        new SampleGameObejct(gameEngine);
+        new Player(gameEngine, 0, 0, null);
         primaryStage.show();
     }
 

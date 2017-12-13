@@ -4,6 +4,7 @@ import characters.states.IdleState;
 import characters.states.State;
 import game.GameEngine;
 import gun.Weapon;
+import javafx.scene.image.Image;
 import objects.*;
 
 /**
@@ -16,6 +17,7 @@ public class Player extends CollidableGameObject {
 	private Weapon weapon;
 
 	private State currentState;
+	private Image sprite;
 
 	public Player(GameEngine gameEngine, double x, double y, Weapon weapon) {
 		super(gameEngine, x, y);
@@ -25,7 +27,8 @@ public class Player extends CollidableGameObject {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		imageView.setImage(sprite);
+		// TODO
 
 	}
 

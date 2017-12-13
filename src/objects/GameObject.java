@@ -1,6 +1,7 @@
 package objects;
 
 import game.GameEngine;
+import javafx.scene.image.ImageView;
 
 /**
  * Represents any game object that requires being updated every frame.
@@ -15,6 +16,8 @@ public abstract class GameObject {
 	protected double y;
 
 	protected double angle;
+
+	protected ImageView imageView;
 
 	protected GameEngine gameEngine;
 
@@ -31,7 +34,9 @@ public abstract class GameObject {
 		this.y = 0;
 		this.angle = 0;
 
+		this.imageView = new ImageView();
 		gameEngine.addGameObject(this);
+		gameEngine.getPane().getChildren().add(imageView);
 	}
 
 	public GameObject (GameEngine gameEngine, double x, double y) {
@@ -40,7 +45,9 @@ public abstract class GameObject {
 		this.y = y;
 		this.angle = 0;
 
+		this.imageView = new ImageView();
 		gameEngine.addGameObject(this);
+		gameEngine.getPane().getChildren().add(imageView);
 	}
 
 	public GameObject (GameEngine gameEngine, double x, double y, double angle) {
@@ -49,7 +56,9 @@ public abstract class GameObject {
 		this.y = y;
 		this.angle = angle;
 
+		this.imageView = new ImageView();
 		gameEngine.addGameObject(this);
+		gameEngine.getPane().getChildren().add(imageView);
 	}
 
 	/**
@@ -98,5 +107,9 @@ public abstract class GameObject {
 	 * Updates the game object.
 	 */
 	public abstract void update();
+
+	public ImageView getImageView() {
+		return imageView;
+	}
 
 }
