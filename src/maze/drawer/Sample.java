@@ -1,26 +1,16 @@
-package mazeDrawer;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+package maze.drawer;
 
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import maze.generateAlgorithm.MazeGenerator;
 
 /**
  * @web java-buddy.blogspot.com
  */
 public class Sample extends Application {
-    
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,7 +22,7 @@ public class Sample extends Application {
         primaryStage.show();
 
         MazeDrawer mazeDrawer = new MazeDrawer(root, 30, 0.05, 0.01);
-        mazeDrawer.drawMaze();                
+        mazeDrawer.drawMaze();
     }
 
     /**
