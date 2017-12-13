@@ -29,8 +29,9 @@ public class Player extends CollidableGameObject {
 
     @Override
     public void update() {
+        // TODO REFACTOR khaled barie
+        currentState.update(this);
         imageView.setImage(sprite);
-        // TODO
 
     }
 
