@@ -8,21 +8,21 @@ import characters.Player;
  * @author H
  *
  */
-public class Rifle extends Weapon {
+public class Pistol extends Weapon {
 
 	/**
 	 * Full damage.
 	 */
-	private final static int DAMAGE = 70;
+	private final static int DAMAGE = 60;
 
 	/**
 	 * Size of the full magazine.
 	 */
 	private final static int MAG_SIZE = 10;
 
-	public Rifle(final Player shooter, final int bullets) {
+	public Pistol(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new SeparateMag(shooter, this, Rifle.MAG_SIZE);
+		mag = new SeparateMag(shooter, this, Pistol.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;
 	}
@@ -37,7 +37,7 @@ public class Rifle extends Weapon {
 		// TODO: Fix reload time and make reloading state.
 		if (bullets == 0) {
 			// TODO: RELOADING DOESN'T WORK.
-		} else if (bullets > Rifle.MAG_SIZE) {
+		} else if (bullets > Pistol.MAG_SIZE) {
 			bullets -= mag.reload();
 		} else {
 			bullets -= mag.reload(bullets);
