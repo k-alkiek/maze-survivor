@@ -18,7 +18,7 @@ public class MazeGenerator {
         generateMaze(0, 0);
     }
 
-    public String display() {
+    public String getMaze() {
         StringBuilder printedMaze = new StringBuilder();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
