@@ -21,6 +21,9 @@ public class Player extends CollidableGameObject {
         super(gameEngine, x, y);
         this.weapon = weapon;
         currentState = new IdleState();
+
+        imageView.setFitWidth(100);
+        System.out.println(imageView.getBoundsInLocal());
     }
 
     public void setSprite(Image sprite) {
@@ -31,7 +34,7 @@ public class Player extends CollidableGameObject {
     public void update() {
         // TODO REFACTOR khaled barie
         currentState.update(this);
-        imageView.setImage(sprite);
+        draw(sprite);
 
     }
 
