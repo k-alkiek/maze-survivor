@@ -2,10 +2,15 @@ package characters.states;
 
 import characters.Player;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import lib.NaturalOrderComparator;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,9 +30,10 @@ public abstract class State {
     protected void loadSprites(String path) {
         sprites.clear();
         File directory = new File(path);
-        System.out.println(directory.getPath());
-        System.out.println(directory.isDirectory());
-        for (File spriteFile : directory.listFiles()) {
+        List<File> spriteFiles = Arrays.asList(directory.listFiles());
+        Collections.sort(spriteFiles, new NaturalOrderComparator());
+
+        for (File spriteFile : spriteFiles) {
             try {
                 sprites.add(new Image(new FileInputStream(spriteFile)));
             } catch (Exception e) {
