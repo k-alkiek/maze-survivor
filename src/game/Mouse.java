@@ -58,7 +58,7 @@ public final class Mouse {
      * Checks if a key on the keyboard is currently pressed
      * @param mouseButton KeyCode of the key to be checked
      */
-    public boolean IsPressed(MouseButton mouseButton) {
+    public boolean isPressed(MouseButton mouseButton) {
         return buttonsPressed.contains(mouseButton);
     }
 

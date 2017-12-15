@@ -33,7 +33,7 @@ public final class Keyboard {
      * Checks if a key on the keyboard is currently pressed
      * @param keyCode KeyCode of the key to be checked
      */
-    public boolean IsPressed(KeyCode keyCode) {
+    public boolean isPressed(KeyCode keyCode) {
         return keysPressed.contains(keyCode);
     }
 
