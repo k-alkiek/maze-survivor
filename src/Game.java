@@ -21,6 +21,7 @@ public class Game extends Application {
 
         new Player(gameEngine, 0, 0, null);
         primaryStage.show();
+        pane.requestFocus();
     }
 
     public static void main(String[] args) {
