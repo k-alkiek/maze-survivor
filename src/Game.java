@@ -22,6 +22,7 @@ public class Game extends Application {
 
         new SampleGameObejct(gameEngine);
         primaryStage.show();
+        pane.requestFocus();
     }
 
     public static void main(String[] args) {

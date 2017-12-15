@@ -1,8 +1,7 @@
 package game;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import objects.GameObject;
 
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class GameEngine {
     private Mouse mouse;
-    private Keyboard key;
+    private Keyboard keyboard;
 
     private Pane pane;
 
@@ -27,7 +26,7 @@ public class GameEngine {
     public GameEngine(Pane pane) {
         this.pane = pane;
         gameObjects = new ArrayList<>();
-        initializeEventHandlers();
+        initializeInput();
         createGameLoop();
     }
 
@@ -38,9 +37,9 @@ public class GameEngine {
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
-//                System.out.println(mouse.getX());
-//                System.out.println(key.keysPressed);
-                //refreshFrameRate(now);
+                testAllInput();
+                refreshInput();
+                pane.requestFocus();
             }
         }.start();
     }
@@ -58,10 +57,14 @@ public class GameEngine {
         gameObjects.remove(gameObject);
     }
 
-    private void initializeEventHandlers() {
-        key = new Keyboard(this);
-        System.out.println(key);
+    private void initializeInput() {
+        keyboard = new Keyboard(this);
         mouse = new Mouse(this);
+    }
+
+    private void refreshInput() {
+        mouse.refresh();
+        keyboard.refresh();
     }
 
     private void refreshFrameRate(long now) {
@@ -77,5 +80,13 @@ public class GameEngine {
             double frameRate = 1_000_000_000.0 / elapsedNanosPerFrame ;
             System.out.println(String.format("Current frame rate: %.3f", frameRate));
         }
+    }
+
+    private void testAllInput() {
+        System.out.println("Mouse X: " + mouse.getX() + ", Mouse Y: " + mouse.getY());
+        if (mouse.isScrollingUp()) System.out.println("Up");
+        if (mouse.isScrollingDown()) System.out.println("Down");
+        if (!mouse.getButtonsPressed().isEmpty()) System.out.println(mouse.getButtonsPressed());
+        if (!keyboard.getKeysPressed().isEmpty()) System.out.println(keyboard.getKeysPressed());
     }
 }

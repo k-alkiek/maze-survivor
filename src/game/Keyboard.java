@@ -22,22 +22,37 @@ public final class Keyboard {
         initialize();
     }
 
+    /**
+     * @return a list of all keys that are currently pressed
+     */
+    public List<KeyCode> getKeysPressed() {
+        return keysPressed;
+    }
+
+    /**
+     * Checks if a key on the keyboard is currently pressed
+     * @param keyCode KeyCode of the key to be checked
+     */
+    public boolean IsPressed(KeyCode keyCode) {
+        return keysPressed.contains(keyCode);
+    }
+
     private void initialize() {
         Pane pane = gameEngine.getPane();
-        System.out.println("adsasd");
 
-        pane.setOnMousePressed(event -> System.out.println("press"));
         pane.setOnKeyPressed(event -> {
-            System.out.println("asdasd");
-            keysPressed.add(event.getCode());
+            if (!keysPressed.contains(event.getCode())) {
+                keysPressed.add(event.getCode());
+            }
         });
 
         pane.setOnKeyReleased(event -> {
-            System.out.println("asdasd");
             if (keysPressed.contains(event.getCode())) {
                 keysPressed.remove(event.getCode());
             }
         });
     }
+
+    public void refresh() {}
 
 }
