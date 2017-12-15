@@ -44,12 +44,14 @@ public final class Keyboard {
             if (!keysPressed.contains(event.getCode())) {
                 keysPressed.add(event.getCode());
             }
+            event.consume();
         });
 
         pane.setOnKeyReleased(event -> {
             if (keysPressed.contains(event.getCode())) {
                 keysPressed.remove(event.getCode());
             }
+            event.consume();
         });
     }
 

@@ -76,16 +76,19 @@ public final class Mouse {
         pane.setOnMouseMoved(event -> {
             x = event.getX();
             y = event.getY();
+            event.consume();
         });
         pane.setOnMousePressed(event -> {
             if (!buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.add(event.getButton());
             }
+            event.consume();
         });
         pane.setOnMouseReleased(event -> {
             if (buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.remove(event.getButton());
             }
+            event.consume();
         });
 
         pane.setOnScroll(event -> {
@@ -97,6 +100,7 @@ public final class Mouse {
                 isScrollingDown = false;
                 isScrollingUp = true;
             }
+            event.consume();
         });
     }
 
