@@ -55,7 +55,7 @@ public final class Mouse {
     }
 
     /**
-     * Checks if a key on the keyboard is currently pressed
+     * Checks if a mouse button is currently pressed
      * @param mouseButton KeyCode of the key to be checked
      */
     public boolean isPressed(MouseButton mouseButton) {
