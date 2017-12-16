@@ -1,6 +1,6 @@
 package gun;
 
-import character.Player;
+import characters.Player;
 
 /**
  * Represents the magazine that gets thrown on reload.

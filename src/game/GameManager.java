@@ -1,6 +1,6 @@
 package game;
 
-import character.Player;
+import characters.Player;
 import gun.Weapon;
 
 /**

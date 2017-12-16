@@ -17,6 +17,7 @@ import gun.Weapon;
  * Created by khaled on 12/12/17.
  */
 public class GameEngine {
+    private static GameEngine gameEngine;
     private Mouse mouse;
     private Keyboard keyboard;
 
@@ -29,11 +30,18 @@ public class GameEngine {
     private boolean arrayFilled = false;
 	private Weapon weapon;
 
-    public GameEngine(Pane pane) {
-        this.pane = pane;
+    private GameEngine() {
+        pane = new Pane();
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
+    }
+
+    public static GameEngine getInstanceOf() {
+        if (gameEngine == null) {
+            gameEngine = new GameEngine();
+        }
+        return gameEngine;
     }
 
     private void createGameLoop() {
@@ -55,13 +63,24 @@ public class GameEngine {
     }
 
 
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public Keyboard getKeyboard() {
+        return keyboard;
+    }
+
+
     public void addGameObject(GameObject gameObject) {
         gameObjects.add(gameObject);
     }
 
     private void initializeInput() {
-        keyboard = new Keyboard(this);
-        mouse = new Mouse(this);
+        keyboard = Keyboard.getInstanceOf();
+        mouse = Mouse.getInstanceOf();
+        keyboard.initialize(pane);
+        mouse.initialize(pane);
     }
 
     private void refreshInput() {

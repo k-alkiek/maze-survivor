@@ -14,8 +14,8 @@ public class MazeDrawer {
     private double percentageOfDestructableWalls;
     private double percentageOfMines;
     private char[][] maze;
-    private Image image = null;
-    private Image imageDestructable = null;
+    private Image wall = null;
+    private Image destructableWall = null;
     private Image mine = null;
     private Image bigMineRight = null;
     private Image bigMineLeft = null;
@@ -51,8 +51,8 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
-            image = new Image(new FileInputStream("wall.png"));
-            imageDestructable = new Image(new FileInputStream("wall.jpg"));
+            wall = new Image(new FileInputStream("wall.png"));
+            destructableWall = new Image(new FileInputStream("wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
             bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
             bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
@@ -60,7 +60,6 @@ public class MazeDrawer {
             bigMineDown = new Image(new FileInputStream("bigMineDown.png"));
             gift = new Image(new FileInputStream("gift.jpg"));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -83,7 +82,7 @@ public class MazeDrawer {
                 }
             }
         } catch (Exception e) {
-            System.out.println("MazeDrawer class: generateMazeFunction => maze converted");
+            System.out.println("MazeDrawer class: generateMazeFunction => maze converted successfully");
         }
     }
 
@@ -92,7 +91,7 @@ public class MazeDrawer {
             for (int j = 0; j < maze.length; j++) {
                 //Setting the image view
                 if (maze[i][j] == '1') {
-                    ImageView imageView = new ImageView(image);
+                    ImageView imageView = new ImageView(wall);
 
                     //Setting the position of the image
                     imageView.setX(5 + j * 25);
@@ -107,7 +106,7 @@ public class MazeDrawer {
 
                     root.getChildren().addAll(imageView);
                 } else if (maze[i][j] == '2') {
-                    ImageView imageView = new ImageView(imageDestructable);
+                    ImageView imageView = new ImageView(destructableWall);
 
                     //Setting the position of the image
                     imageView.setX(5 + j * 25);
@@ -236,9 +235,7 @@ public class MazeDrawer {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
-            if (maze[randomYPos][randomXPos] != '1' && maze[randomYPos][randomXPos] != '2'
-                    && maze[randomYPos][randomXPos] != '3'
-                    && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '3';
             } else {
                 i--;
@@ -267,12 +264,7 @@ public class MazeDrawer {
     }
     
     private boolean notHorizontalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] != '1'
-    	        && maze[randomYPos][randomXPos] != '2'
-    	        && maze[randomYPos][randomXPos] != '3'
-    	        && maze[randomYPos][randomXPos] != '4'
-    	    	&& maze[randomYPos][randomXPos] != '5'
-    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
+    	if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
     		return true;
     	} else {
     		return false;
@@ -293,13 +285,7 @@ public class MazeDrawer {
     }
     
     private boolean notVerticalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] != '1'
-    	        && maze[randomYPos][randomXPos] != '2'
-    	        && maze[randomYPos][randomXPos] != '3'
-    	        && maze[randomYPos][randomXPos] != '4'
-    	    	&& maze[randomYPos][randomXPos] != '5'
-    	    	&& maze[randomYPos][randomXPos] != '6'
-    	    	&& maze[randomYPos][randomXPos] != '7'
+    	if (maze[randomYPos][randomXPos] == ' '
     	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
     		return true;
     	} else {
@@ -320,7 +306,7 @@ public class MazeDrawer {
         }
     }
 
-    public void drawMaze() {
+    public void constructMaze() {
         this.initializeDrawables();
         this.generateMaze();
         this.spreadDestructableWalls();
@@ -328,6 +314,9 @@ public class MazeDrawer {
         this.spreadHorizontalBigMines();
         this.spreadVerticalBigMines();
         this.spreadGifts();
-        this.displayDrawables();
+    }
+    
+    public void displayMaze() {
+    	this.displayDrawables();
     }
 }
