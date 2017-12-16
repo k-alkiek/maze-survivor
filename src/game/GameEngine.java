@@ -5,10 +5,13 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
+import objects.CollidableGameObject;
 import objects.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import gun.Weapon;
 
 /**
  * Created by khaled on 12/12/17.
@@ -25,6 +28,7 @@ public class GameEngine {
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
+	private Weapon weapon;
 
     private GameEngine() {
         pane = new Pane();
@@ -72,10 +76,6 @@ public class GameEngine {
         gameObjects.add(gameObject);
     }
 
-    public void removeGameObject(GameObject gameObject) {
-        gameObjects.remove(gameObject);
-    }
-
     private void initializeInput() {
         keyboard = Keyboard.getInstanceOf();
         mouse = Mouse.getInstanceOf();
@@ -110,4 +110,27 @@ public class GameEngine {
         if (!mouse.getButtonsPressed().isEmpty()) System.out.println(mouse.getButtonsPressed());
         if (!keyboard.getKeysPressed().isEmpty()) System.out.println(keyboard.getKeysPressed());
     }
+
+    /**
+     * Unsubscribes the game object and removes it from the list of
+     * regularly updated game objects.
+     * 
+     * @param destroyed
+     */
+    public void destroyGameObject(GameObject destroyed) {
+    	gameObjects.remove(destroyed);
+    	if (destroyed instanceof CollidableGameObject) {
+    		pane.getChildren().remove(((CollidableGameObject) destroyed).getGraphics());
+    	}
+    }
+
+    public Weapon getWeapon() {
+    	return weapon;
+    }
+
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
 }
