@@ -1,6 +1,7 @@
 package game;
 
 import character.Player;
+import gun.Weapon;
 
 /**
  * Manages the game in terms of win/loss and score.
@@ -13,11 +14,22 @@ public class GameManager {
 
 	private Player player;
 
-	private int score;
+	private Integer score;
+
+	private Integer health;
+
+	private Weapon weapon;
+
+	/**
+	 * Full is on 1000.
+	 */
+	private int food;
 
 	public GameManager(GameEngine gameEngine, Player player) {
 		this.gameEngine = gameEngine;
 		this.player = player;
+		food = 1000;
+		weapon = gameEngine.getWeapon();
 	}
 
 	public void incrementScore(int addedScore) {
@@ -26,6 +38,14 @@ public class GameManager {
 
 	public void incrementHealth(int addedHealth) {
 		player.incrementHealth(addedHealth);
+	}
+
+	public void incrementFood(int addedFood) {
+		food += addedFood;
+	}
+
+	public void incrementBullets() {
+		weapon.setBullets(weapon.getBullets() + weapon.getMag().getMagSize() / 2);
 	}
 
 	public GameEngine getGameEngine() {
