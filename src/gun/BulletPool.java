@@ -2,7 +2,7 @@ package gun;
 
 import java.util.Stack;
 
-import character.Player;
+import characters.Player;
 
 /**
  * Pool of bullets following the Pool Design Pattern.

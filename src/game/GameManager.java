@@ -1,6 +1,6 @@
 package game;
 
-import character.Player;
+import characters.Player;
 
 /**
  * Manages the game in terms of win/loss and score.

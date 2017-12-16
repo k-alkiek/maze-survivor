@@ -1,10 +1,9 @@
+import characters.Player;
 import game.GameEngine;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import objects.GameObject;
-import objects.SampleGameObejct;
 
 /**
  * Created by khaled on 12/12/17.
@@ -14,13 +13,12 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Pane pane = new Pane();
+        gameEngine = GameEngine.getInstanceOf();
+        Pane pane = gameEngine.getPane();
         Scene scene = new Scene(pane, 800, 600);
         primaryStage.setScene(scene);
 
-        gameEngine = new GameEngine(pane);
-
-        new SampleGameObejct(gameEngine);
+        new Player(gameEngine, 0, 0, null);
         primaryStage.show();
         pane.requestFocus();
     }
