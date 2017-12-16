@@ -3,14 +3,10 @@ package characters;
 import characters.states.IdleState;
 import characters.states.State;
 import game.GameEngine;
-import game.Keyboard;
 import game.Mouse;
 import gun.Weapon;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import objects.*;
-
-import java.security.Key;
 
 /**
  * Class representing the player of the game.
@@ -19,8 +15,11 @@ import java.security.Key;
  */
 public class Player extends CollidableGameObject {
     private Weapon weapon;
-    private State currentState;
+    private State currentState = new IdleState();
     private Image sprite;
+
+
+    private int speed = 5;
 
     public Player(GameEngine gameEngine, double x, double y, Weapon weapon) {
         super(gameEngine, x, y);
@@ -37,23 +36,8 @@ public class Player extends CollidableGameObject {
 
     @Override
     public void update() {
-        int speed = 5;
         imageView.setFitWidth(250);
         Mouse mouse = gameEngine.getMouse();
-        Keyboard keyboard = gameEngine.getKeyboard();
-
-        if (keyboard.isPressed(KeyCode.W)) {
-            y -= speed;
-        }
-        if (keyboard.isPressed(KeyCode.S)) {
-            y += speed;
-        }
-        if (keyboard.isPressed(KeyCode.A)) {
-            x -= speed;
-        }
-        if (keyboard.isPressed(KeyCode.D)) {
-            x += speed;
-        }
         // TODO REFACTOR khaled barie
         angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));
         imageView.setRotate(angle);
@@ -66,4 +50,7 @@ public class Player extends CollidableGameObject {
         this.currentState = currentState;
     }
 
+    public int getSpeed() {
+        return speed;
+    }
 }

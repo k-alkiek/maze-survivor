@@ -1,26 +1,35 @@
 package characters.states;
 
 import characters.Player;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 
 /**
  * Created by khaled on 12/13/17.
  */
 public class IdleState extends State {
-    private int perFrame = 4;
-    private int currFrame = 0;
     public IdleState() {
         super();
-        loadSprites("src/assets/player/handgun/reload");
-        System.out.println(sprites.size());
+        loadSprites("src/assets/player/handgun/idle");
     }
 
     @Override
     public void update(Player player) {
-        currFrame++;
-        if (currFrame >= perFrame) {
-            player.setSprite(spritesIterator.getCurrentImage());
-            currFrame = 0;
+        setSpritesPerFrame(player);
+        if (keyboard.isPressed(KeyCode.R)) {
+            if (walking()) {
+                player.setCurrentState(new ReloadingWhileWalkingState());
+            } else {
+                player.setCurrentState(new ReloadingState());
+            }
+        } else if (walking()) {
+            if (mouse.isPressed(MouseButton.PRIMARY)) {
+                player.setCurrentState(new ShootingWhileWalkingState());
+            } else {
+                player.setCurrentState(new WalkingState());
+            }
+        } else if (!walking() && mouse.isPressed(MouseButton.PRIMARY)) {
+            player.setCurrentState(new ShootingState());
         }
-
     }
 }

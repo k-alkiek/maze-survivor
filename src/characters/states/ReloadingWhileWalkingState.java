@@ -3,12 +3,12 @@ package characters.states;
 import characters.Player;
 
 /**
- * Created by khaledabdelfattah on 12/13/17.
+ * Created by khaledabdelfattah on 12/16/17.
  */
-public class ShootingWhileWalkingState extends State {
-    public ShootingWhileWalkingState() {
+public class ReloadingWhileWalkingState extends State {
+    public ReloadingWhileWalkingState() {
         super();
-        loadSprites("src/assets/player/handgun/shoot");
+        loadSprites("src/assets/player/handgun/reload");
         framePerState = 0;
     }
     @Override
