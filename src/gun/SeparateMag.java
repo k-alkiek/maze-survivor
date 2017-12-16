@@ -10,8 +10,8 @@ import characters.Player;
  */
 public class SeparateMag extends Magazine {
 
-	public SeparateMag(Player shooter, Weapon weapon, int gunMagSize) {
-		super(shooter, weapon, gunMagSize);
+	public SeparateMag(Player shooter, int gunMagSize) {
+		super(shooter, gunMagSize);
 	}
 
 	@Override

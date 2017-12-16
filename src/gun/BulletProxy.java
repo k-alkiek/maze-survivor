@@ -11,16 +11,10 @@ import characters.Player;
  */
 public class BulletProxy {
 
-	private Weapon weapon;
-
-	public BulletProxy(Weapon weapon) {
-		this.weapon = weapon;
-	}
-
 	public void fire(Player shooter) {
 		final BulletPool pool = BulletPool.getInstance(shooter);
 		final Bullet firedBullet = pool.acquireReusable();
-		firedBullet.fire(shooter, weapon);
+		firedBullet.fire(shooter);
 	}
 
 }

@@ -10,12 +10,16 @@ import objects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import gun.Weapon;
+
 /**
  * Created by khaled on 12/12/17.
  */
 public class GameEngine {
     private Mouse mouse;
     private Keyboard keyboard;
+
+    private Weapon weapon;
 
     private Pane pane;
 
@@ -91,4 +95,14 @@ public class GameEngine {
         if (!mouse.getButtonsPressed().isEmpty()) System.out.println(mouse.getButtonsPressed());
         if (!keyboard.getKeysPressed().isEmpty()) System.out.println(keyboard.getKeysPressed());
     }
+
+    public Weapon getWeapon() {
+    	return weapon;
+    }
+
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
 }

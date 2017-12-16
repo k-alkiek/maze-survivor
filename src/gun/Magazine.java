@@ -12,20 +12,18 @@ import characters.Player;
  */
 public abstract class Magazine {
 
-	protected Weapon weapon;
 	protected Player shooter;
 	protected int magSize;
 	protected Stack<BulletProxy> bullets;
 	protected Stack<BulletProxy> objectsPool;
 
-	public Magazine(final Player shooter, final Weapon weapon, int gunMagSize) {
-		this.weapon = weapon;
+	public Magazine(final Player shooter, int gunMagSize) {
 		this.shooter = shooter;
 		magSize = gunMagSize;
 		bullets = new Stack<>();
 		objectsPool = new Stack<>();
 		while (gunMagSize-- != 0) {
-			objectsPool.push(new BulletProxy(weapon));
+			objectsPool.push(new BulletProxy());
 		}
 	}
 
