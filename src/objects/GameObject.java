@@ -123,6 +123,9 @@ public abstract class GameObject {
 	 */
 	protected void draw(Image sprite) {
 		imageView.setImage(sprite);
+		imageView.setX(x);
+		imageView.setY(y);
+        imageView.setRotate(angle);
 	}
 
 }

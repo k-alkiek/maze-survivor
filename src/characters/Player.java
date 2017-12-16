@@ -44,27 +44,20 @@ public class Player extends CollidableGameObject {
 
         if (keyboard.isPressed(KeyCode.W)) {
             y -= speed;
-            imageView.setY(y);
         }
         if (keyboard.isPressed(KeyCode.S)) {
             y += speed;
-            imageView.setY(y);
         }
         if (keyboard.isPressed(KeyCode.A)) {
             x -= speed;
-            imageView.setX(x);
         }
         if (keyboard.isPressed(KeyCode.D)) {
             x += speed;
-            imageView.setX(x);
         }
         // TODO REFACTOR khaled barie
         angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));
         imageView.setRotate(angle);
-//        imageView.setX(gameEngine.getMouse().getX());
-//        imageView.setY(gameEngine.getMouse().getY());
         currentState.update(this);
-
         draw(sprite);
 
     }
