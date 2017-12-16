@@ -13,10 +13,15 @@ public class ReloadingState extends State {
     }
     @Override
     public void update(Player player) {
+        walk(player);
         setSpritesPerFrame(player);
         if (framePerState == sprites.size()) {
             framePerState = 0;
-            player.setCurrentState(new IdleState());
+            if (walking()) {
+                player.setCurrentState(new WalkingState());
+            } else {
+                player.setCurrentState(new IdleState());
+            }
         }
     }
 }

@@ -17,7 +17,11 @@ public class ReloadingWhileWalkingState extends State {
         setSpritesPerFrame(player);
         if (framePerState == sprites.size()) {
             framePerState = 0;
-            player.setCurrentState(new WalkingState());
+            if (walking()) {
+                player.setCurrentState(new WalkingState());
+            } else {
+                player.setCurrentState(new IdleState());
+            }
         }
     }
 }
