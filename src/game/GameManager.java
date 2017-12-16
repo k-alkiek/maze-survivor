@@ -10,6 +10,8 @@ import gun.Weapon;
  */
 public class GameManager {
 
+	private static final int MAX_HEALTH = 100;
+
 	private GameEngine gameEngine;
 
 	private Player player;
@@ -30,6 +32,7 @@ public class GameManager {
 		this.player = player;
 		food = 1000;
 		weapon = gameEngine.getWeapon();
+		health = MAX_HEALTH;
 	}
 
 	public void incrementScore(int addedScore) {
@@ -37,7 +40,10 @@ public class GameManager {
 	}
 
 	public void incrementHealth(int addedHealth) {
-		player.incrementHealth(addedHealth);
+		health += addedHealth;
+		if (health > MAX_HEALTH) {
+			health = MAX_HEALTH;
+		}
 	}
 
 	public void incrementFood(int addedFood) {

@@ -17,8 +17,6 @@ public class Player extends CollidableGameObject {
     private Weapon weapon;
     private State currentState = new IdleState();
     private Image sprite;
-	private int health;
-
 
     private int speed = 5;
 
@@ -26,8 +24,6 @@ public class Player extends CollidableGameObject {
         super(gameEngine, x, y);
         this.weapon = weapon;
         currentState = new IdleState();
-    	health = 100;
-
         imageView.setFitWidth(100);
         System.out.println(imageView.getBoundsInLocal());
     }
@@ -53,13 +49,6 @@ public class Player extends CollidableGameObject {
     public void setCurrentState(State currentState) {
         this.currentState = currentState;
     }
-
-	public void incrementHealth(int addedHealth) {
-		health += addedHealth;
-		if (health > 100) {
-			health = 100;
-		}
-	}
 
     public int getSpeed() {
         return speed;
