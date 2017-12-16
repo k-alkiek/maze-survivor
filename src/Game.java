@@ -13,11 +13,10 @@ public class Game extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Pane pane = new Pane();
+        gameEngine = GameEngine.getInstanceOf();
+        Pane pane = gameEngine.getPane();
         Scene scene = new Scene(pane, 800, 600);
         primaryStage.setScene(scene);
-
-        gameEngine = new GameEngine(pane);
 
         new Player(gameEngine, 0, 0, null);
         primaryStage.show();

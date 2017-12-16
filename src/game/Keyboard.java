@@ -12,14 +12,18 @@ import java.util.List;
  * Handles keyboard input in the game.
  */
 public final class Keyboard {
-    private GameEngine gameEngine;
-
+    private static Keyboard keyboard;
     public List<KeyCode> keysPressed;
 
-    public Keyboard(GameEngine gameEngine) {
-        this.gameEngine = gameEngine;
-        this. keysPressed = new ArrayList<>();
-        initialize();
+    private Keyboard() {
+        this.keysPressed = new ArrayList<>();
+    }
+
+    public static Keyboard getInstanceOf() {
+        if (keyboard == null) {
+            keyboard = new Keyboard();
+        }
+        return keyboard;
     }
 
     /**
@@ -31,15 +35,14 @@ public final class Keyboard {
 
     /**
      * Checks if a key on the keyboard is currently pressed
+     *
      * @param keyCode KeyCode of the key to be checked
      */
     public boolean isPressed(KeyCode keyCode) {
         return keysPressed.contains(keyCode);
     }
 
-    private void initialize() {
-        Pane pane = gameEngine.getPane();
-
+    public void initialize(Pane pane) {
         pane.setOnKeyPressed(event -> {
             if (!keysPressed.contains(event.getCode())) {
                 keysPressed.add(event.getCode());
@@ -55,6 +58,7 @@ public final class Keyboard {
         });
     }
 
-    public void refresh() {}
+    public void refresh() {
+    }
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * Handles mouse input in the game.
  */
 public final class Mouse {
-    private GameEngine gameEngine;
+    private static Mouse mouse;
 
     private List<MouseButton> buttonsPressed;
 
@@ -23,14 +23,19 @@ public final class Mouse {
     private boolean isScrollingUp;
     private boolean isScrollingDown;
 
-    public Mouse(GameEngine gameEngine) {
-        this.gameEngine = gameEngine;
+    private Mouse() {
         this.x = 0;
         this.y = 0;
         this.isScrollingUp = false;
         this.isScrollingDown = false;
         this.buttonsPressed = new ArrayList<>();
-        initialize();
+    }
+
+    public static Mouse getInstanceOf() {
+        if (mouse == null) {
+            mouse = new Mouse();
+        }
+        return mouse;
     }
 
     /**
@@ -56,6 +61,7 @@ public final class Mouse {
 
     /**
      * Checks if a mouse button is currently pressed
+     *
      * @param mouseButton KeyCode of the key to be checked
      */
     public boolean isPressed(MouseButton mouseButton) {
@@ -70,9 +76,7 @@ public final class Mouse {
         return isScrollingDown;
     }
 
-    private void initialize() {
-        Pane pane = gameEngine.getPane();
-
+    public void initialize(Pane pane) {
         pane.setOnMouseMoved(event -> {
             x = event.getX();
             y = event.getY();
@@ -95,8 +99,7 @@ public final class Mouse {
             if (event.getDeltaY() < 0) {
                 isScrollingDown = true;
                 isScrollingUp = false;
-            }
-            else if (event.getDeltaY() > 0) {
+            } else if (event.getDeltaY() > 0) {
                 isScrollingDown = false;
                 isScrollingUp = true;
             }
