@@ -21,7 +21,7 @@ public class Revolver extends Weapon {
 
 	public Revolver(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
+		mag = new InGunMag(shooter, Revolver.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;
 	}

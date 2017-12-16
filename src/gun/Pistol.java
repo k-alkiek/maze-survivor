@@ -22,7 +22,7 @@ public class Pistol extends Weapon {
 
 	public Pistol(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new SeparateMag(shooter, this, Pistol.MAG_SIZE);
+		mag = new SeparateMag(shooter, Pistol.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;
 	}

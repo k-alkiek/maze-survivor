@@ -17,12 +17,18 @@ public class Bullet extends CollidableGameObject {
 	 */
 	private boolean onFire;
 
+	/**
+	 * The weapon to be fired.
+	 */
+	private Weapon weapon;
+
 	public Bullet(GameEngine gameEngine) {
 		super(gameEngine);
-		// TODO: Make fxShape.
+		this.weapon = gameEngine.getWeapon();
+		// TODO: Make fxImage.
 	}
 
-	public void fire(Player shooter, Weapon weapon) {
+	public void fire(Player shooter) {
 		x = shooter.getX();
 		y = shooter.getY();
 		angle = shooter.getAngle();

@@ -11,8 +11,8 @@ import character.Player;
 public class InGunMag extends Magazine {
 
 
-	public InGunMag(Player shooter, Weapon weapon, int gunMagSize) {
-		super(shooter, weapon, gunMagSize);
+	public InGunMag(Player shooter, int gunMagSize) {
+		super(shooter, gunMagSize);
 	}
 
 	@Override

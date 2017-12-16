@@ -101,4 +101,14 @@ public class GameEngine {
     		pane.getChildren().remove(((CollidableGameObject) destroyed).getGraphics());
     	}
     }
+
+    public Weapon getWeapon() {
+    	return weapon;
+    }
+
+
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
 }
