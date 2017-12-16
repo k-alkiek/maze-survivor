@@ -11,6 +11,8 @@ import objects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import gun.Weapon;
+
 /**
  * Created by khaled on 12/12/17.
  */
@@ -25,6 +27,7 @@ public class GameEngine {
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
+	private Weapon weapon;
 
     public GameEngine(Pane pane) {
         this.pane = pane;

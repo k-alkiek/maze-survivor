@@ -21,7 +21,7 @@ public class Shotgun extends Weapon {
 
 	public Shotgun(final Player shooter, final int bullets) {
 		super(shooter);
-		mag = new InGunMag(shooter, Shotgun.MAG_SIZE);
+		mag = new InGunMag(shooter, this, Shotgun.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = true;
 	}
