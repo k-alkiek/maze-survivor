@@ -6,11 +6,11 @@ import characters.Player;
  * Created by khaled on 12/13/17.
  */
 public class IdleState extends State {
-    private int perFrame = 5;
+    private int perFrame = 4;
     private int currFrame = 0;
     public IdleState() {
         super();
-        loadSprites("src/assets/player/handgun/idle");
+        loadSprites("src/assets/player/handgun/reload");
         System.out.println(sprites.size());
     }
 

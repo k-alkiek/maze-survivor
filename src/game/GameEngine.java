@@ -31,7 +31,7 @@ public class GameEngine {
         initializeInput();
         createGameLoop();
     }
-    
+
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
@@ -48,6 +48,15 @@ public class GameEngine {
 
     public Pane getPane() {
         return pane;
+    }
+
+
+    public Mouse getMouse() {
+        return mouse;
+    }
+
+    public Keyboard getKeyboard() {
+        return keyboard;
     }
 
 
