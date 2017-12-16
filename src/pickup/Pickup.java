@@ -1,16 +1,35 @@
 package pickup;
 
+import game.GameEngine;
+import game.GameManager;
+import objects.CollidableGameObject;
+
 /**
- * Pickups in the game. Assumed only pickable by the player.
- * 
  * @author H
  *
  */
-public interface Pickup {
+public abstract class Pickup extends CollidableGameObject {
 
 	/**
-	 * Method called when the character picks up the pickup.
+	 * Determines whether the object is picked yet.
+	 * Normally set to true in onPickup method.
 	 */
-	public void pickup();
+	protected boolean picked;
+
+	protected GameManager gameManager;
+
+	public Pickup(GameManager gameManager, double x, double y) {
+		super(gameManager.getGameEngine(), x, y);
+		this.gameManager = gameManager;
+	}
+
+	@Override
+	public void update() {
+		if (picked) {
+			gameManager.getGameEngine().destroyGameObject(this);
+		}
+	}
+
+	public abstract void onPickup();
 
 }

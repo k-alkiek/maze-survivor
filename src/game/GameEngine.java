@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
+import objects.CollidableGameObject;
 import objects.GameObject;
 
 import java.util.ArrayList;
@@ -55,10 +56,6 @@ public class GameEngine {
         gameObjects.add(gameObject);
     }
 
-    public void removeGameObject(GameObject gameObject) {
-        gameObjects.remove(gameObject);
-    }
-
     private void initializeInput() {
         keyboard = new Keyboard(this);
         mouse = new Mouse(this);
@@ -90,5 +87,18 @@ public class GameEngine {
         if (mouse.isScrollingDown()) System.out.println("Down");
         if (!mouse.getButtonsPressed().isEmpty()) System.out.println(mouse.getButtonsPressed());
         if (!keyboard.getKeysPressed().isEmpty()) System.out.println(keyboard.getKeysPressed());
+    }
+
+    /**
+     * Unsubscribes the game object and removes it from the list of
+     * regularly updated game objects.
+     * 
+     * @param destroyed
+     */
+    public void destroyGameObject(GameObject destroyed) {
+    	gameObjects.remove(destroyed);
+    	if (destroyed instanceof CollidableGameObject) {
+    		pane.getChildren().remove(((CollidableGameObject) destroyed).getGraphics());
+    	}
     }
 }
