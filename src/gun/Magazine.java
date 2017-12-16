@@ -2,7 +2,7 @@ package gun;
 
 import java.util.Stack;
 
-import characters.Player;
+import character.Player;
 
 /**
  * Magazine holding the bullets inside the player's gun.

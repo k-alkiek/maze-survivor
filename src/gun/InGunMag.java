@@ -1,6 +1,6 @@
 package gun;
 
-import characters.Player;
+import character.Player;
 
 /**
  * Magazine of a shotgun.

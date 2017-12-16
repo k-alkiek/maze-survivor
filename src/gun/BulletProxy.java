@@ -1,6 +1,6 @@
 package gun;
 
-import characters.Player;
+import character.Player;
 
 /**
  * Proxy for bullet representing a bullet in the player's magazine before

@@ -1,6 +1,6 @@
 package gun;
 
-import characters.Player;
+import character.Player;
 import game.GameEngine;
 import objects.CollidableGameObject;
 
