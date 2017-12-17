@@ -19,7 +19,7 @@ public class Monster extends CollidableGameObject {
     public Monster(GameEngine gameEngine, int x, int y) {
         super(gameEngine, x, y);
         currentState = new MonsterWalkingState();
-        imageView.setFitWidth(250);
+        imageView.setFitWidth(70);
     }
 
     @Override
