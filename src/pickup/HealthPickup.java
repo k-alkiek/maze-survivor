@@ -21,7 +21,7 @@ public class HealthPickup extends Pickup {
 
 	@Override
 	public void onPickup() {
-		gameManager.incrementHealth(HEALTH_VALUE);
+		gameManager.increaseHealth(HEALTH_VALUE);
 	}
 
 }

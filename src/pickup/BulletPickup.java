@@ -15,7 +15,7 @@ public class BulletPickup extends Pickup {
 
 	@Override
 	public void onPickup() {
-		gameManager.incrementBullets();
+		gameManager.increaseBullets();
 	}
 
 }

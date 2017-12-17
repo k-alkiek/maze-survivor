@@ -16,9 +16,9 @@ public class GameManager {
 
 	private Player player;
 
-	private Integer score;
+	private int score;
 
-	private Integer health;
+	private int health;
 
 	private Weapon weapon;
 
@@ -35,27 +35,71 @@ public class GameManager {
 		health = MAX_HEALTH;
 	}
 
-	public void incrementScore(int addedScore) {
+	public void increaseScore(int addedScore) {
 		score += addedScore;
 	}
 
-	public void incrementHealth(int addedHealth) {
+	public void increaseHealth(int addedHealth) {
 		health += addedHealth;
 		if (health > MAX_HEALTH) {
 			health = MAX_HEALTH;
 		}
 	}
 
-	public void incrementFood(int addedFood) {
+	public void increaseFood(int addedFood) {
 		food += addedFood;
 	}
 
-	public void incrementBullets() {
+	public void increaseBullets() {
 		weapon.setBullets(weapon.getBullets() + weapon.getMag().getMagSize() / 2);
 	}
 
+	public void hungerEffect() {
+		food -= 1;
+	}
+
+	public void decreaseHealth(int decreasedHealth) {
+		health -= decreasedHealth;
+		if (health < 0) {
+			health = 0;
+		}
+		if (health == 0) {
+			lose();
+		}
+	}
+
+	public void decreaseScore(int decreasedScore) {
+		score -= decreasedScore;
+	}
+	
+	
+	public void lose() {
+		//TODO: lose.
+		System.out.println("YOU LOSE!");
+	}
+
+	
+	public void win() {
+		//TODO: win.
+	}
+	
+
 	public GameEngine getGameEngine() {
 		return gameEngine;
+	}
+
+	/**
+	 * @return the maxHealth
+	 */
+	public static int getMaxHealth() {
+		return MAX_HEALTH;
+	}
+
+	/**
+	 * @return the player
+	 */
+	public Player getPlayer() {
+		return player;
 	}
 
 }

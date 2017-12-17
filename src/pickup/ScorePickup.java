@@ -11,7 +11,7 @@ import objects.CollidableGameObject;
  */
 public class ScorePickup extends Pickup {
 
-	private static final int SCORE_VALUE = 25;
+	private static final int SCORE_VALUE = 200;
 
 	public static ImageView graphic;
 
@@ -22,7 +22,7 @@ public class ScorePickup extends Pickup {
 	@Override
 	public void onPickup() {
 		if (!picked) {
-			gameManager.incrementScore(SCORE_VALUE);
+			gameManager.increaseScore(SCORE_VALUE);
 			picked = true;
 		}
 	}
