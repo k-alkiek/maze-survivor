@@ -104,7 +104,7 @@ public class GameEngine {
     }
 
     private void testAllInput() {
-        System.out.println("Mouse X: " + mouse.getX() + ", Mouse Y: " + mouse.getY());
+        //System.out.println("Mouse X: " + mouse.getX() + ", Mouse Y: " + mouse.getY());
         if (mouse.isScrollingUp()) System.out.println("Up");
         if (mouse.isScrollingDown()) System.out.println("Down");
         if (!mouse.getButtonsPressed().isEmpty()) System.out.println(mouse.getButtonsPressed());
