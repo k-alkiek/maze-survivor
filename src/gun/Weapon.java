@@ -13,7 +13,7 @@ public abstract class Weapon {
 	/**
 	 * Number of available bullets.
 	 */
-	protected int bullets;
+	protected Integer bullets;
 
 	/**
 	 * The magazine in the weapon.
@@ -45,7 +45,7 @@ public abstract class Weapon {
 	/**
 	 * @return the bullets
 	 */
-	public int getBullets() {
+	public Integer getBullets() {
 		return bullets;
 	}
 
@@ -71,4 +71,11 @@ public abstract class Weapon {
 	 * Reloads the gun and updates the magazine.
 	 */
 	public abstract void reload();
+
+	/**
+	 * @param bullets the bullets to set
+	 */
+	public void setBullets(Integer bullets) {
+		this.bullets = bullets;
+	}
 }

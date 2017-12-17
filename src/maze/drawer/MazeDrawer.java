@@ -2,29 +2,32 @@ package maze.drawer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
 
 public class MazeDrawer {
     private int size;
-    private Group root;
+    private Pane root;
     private double percentageOfDestructableWalls;
     private double percentageOfMines;
     private char[][] maze;
-    private Image image = null;
-    private Image imageDestructable = null;
+    private Image wall = null;
+    private Image destructableWall = null;
     private Image mine = null;
     private Image bigMineRight = null;
     private Image bigMineLeft = null;
     private Image bigMineUp = null;
     private Image bigMineDown = null;
-    private Image gift = null;
+	private Image gift = null;
+    public static ArrayList<ImageView> imageViews = new ArrayList<ImageView>();
 
 
-    public MazeDrawer(Group root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
+    public MazeDrawer(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
         super();
         this.size = size;
         this.root = root;
@@ -51,8 +54,8 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
-            image = new Image(new FileInputStream("wall.png"));
-            imageDestructable = new Image(new FileInputStream("wall.jpg"));
+            wall = new Image(new FileInputStream("wall.png"));
+            destructableWall = new Image(new FileInputStream("wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
             bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
             bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
@@ -60,7 +63,6 @@ public class MazeDrawer {
             bigMineDown = new Image(new FileInputStream("bigMineDown.png"));
             gift = new Image(new FileInputStream("gift.jpg"));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -83,39 +85,41 @@ public class MazeDrawer {
                 }
             }
         } catch (Exception e) {
-            System.out.println("MazeDrawer class: generateMazeFunction => maze converted");
+            System.out.println("MazeDrawer class: generateMazeFunction => maze converted successfully");
         }
     }
 
     private void displayDrawables() {
+    	int cellSize = 70;
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
                 //Setting the image view
                 if (maze[i][j] == '1') {
-                    ImageView imageView = new ImageView(image);
+                    ImageView imageView = new ImageView(wall);
+                    imageViews.add(imageView);
 
                     //Setting the position of the image
-                    imageView.setX(5 + j * 25);
-                    imageView.setY(5 + i * 25);
+                    imageView.setX(5 + j * cellSize);
+                    imageView.setY(5 + i * cellSize);
 
                     //setting the fit height and width of the image view
-                    imageView.setFitHeight(25);
-                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(cellSize);
+                    imageView.setFitWidth(cellSize);
 
                     //Setting the preserve ratio of the image view
                     imageView.setPreserveRatio(true);
 
                     root.getChildren().addAll(imageView);
                 } else if (maze[i][j] == '2') {
-                    ImageView imageView = new ImageView(imageDestructable);
-
+                    ImageView imageView = new ImageView(destructableWall);
+                    imageViews.add(imageView);
                     //Setting the position of the image
-                    imageView.setX(5 + j * 25);
-                    imageView.setY(5 + i * 25);
+                    imageView.setX(5 + j * cellSize);
+                    imageView.setY(5 + i * cellSize);
 
                     //setting the fit height and width of the image view
-                    imageView.setFitHeight(25);
-                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(cellSize);
+                    imageView.setFitWidth(cellSize);
 
                     //Setting the preserve ratio of the image view
                     imageView.setPreserveRatio(true);
@@ -123,14 +127,14 @@ public class MazeDrawer {
 
                 } else if (maze[i][j] == '3') {
                     ImageView imageView = new ImageView(mine);
-
+                    imageViews.add(imageView);
                     //Setting the position of the image
-                    imageView.setX(5 + j * 25);
-                    imageView.setY(5 + i * 25);
+                    imageView.setX(5 + j * cellSize);
+                    imageView.setY(5 + i * cellSize);
 
                     //setting the fit height and width of the image view
-                    imageView.setFitHeight(25);
-                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(cellSize);
+                    imageView.setFitWidth(cellSize);
 
                     //Setting the preserve ratio of the image view
                     imageView.setPreserveRatio(true);
@@ -138,13 +142,14 @@ public class MazeDrawer {
 
                 } else if (maze[i][j] == '4') {
                     ImageView imageViewLeft = new ImageView(bigMineLeft);
+                    imageViews.add(imageViewLeft);
                     //Setting the position of the image
-                    imageViewLeft.setX(5 + j * 25);
-                    imageViewLeft.setY(5 + i * 25);
+                    imageViewLeft.setX(5 + j * cellSize);
+                    imageViewLeft.setY(5 + i * cellSize);
 
                     //setting the fit height and width of the image view
-                    imageViewLeft.setFitHeight(25);
-                    imageViewLeft.setFitWidth(25);
+                    imageViewLeft.setFitHeight(cellSize);
+                    imageViewLeft.setFitWidth(cellSize);
 
                     //Setting the preserve ratio of the image view
                     imageViewLeft.setPreserveRatio(true);
@@ -152,14 +157,14 @@ public class MazeDrawer {
                                         
                 } else if (maze[i][j] == '5') {
                 	  ImageView imageViewRight = new ImageView(bigMineRight);
-
+                	  imageViews.add(imageViewRight);
                       //Setting the position of the image
-                      imageViewRight.setX(5 + j * 25);
-                      imageViewRight.setY(5 + i * 25);
+                      imageViewRight.setX(5 + j * cellSize);
+                      imageViewRight.setY(5 + i * cellSize);
 
                       //setting the fit height and width of the image view
-                      imageViewRight.setFitHeight(25);
-                      imageViewRight.setFitWidth(25);
+                      imageViewRight.setFitHeight(cellSize);
+                      imageViewRight.setFitWidth(cellSize);
 
                       //Setting the preserve ratio of the image view
                       imageViewRight.setPreserveRatio(true);
@@ -167,14 +172,14 @@ public class MazeDrawer {
 
                 } else if (maze[i][j] == '6') {
 	              	  ImageView imageViewRight = new ImageView(bigMineUp);
-	
+	              	  imageViews.add(imageViewRight);
 	                  //Setting the position of the image
-	                  imageViewRight.setX(5 + j * 25);
-	                  imageViewRight.setY(5 + i * 25);
+	                  imageViewRight.setX(5 + j * cellSize);
+	                  imageViewRight.setY(5 + i * cellSize);
 	
 	                  //setting the fit height and width of the image view
-	                  imageViewRight.setFitHeight(25);
-	                  imageViewRight.setFitWidth(25);
+	                  imageViewRight.setFitHeight(cellSize);
+	                  imageViewRight.setFitWidth(cellSize);
 	
 	                  //Setting the preserve ratio of the image view
 	                  imageViewRight.setPreserveRatio(true);
@@ -182,14 +187,14 @@ public class MazeDrawer {
 
 	            } else if (maze[i][j] == '7') {
 		          	  ImageView imageViewRight = new ImageView(bigMineDown);
-		
+		          	  imageViews.add(imageViewRight);
 		              //Setting the position of the image
-		              imageViewRight.setX(5 + j * 25);
-		              imageViewRight.setY(5 + i * 25);
+		              imageViewRight.setX(5 + j * cellSize);
+		              imageViewRight.setY(5 + i * cellSize);
 		
 		              //setting the fit height and width of the image view
-		              imageViewRight.setFitHeight(25);
-		              imageViewRight.setFitWidth(25);
+		              imageViewRight.setFitHeight(cellSize);
+		              imageViewRight.setFitWidth(cellSize);
 		
 		              //Setting the preserve ratio of the image view
 		              imageViewRight.setPreserveRatio(true);
@@ -197,14 +202,14 @@ public class MazeDrawer {
 	
 	            } else if (maze[i][j] == '8') {
 		          	  ImageView imageViewRight = new ImageView(gift);
-		
+		          	  imageViews.add(imageViewRight);
 		              //Setting the position of the image
-		              imageViewRight.setX(5 + j * 25);
-		              imageViewRight.setY(5 + i * 25);
+		              imageViewRight.setX(5 + j * cellSize);
+		              imageViewRight.setY(5 + i * cellSize);
 		
 		              //setting the fit height and width of the image view
-		              imageViewRight.setFitHeight(25);
-		              imageViewRight.setFitWidth(25);
+		              imageViewRight.setFitHeight(cellSize);
+		              imageViewRight.setFitWidth(cellSize);
 		
 		              //Setting the preserve ratio of the image view
 		              imageViewRight.setPreserveRatio(true);
@@ -236,9 +241,7 @@ public class MazeDrawer {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
-            if (maze[randomYPos][randomXPos] != '1' && maze[randomYPos][randomXPos] != '2'
-                    && maze[randomYPos][randomXPos] != '3'
-                    && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '3';
             } else {
                 i--;
@@ -267,12 +270,7 @@ public class MazeDrawer {
     }
     
     private boolean notHorizontalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] != '1'
-    	        && maze[randomYPos][randomXPos] != '2'
-    	        && maze[randomYPos][randomXPos] != '3'
-    	        && maze[randomYPos][randomXPos] != '4'
-    	    	&& maze[randomYPos][randomXPos] != '5'
-    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
+    	if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
     		return true;
     	} else {
     		return false;
@@ -293,13 +291,7 @@ public class MazeDrawer {
     }
     
     private boolean notVerticalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] != '1'
-    	        && maze[randomYPos][randomXPos] != '2'
-    	        && maze[randomYPos][randomXPos] != '3'
-    	        && maze[randomYPos][randomXPos] != '4'
-    	    	&& maze[randomYPos][randomXPos] != '5'
-    	    	&& maze[randomYPos][randomXPos] != '6'
-    	    	&& maze[randomYPos][randomXPos] != '7'
+    	if (maze[randomYPos][randomXPos] == ' '
     	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
     		return true;
     	} else {
@@ -320,7 +312,7 @@ public class MazeDrawer {
         }
     }
 
-    public void drawMaze() {
+    public void constructMaze() {
         this.initializeDrawables();
         this.generateMaze();
         this.spreadDestructableWalls();
@@ -328,6 +320,9 @@ public class MazeDrawer {
         this.spreadHorizontalBigMines();
         this.spreadVerticalBigMines();
         this.spreadGifts();
-        this.displayDrawables();
+    }
+    
+    public void displayMaze() {
+    	this.displayDrawables();
     }
 }
