@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import monsters.Monster;
 
 /**
  * Created by khaled on 12/12/17.
@@ -19,6 +20,8 @@ public class Game extends Application {
         primaryStage.setScene(scene);
 
         new Player(gameEngine, 0, 0, null);
+        new Monster(gameEngine, 800, 800);
+        new Monster(gameEngine, 1000, 1000);
         primaryStage.show();
         pane.requestFocus();
     }

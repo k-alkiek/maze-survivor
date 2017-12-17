@@ -8,8 +8,6 @@ import javafx.scene.input.MouseButton;
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class WalkingState extends State {
-    private int perFrame = 4, currFrame = 0;
-
     public WalkingState() {
         super();
         loadSprites("src/assets/player/handgun/move");
@@ -18,11 +16,7 @@ public class WalkingState extends State {
     @Override
     public void update(Player player) {
         walk(player);
-        currFrame++;
-        if (currFrame >= perFrame) {
-            player.setSprite(spritesIterator.getCurrentImage());
-            currFrame = 0;
-        }
+        setSpritesPerFrame(player);
         if (!walking()) {
             if (mouse.isPressed(MouseButton.PRIMARY)) {
                 player.setCurrentState(new ShootingState());
