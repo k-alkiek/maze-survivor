@@ -8,7 +8,7 @@ import javafx.scene.input.MouseButton;
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class WalkingState extends State {
-    private int perFrame = 4, currFrame = 0;
+    private int perFrame = 1, currFrame = 0;
 
     public WalkingState() {
         super();
