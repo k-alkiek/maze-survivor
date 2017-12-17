@@ -17,14 +17,10 @@ public class IdleState extends State {
     public void update(Player player) {
         setSpritesPerFrame(player);
         if (keyboard.isPressed(KeyCode.R)) {
-            if (walking()) {
-                player.setCurrentState(new ReloadingWhileWalkingState());
-            } else {
                 player.setCurrentState(new ReloadingState());
-            }
         } else if (walking()) {
             if (mouse.isPressed(MouseButton.PRIMARY)) {
-                player.setCurrentState(new ShootingWhileWalkingState());
+                player.setCurrentState(new ShootingState());
             } else {
                 player.setCurrentState(new WalkingState());
             }
