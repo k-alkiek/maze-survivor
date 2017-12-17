@@ -1,7 +1,7 @@
 package objects;
 
 import game.GameEngine;
-import javafx.scene.shape.Shape;
+import javafx.scene.image.ImageView;
 
 /**
  * Represents a game object that may collide with other objects.
@@ -14,13 +14,13 @@ public abstract class CollidableGameObject extends GameObject {
 	/**
 	 * Representation of the javafx shape used for handling collisions.
 	 */
-	protected Shape fxShape;
+	protected ImageView graphics;
 
-	public CollidableGameObject (GameEngine gameEngine) {
+	public CollidableGameObject(GameEngine gameEngine) {
 		super(gameEngine);
 	}
 
-	public CollidableGameObject (GameEngine gameEngine, double x, double y) {
+	public CollidableGameObject(GameEngine gameEngine, double x, double y) {
 		super(gameEngine, x, y);
 	}
 
@@ -31,14 +31,14 @@ public abstract class CollidableGameObject extends GameObject {
 	 * @return
 	 */
 	public boolean collidesWith(final CollidableGameObject other) {
-		return fxShape.intersects(other.getFxShape().getBoundsInLocal());
+		return graphics.intersects(other.getGraphics().getBoundsInLocal());
 	}
 
 	/**
 	 * @return the fxShape
 	 */
-	public final Shape getFxShape() {
-		return fxShape;
+	public final ImageView getGraphics() {
+		return graphics;
 	}
 
 }

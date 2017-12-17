@@ -15,6 +15,7 @@ public abstract class Magazine {
 	protected Weapon weapon;
 	protected Player shooter;
 	protected int magSize;
+
 	protected Stack<BulletProxy> bullets;
 	protected Stack<BulletProxy> objectsPool;
 
@@ -37,5 +38,12 @@ public abstract class Magazine {
 	public abstract int reload();
 
 	public abstract int reload(int leftBullets);
+
+	/**
+	 * @return the magSize
+	 */
+	public int getMagSize() {
+		return magSize;
+	}
 
 }

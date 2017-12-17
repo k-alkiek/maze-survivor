@@ -8,6 +8,11 @@ import javafx.scene.input.MouseButton;
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class WalkingState extends State {
+<<<<<<< HEAD
+=======
+    private int perFrame = 1, currFrame = 0;
+
+>>>>>>> master
     public WalkingState() {
         super();
         loadSprites("src/assets/player/handgun/move");
