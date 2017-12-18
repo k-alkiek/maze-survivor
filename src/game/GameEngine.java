@@ -133,4 +133,9 @@ public class GameEngine {
 		this.weapon = weapon;
 	}
 
+
+    public List<GameObject> getGameObjects() {
+        return gameObjects;
+    }
+
 }

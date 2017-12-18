@@ -1,4 +1,5 @@
 import characters.Player;
+import characters.Shadow;
 import game.GameEngine;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -24,7 +25,8 @@ public class Game extends Application {
         Scene scene = new Scene(pane, 900, 800);
         primaryStage.setScene(scene);
 
-        new Player(gameEngine, 75, 75, null);
+        Player player = new Player(gameEngine, 75, 75, null);
+        new Shadow(gameEngine, player);
         primaryStage.show();
         pane.requestFocus();
         
