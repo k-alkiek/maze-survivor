@@ -122,7 +122,7 @@ public class GameEngine {
     public void destroyGameObject(GameObject destroyed) {
     	gameObjects.remove(destroyed);
     	if (destroyed instanceof CollidableGameObject) {
-    		pane.getChildren().remove(((CollidableGameObject) destroyed).getGraphics());
+    		pane.getChildren().remove((destroyed).getImageView());
     	}
     }
 
