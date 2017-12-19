@@ -32,11 +32,11 @@ public abstract class CollidableGameObject extends GameObject {
 	 * @param other
 	 * @return
 	 */
-	public synchronized boolean collidesWith(final GameObject other) {
+	public boolean collidesWith(final GameObject other) {
 		return this.getImageView().getBoundsInParent().intersects(other.getImageView().getBoundsInParent());
 	}
 	
-	public synchronized boolean isCollided(final ImageView objectColne) {
+	public boolean isCollided(final ImageView objectColne) {
 		List<GameObject> gameObjects = gameEngine.getGameObjects();
 		for (GameObject gameObject : gameObjects) {
 			if (this != gameObject && this.collides(objectColne, gameObject)) {
@@ -46,7 +46,7 @@ public abstract class CollidableGameObject extends GameObject {
 		return false;
 	}
 	
-	public synchronized boolean collides(final ImageView objectColne, GameObject other) {
+	public boolean collides(final ImageView objectColne, GameObject other) {
 		return objectColne.getBoundsInLocal().intersects(other.getImageView().getBoundsInLocal());
 	}
 

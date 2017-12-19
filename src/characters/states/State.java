@@ -69,7 +69,7 @@ public abstract class State {
         }
     }
 
-    protected synchronized void walk(Player player) {
+    protected void walk(Player player) {
         int speed = 5;
 	    ImageView clone = ClonedObject.getClone();
         if (keyboard.isPressed(KeyCode.W)) {
