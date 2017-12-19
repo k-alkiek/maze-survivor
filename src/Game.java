@@ -26,8 +26,6 @@ public class Game extends Application {
         primaryStage.setScene(scene);
 
 
-        Player player = new Player(gameEngine, 75, 75, null);
-        new Shadow(gameEngine, player);
 
         primaryStage.show();
         pane.requestFocus();  
