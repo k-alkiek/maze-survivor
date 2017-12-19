@@ -24,13 +24,9 @@ public class Game extends Application {
         Scene scene = new Scene(pane, 900, 800);
         primaryStage.setScene(scene);
 
-        new Player(gameEngine, 75, 75, null);
+        new Player(gameEngine, 80, 80, null);
         primaryStage.show();
-        pane.requestFocus();
-        
-      
-
-        
+        pane.requestFocus();  
     }
 
     public static void main(String[] args) {

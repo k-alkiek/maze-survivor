@@ -1,5 +1,7 @@
 package objects;
 
+import java.util.List;
+
 import game.GameEngine;
 import javafx.scene.image.ImageView;
 
@@ -30,8 +32,20 @@ public abstract class CollidableGameObject extends GameObject {
 	 * @param other
 	 * @return
 	 */
-	public boolean collidesWith(final CollidableGameObject other) {
-		return graphics.intersects(other.getGraphics().getBoundsInLocal());
+	public synchronized boolean collidesWith(final GameObject other) {
+		System.out.println("in11111111111");
+		return this.getImageView().getBoundsInParent().intersects(other.getImageView().getBoundsInParent());
+	}
+	
+	public synchronized boolean isCollided() {
+		List<GameObject> gameObjects = gameEngine.getGameObjects();
+		for (GameObject gameObject : gameObjects) {
+			if (this != gameObject && this.collidesWith(gameObject)) {
+				System.out.println("in22222222222");
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
