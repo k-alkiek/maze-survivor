@@ -12,13 +12,13 @@ import javafx.scene.image.ImageView;
  */
 public abstract class CollidableGameObject extends GameObject {
 
-    public CollidableGameObject(GameEngine gameEngine) {
-        super(gameEngine);
-    }
+	public CollidableGameObject(GameEngine gameEngine) {
+		super(gameEngine);
+	}
 
-    public CollidableGameObject(GameEngine gameEngine, double x, double y) {
-        super(gameEngine, x, y);
-    }
+	public CollidableGameObject(GameEngine gameEngine, double x, double y) {
+		super(gameEngine, x, y);
+	}
 
     /**
      * Checks whether this game object collides with another game object.
@@ -26,21 +26,22 @@ public abstract class CollidableGameObject extends GameObject {
      * @param other
      * @return
      */
-    public synchronized boolean collidesWith(final GameObject other) {
+    public boolean collidesWith(final GameObject other) {
         return this.getImageView().getBoundsInParent().intersects(other.getImageView().getBoundsInParent());
     }
 
-    public synchronized boolean isCollided(final ImageView objectColne) {
-        List<GameObject> gameObjects = gameEngine.getGameObjects();
-        for (GameObject gameObject : gameObjects) {
-            if (this != gameObject && this.collides(objectColne, gameObject)) {
-                return true;
-            }
-        }
-        return false;
+	public boolean isCollided(final ImageView objectImage) {
+		List<GameObject> gameObjects = gameEngine.getGameObjects();
+		for (GameObject gameObject : gameObjects) {
+			if (this != gameObject && this.collides(objectImage, gameObject)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+    public boolean collides(final ImageView objectImage, GameObject other) {
+        return objectImage.getBoundsInLocal().intersects(other.getImageView().getBoundsInLocal());
     }
 
-    public synchronized boolean collides(final ImageView objectColne, GameObject other) {
-        return objectColne.getBoundsInLocal().intersects(other.getImageView().getBoundsInLocal());
-    }
 }

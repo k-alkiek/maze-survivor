@@ -2,13 +2,14 @@ package mine;
 
 import game.GameManager;
 import objects.CollidableGameObject;
+import objects.Destructible;
 
 /**
  * Score decreasing mine applying Template Design Pattern.
  * @author H.
  *
  */
-public abstract class ScoreMine extends CollidableGameObject implements Mine {
+public abstract class ScoreMine extends CollidableGameObject implements Mine, Destructible {
 
 	private GameManager gameManager;
 
@@ -40,6 +41,11 @@ public abstract class ScoreMine extends CollidableGameObject implements Mine {
 				gameEngine.destroyGameObject(this);
 			}
 		}
+	}
+
+	@Override
+	public void hit(int damage) {
+		gameEngine.destroyGameObject(this);
 	}
 
 }
