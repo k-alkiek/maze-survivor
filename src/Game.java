@@ -26,9 +26,6 @@ public class Game extends Application {
         Scene scene = new Scene(pane, 900, 800);
         primaryStage.setScene(scene);
 
-        ClonedObject.initializeClonedObjectDimentions(80);
-        Player player = new Player(gameEngine, 80, 80, null);
-        new Shadow(gameEngine, player);
 
         primaryStage.show();
         pane.requestFocus();  
