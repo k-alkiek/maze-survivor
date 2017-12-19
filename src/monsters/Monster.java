@@ -25,9 +25,9 @@ public class Monster extends CollidableGameObject {
         super(gameEngine, x, y);
         currentState = new MonsterWalkingState();
         imageView.setFitWidth(70);
-        MonsterMotion m = new MonsterMotion(MazeDrawer.maze);
-        path = m.getPath(new MonsterMotion.Node(new Point2D(1, 1), null),
-                new MonsterMotion.Node(new Point2D(MazeDrawer.maze.length - 3, MazeDrawer.maze.length - 3), null));
+//        MonsterMotion m = new MonsterMotion(MazeDrawer.maze);
+//        path = m.getPath(new MonsterMotion.Node(new Point2D(1, 1), null),
+//                new MonsterMotion.Node(new Point2D(MazeDrawer.maze.length - 3, MazeDrawer.maze.length - 3), null));
     }
 
     @Override

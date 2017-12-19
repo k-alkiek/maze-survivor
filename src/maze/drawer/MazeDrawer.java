@@ -20,7 +20,7 @@ public class MazeDrawer {
     private Pane root;
     private double percentageOfDestructableWalls;
     private double percentageOfMines;
-    public static char[][] maze;
+    private char[][] maze;
     private Image wall = null;
     private Image destructableWall = null;
     private Image mine = null;
@@ -28,7 +28,7 @@ public class MazeDrawer {
     private Image bigMineLeft = null;
     private Image bigMineUp = null;
     private Image bigMineDown = null;
-	private Image gift = null;
+    private Image gift = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
 
 
@@ -95,34 +95,34 @@ public class MazeDrawer {
     }
 
     private void displayDrawables() {
-    	int cellSize = 70;
+        int cellSize = 70;
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
                 if (maze[i][j] == '1') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.wall);
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.wall);
                 } else if (maze[i][j] == '2') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.destructableWall);
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.mine);
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.mine);
                 } else if (maze[i][j] == '4') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineLeft);                 
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.bigMineLeft);
                 } else if (maze[i][j] == '5') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineRight);
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.bigMineRight);
                 } else if (maze[i][j] == '6') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineUp);
-	            } else if (maze[i][j] == '7') {
-	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineDown);
-	            } else if (maze[i][j] == '8') {
-	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.gift);
-	            }
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.bigMineUp);
+                } else if (maze[i][j] == '7') {
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.bigMineDown);
+                } else if (maze[i][j] == '8') {
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.gift);
+                }
             }
 
         }
@@ -155,13 +155,13 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private void spreadGifts() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (maze[randomYPos][randomXPos] != '1'
-            		&& maze[randomYPos][randomXPos] != '2'
+                    && maze[randomYPos][randomXPos] != '2'
                     && maze[randomYPos][randomXPos] != '3'
                     && maze[randomYPos][randomXPos] != '4'
                     && maze[randomYPos][randomXPos] != '5'
@@ -175,15 +175,15 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private boolean notHorizontalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+        if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     private void spreadHorizontalBigMines() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -196,16 +196,16 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private boolean notVerticalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] == ' '
-    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+        if (maze[randomYPos][randomXPos] == ' '
+                && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     private void spreadVerticalBigMines() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -228,8 +228,8 @@ public class MazeDrawer {
         this.spreadVerticalBigMines();
         this.spreadGifts();
     }
-    
+
     public void displayMaze() {
-    	this.displayDrawables();
+        this.displayDrawables();
     }
 }
