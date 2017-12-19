@@ -2,16 +2,15 @@ package maze.drawer;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
 
 import game.GameEngine;
 import game.GameManager;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
+import monsters.Monster;
+import objects.CollidableGameObject;
 import mine.AbstractMineFactory;
 import mine.HealthMine;
 import mine.MineEasyFactory;
@@ -35,7 +34,7 @@ public class MazeDrawer {
     private Image bigMineLeft = null;
     private Image bigMineUp = null;
     private Image bigMineDown = null;
-	private Image gift = null;
+    private Image gift = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
     GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
 
@@ -103,12 +102,13 @@ public class MazeDrawer {
     }
 
     private void displayDrawables() {
-    	int cellSize = 70;
+        int cellSize = 70;
+        new Monster(GameEngine.getInstanceOf(), 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
                 if (maze[i][j] == '1') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.wall);
+                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                    wall.draw(this.wall);
                 } else if (maze[i][j] == '2') {
                 	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.destructableWall);
@@ -140,7 +140,7 @@ public class MazeDrawer {
         }
     }
 
-    private void spreadDestructableWalls() {
+    private void spreadDestructibleWalls() {
         int numOfDestructableWallsInFreePath = 0;
         for (int i = 0; i < maze.length * maze.length * percentageOfDestructableWalls; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -167,7 +167,7 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private void spreadGifts() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -180,15 +180,15 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private boolean notHorizontalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+        if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     private void spreadHorizontalBigMines() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -201,16 +201,16 @@ public class MazeDrawer {
             }
         }
     }
-    
+
     private boolean notVerticalMine(int randomYPos, int randomXPos) {
-    	if (maze[randomYPos][randomXPos] == ' '
-    	        && this.positionIsValid(maze, randomXPos, randomYPos)) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+        if (maze[randomYPos][randomXPos] == ' '
+                && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     private void spreadVerticalBigMines() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
@@ -227,14 +227,14 @@ public class MazeDrawer {
     public void constructMaze() {
         this.initializeDrawables();
         this.generateMaze();
-        this.spreadDestructableWalls();
+        this.spreadDestructibleWalls();
         this.spreadMines();
         this.spreadHorizontalBigMines();
         this.spreadVerticalBigMines();
         this.spreadGifts();
     }
-    
+
     public void displayMaze() {
-    	this.displayDrawables();
+        this.displayDrawables();
     }
 }

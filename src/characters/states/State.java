@@ -64,41 +64,41 @@ public abstract class State {
         currFrame++;
         if (currFrame >= perFrame) {
             player.setSprite(spritesIterator.getCurrentImage());
-            framePerState ++;
+            framePerState++;
             currFrame = 0;
         }
     }
 
     protected void walk(Player player) {
         int speed = 5;
-	    ImageView clone = ClonedObject.getClone();
+        ImageView clone = ClonedObject.getClone();
         if (keyboard.isPressed(KeyCode.W)) {
-    	    clone.setX(player.getX() + 10);
-        	clone.setY(player.getY() + 10 - speed);
-        	if(!player.isCollided(clone)) {
-        		player.setY(player.getY() - speed);
-        	}
+            clone.setX(player.getX() + 10);
+            clone.setY(player.getY() + 10 - speed);
+            if (!player.isCollided(clone)) {
+                player.setY(player.getY() - speed);
+            }
         }
         if (keyboard.isPressed(KeyCode.S)) {
-    	    clone.setX(player.getX() + 10);
-        	clone.setY(player.getY() + 10 + speed);
-        	if(!player.isCollided(clone)) {
-        		player.setY(player.getY() + speed);
-        	}
+            clone.setX(player.getX() + 10);
+            clone.setY(player.getY() + 10 + speed);
+            if (!player.isCollided(clone)) {
+                player.setY(player.getY() + speed);
+            }
         }
         if (keyboard.isPressed(KeyCode.A)) {
-    	    clone.setY(player.getY() + 10 );
-        	clone.setX(player.getX() + 10 - speed);
-        	if(!player.isCollided(clone)) {
-        		player.setX(player.getX() - speed);
-        	}
+            clone.setY(player.getY() + 10);
+            clone.setX(player.getX() + 10 - speed);
+            if (!player.isCollided(clone)) {
+                player.setX(player.getX() - speed);
+            }
         }
         if (keyboard.isPressed(KeyCode.D)) {
-    	    clone.setY(player.getY() + 10 );
-    		clone.setX(player.getX() + 10 + speed);
-        	if(!player.isCollided(clone)) {
-        		player.setX(player.getX() + speed);
-        	}
+            clone.setY(player.getY() + 10);
+            clone.setX(player.getX() + 10 + speed);
+            if (!player.isCollided(clone)) {
+                player.setX(player.getX() + speed);
+            }
         }
     }
 
