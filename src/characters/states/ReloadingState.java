@@ -28,9 +28,9 @@ public class ReloadingState extends State {
         if (framePerState == sprites.size()) {
             framePerState = 0;
             if (walking()) {
-                player.setCurrentState(new WalkingState());
+                player.setCurrentState(StatesPool.getNextState("WalkingState"));
             } else {
-                player.setCurrentState(new IdleState());
+                player.setCurrentState(StatesPool.getNextState("IdleState"));
             }
         }
     }

@@ -23,9 +23,6 @@ public abstract class GameObject {
 
     protected Image image;
 
-    public void setSprite(Image image) {
-        this.image = image;
-    }
 
     /**
      * @return the gameEngine
@@ -136,4 +133,8 @@ public abstract class GameObject {
         imageView.setY(y);
         imageView.setRotate(angle);
     }
+
+	public void setSprite(Image image) {
+		this.image = image;
+	}
 }
