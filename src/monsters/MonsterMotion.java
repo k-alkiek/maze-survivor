@@ -30,15 +30,6 @@ public class MonsterMotion {
         }
     }
 
-    private boolean isValid(int i, int j) {
-        if (i < 0 || j >= grid[0].length || j < 0 || i >= grid.length) {
-            return false;
-        } else if (maze[i][j] != ' ') {
-            return false;
-        } else if (visited[i][j])
-            return false;
-        return true;
-    }
 
     public List<Point2D> getPath(Node start, Node end) {
         Queue<Node> queue = new ArrayDeque<>(),
@@ -91,6 +82,15 @@ public class MonsterMotion {
         return path;
     }
 
+    private boolean isValid(int i, int j) {
+        if (i < 0 || j >= grid[0].length || j < 0 || i >= grid.length) {
+            return false;
+        } else if (maze[i][j] != '1') {
+            return false;
+        } else if (visited[i][j])
+            return false;
+        return true;
+    }
 
     public static class Node {
         private Point2D point;

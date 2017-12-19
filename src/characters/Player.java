@@ -15,7 +15,7 @@ import objects.*;
  */
 public class Player extends CollidableGameObject {
     private Weapon weapon;
-    private State currentState = new IdleState();
+    private State currentState;
 
     private int speed = 5;
 
