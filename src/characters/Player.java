@@ -16,7 +16,6 @@ import objects.*;
 public class Player extends CollidableGameObject {
     private Weapon weapon;
     private State currentState = new IdleState();
-    private Image sprite;
 
     private int speed = 5;
 
@@ -29,10 +28,6 @@ public class Player extends CollidableGameObject {
         System.out.println(imageView.getBoundsInLocal());
     }
 
-    public void setSprite(Image sprite) {
-        this.sprite = sprite;
-    }
-
     @Override
     public synchronized void update() {
         //imageView.setFitWidth(250);
@@ -41,10 +36,7 @@ public class Player extends CollidableGameObject {
         angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));
         imageView.setRotate(angle);
         currentState.update(this);
-        draw(sprite);
-
-
-
+        draw(image);
     }
 
     public void setCurrentState(State currentState) {

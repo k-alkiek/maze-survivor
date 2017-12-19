@@ -6,132 +6,134 @@ import javafx.scene.image.ImageView;
 
 /**
  * Represents any game object that requires being updated every frame.
- * 
- * @author H
  *
+ * @author H
  */
 public abstract class GameObject {
 
-	protected double x;
+    protected double x;
 
-	protected double y;
+    protected double y;
 
-	protected double angle;
+    protected double angle;
 
-	protected ImageView imageView;
+    protected ImageView imageView;
 
-	protected GameEngine gameEngine;
-	
-	protected Image image;
+    protected GameEngine gameEngine;
 
-	/**
-	 * @return the gameEngine
-	 */
-	public GameEngine getGameEngine() {
-		return gameEngine;
-	}
+    protected Image image;
 
-	public GameObject (GameEngine gameEngine) {
-		this.gameEngine = gameEngine;
-		this.x = 0;
-		this.y = 0;
-		this.angle = 0;
+    public void setSprite(Image image) {
+        this.image = image;
+    }
 
-		initializeImageView();
-	}
+    /**
+     * @return the gameEngine
+     */
+    public GameEngine getGameEngine() {
+        return gameEngine;
+    }
 
-	public GameObject (GameEngine gameEngine, double x, double y) {
-		this.gameEngine = gameEngine;
-		this.x = x;
-		this.y = y;
-		this.angle = 0;
+    public GameObject(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
+        this.x = 0;
+        this.y = 0;
+        this.angle = 0;
 
-		initializeImageView();
-	}
-	
+        initializeImageView();
+    }
 
-	public GameObject (GameEngine gameEngine, double x, double y, double angle) {
-		this.gameEngine = gameEngine;
-		this.x = x;
-		this.y = y;
-		this.angle = angle;
+    public GameObject(GameEngine gameEngine, double x, double y) {
+        this.gameEngine = gameEngine;
+        this.x = x;
+        this.y = y;
+        this.angle = 0;
 
-		initializeImageView();
-	}
+        initializeImageView();
+    }
 
-	private void initializeImageView() {
-		this.imageView = new ImageView();
-		imageView.setFitHeight(70);
-		imageView.setFitWidth(70);
-		imageView.setPreserveRatio(true);
-		gameEngine.addGameObject(this);
-		gameEngine.getPane().getChildren().add(imageView);
-	}
 
-	/**
-	 * @return the x
-	 */
-	public double getX() {
-		return x;
-	}
+    public GameObject(GameEngine gameEngine, double x, double y, double angle) {
+        this.gameEngine = gameEngine;
+        this.x = x;
+        this.y = y;
+        this.angle = angle;
 
-	/**
-	 * @param x the x to set
-	 */
-	public void setX(double x) {
-		this.x = x;
-	}
+        initializeImageView();
+    }
 
-	/**
-	 * @return the y
-	 */
-	public double getY() {
-		return y;
-	}
+    private void initializeImageView() {
+        this.imageView = new ImageView();
+        imageView.setFitHeight(70);
+        imageView.setFitWidth(70);
+        imageView.setPreserveRatio(true);
+        gameEngine.addGameObject(this);
+        gameEngine.getPane().getChildren().add(imageView);
+    }
 
-	/**
-	 * @param y the y to set
-	 */
-	public void setY(double y) {
-		this.y = y;
-	}
+    /**
+     * @return the x
+     */
+    public double getX() {
+        return x;
+    }
 
-	/**
-	 * @return the angle
-	 */
-	public double getAngle() {
-		return angle;
-	}
+    /**
+     * @param x the x to set
+     */
+    public void setX(double x) {
+        this.x = x;
+    }
 
-	/**
-	 * @param angle the angle to set
-	 */
-	public void setAngle(double angle) {
-		this.angle = angle;
-	}
+    /**
+     * @return the y
+     */
+    public double getY() {
+        return y;
+    }
 
-	/**
-	 * Updates the game object.
-	 */
-	public abstract void update();
+    /**
+     * @param y the y to set
+     */
+    public void setY(double y) {
+        this.y = y;
+    }
 
-	/**
-	 * @return the image view representing the game object
-	 */
-	public ImageView getImageView() {
-		return imageView;
-	}
+    /**
+     * @return the angle
+     */
+    public double getAngle() {
+        return angle;
+    }
 
-	/**
-	 * Render the game object on the screen
-	 * @param sprite image object to render
-	 */
-	public void draw(Image sprite) {
-		imageView.setImage(sprite);
-		imageView.setX(x);
-		imageView.setY(y);
+    /**
+     * @param angle the angle to set
+     */
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    /**
+     * Updates the game object.
+     */
+    public abstract void update();
+
+    /**
+     * @return the image view representing the game object
+     */
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    /**
+     * Render the game object on the screen
+     *
+     * @param sprite image object to render
+     */
+    public void draw(Image sprite) {
+        imageView.setImage(sprite);
+        imageView.setX(x);
+        imageView.setY(y);
         imageView.setRotate(angle);
-	}
-	
-
+    }
 }

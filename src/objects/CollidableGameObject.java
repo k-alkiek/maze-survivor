@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
  * Represents a game object that may collide with other objects.
  *
  * @author H
- *
  */
 public abstract class CollidableGameObject extends GameObject {
 
@@ -56,5 +55,6 @@ public abstract class CollidableGameObject extends GameObject {
 	public final ImageView getGraphics() {
 		return graphics;
 	}
+
 
 }

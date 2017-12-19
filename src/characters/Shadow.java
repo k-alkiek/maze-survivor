@@ -52,8 +52,8 @@ public class Shadow extends GameObject {
             double angle = (2*Math.PI / rays) * i;
             double minLength = rayLength;
 
-            double x1 = player.getX();
-            double y1 = player.getY();
+            double x1 = player.getX() + player.getImageView().getFitWidth() / 2;
+            double y1 = player.getY() + player.getImageView().getFitHeight() / 2;
             double x2 = x1 + Math.cos(angle) * rayLength;
             double y2 = y1 + Math.sin(angle) * rayLength;
 
