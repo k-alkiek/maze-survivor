@@ -49,7 +49,7 @@ public class GameEngine {
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
-            public synchronized void handle(long now) {
+            public void handle(long now) {
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
