@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
 import mine.AbstractMineFactory;
 import mine.HealthMine;
+import mine.MineEasyFactory;
 import objects.CollidableGameObject;
 import objects.GameObject;
 import wall.DWall;
@@ -34,7 +35,7 @@ public class MazeDrawer {
     private Image bigMineDown = null;
 	private Image gift = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
-    //GameManager gameManager = new GameManager(gameEngine, gameEngine.p);
+    GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
 
 
     public MazeDrawer(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
@@ -110,8 +111,8 @@ public class MazeDrawer {
                 	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
-                	AbstractMineFactory mineFactory = new HealthMine(gameEngine.);
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.mine);
                 } else if (maze[i][j] == '4') {
                 	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
