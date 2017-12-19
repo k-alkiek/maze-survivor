@@ -13,7 +13,7 @@ public class ClonedObject {
 		return clonedObject;
 	}
 	
-	public static void initializeClonedObjectDimentions(int dim) {
+	public static void initializeClonedObjectDimension(int dim) {
 		clonedObject.setFitHeight(dim - 40);
 		clonedObject.setFitWidth(dim - 40);
 		clonedObject.setPreserveRatio(true);

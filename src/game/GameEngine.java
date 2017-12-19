@@ -3,18 +3,13 @@ package game;
 import characters.Player;
 import characters.Shadow;
 import javafx.animation.AnimationTimer;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
 
 
 import gun.Weapon;
@@ -46,7 +41,7 @@ public class GameEngine {
         initializeInput();
         createGameLoop();
 
-        ClonedObject.initializeClonedObjectDimentions(80);
+        ClonedObject.initializeClonedObjectDimension(80);
         Player player = new Player(this, 75, 75, null);
         new Shadow(this, player);
         soundHandler = new SoundHandler(player);
