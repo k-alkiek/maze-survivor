@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import maze.drawer.MazeDrawer;
+import objects.ClonedObject;
 
 /**
  * Created by khaled on 12/12/17.
@@ -24,7 +25,6 @@ public class Game extends Application {
         mazeDrawer.displayMaze();
         Scene scene = new Scene(pane, 900, 800);
         primaryStage.setScene(scene);
-
 
 
         primaryStage.show();

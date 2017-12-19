@@ -38,6 +38,7 @@ public class SoundHandler {
      *                 if set to true, the sound will be played anyway.
      */
     public void playSound(AudioClip soundClip, double volumeFactor, boolean overPlay) {
+        refreshSoundsPlaying();
         if (!overPlay && soundIsPlaying(soundClip)) return;
         soundClip.setVolume(volumeFactor);
         soundsPlaying.add(soundClip);

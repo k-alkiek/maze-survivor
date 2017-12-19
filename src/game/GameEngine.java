@@ -8,6 +8,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
 
@@ -45,11 +46,10 @@ public class GameEngine {
         initializeInput();
         createGameLoop();
 
+        ClonedObject.initializeClonedObjectDimentions(80);
         Player player = new Player(this, 75, 75, null);
         new Shadow(this, player);
         soundHandler = new SoundHandler(player);
-
-
 
     }
 
@@ -70,7 +70,7 @@ public class GameEngine {
                 testAllInput();
                 refreshInput();
                 pane.requestFocus();
-                refreshFrameRate(now);
+//                refreshFrameRate(now);
             }
         }.start();
     }
@@ -137,7 +137,7 @@ public class GameEngine {
     public void destroyGameObject(GameObject destroyed) {
     	gameObjects.remove(destroyed);
     	if (destroyed instanceof CollidableGameObject) {
-    		pane.getChildren().remove(((CollidableGameObject) destroyed).getGraphics());
+    		pane.getChildren().remove((destroyed).getImageView());
     	}
     }
 

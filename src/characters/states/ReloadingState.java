@@ -26,7 +26,7 @@ public class ReloadingState extends State {
         setSpritesPerFrame(player);
 
         if (!reloadSoundPlayed) {
-            GameEngine.getInstanceOf().getSoundHandler().playSound(reloadSound, 0.5, false);
+            GameEngine.getInstanceOf().getSoundHandler().playSound(reloadSound, 0.5, true);
             reloadSoundPlayed = true;
         }
 

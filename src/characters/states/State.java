@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import lib.NaturalOrderComparator;
 import maze.drawer.MazeDrawer;
+import objects.ClonedObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,48 +71,33 @@ public abstract class State {
 
     protected synchronized void walk(Player player) {
         int speed = 5;
-//      ImageView clone = new ImageView();
-//      clone.setX(player.getX() + 10);
-//      clone.setY(player.getY() + 10 );
-//      //setting the fit height and width of the image view
-//      clone.setFitHeight(player.getImageView().getFitHeight() - 40);
-//      clone.setFitWidth(player.getImageView().getFitWidth() - 40);
-//    //Setting the preserve ratio of the image view
-//      clone.setPreserveRatio(true);
+	    ImageView clone = ClonedObject.getClone();
         if (keyboard.isPressed(KeyCode.W)) {
-        	if(!player.isCollided()) {
+    	    clone.setX(player.getX() + 10);
+        	clone.setY(player.getY() + 10 - speed);
+        	if(!player.isCollided(clone)) {
         		player.setY(player.getY() - speed);
-        	} else {
-//        		while(player.isCollided()) {
-        			player.setY(player.getY() + speed);
-//        		}
         	}
         }
         if (keyboard.isPressed(KeyCode.S)) {
-        	if(!player.isCollided()) {
+    	    clone.setX(player.getX() + 10);
+        	clone.setY(player.getY() + 10 + speed);
+        	if(!player.isCollided(clone)) {
         		player.setY(player.getY() + speed);
-        	} else {
-//        		while(player.isCollided()) {
-            		player.setY(player.getY() - speed);
-//        		}
         	}
         }
         if (keyboard.isPressed(KeyCode.A)) {
-        	if(!player.isCollided()) {
+    	    clone.setY(player.getY() + 10 );
+        	clone.setX(player.getX() + 10 - speed);
+        	if(!player.isCollided(clone)) {
         		player.setX(player.getX() - speed);
-        	} else {
-//        		while(player.isCollided()) {
-            		player.setX(player.getX() + speed);
-//        		}
         	}
         }
         if (keyboard.isPressed(KeyCode.D)) {
-        	if(!player.isCollided()) {
+    	    clone.setY(player.getY() + 10 );
+    		clone.setX(player.getX() + 10 + speed);
+        	if(!player.isCollided(clone)) {
         		player.setX(player.getX() + speed);
-        	} else {
-//        		while(player.isCollided()) {
-            		player.setX(player.getX() - speed);
-//        		}
         	}
         }
     }
