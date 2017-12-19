@@ -17,6 +17,7 @@ public class FoodPickup extends Pickup {
 	@Override
 	public void onPickup() {
 		gameManager.increaseFood(FOOD_VALUE);
+		picked = true;
 	}
 
 }
