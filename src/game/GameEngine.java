@@ -50,8 +50,6 @@ public class GameEngine {
         soundHandler = new SoundHandler(player);
 
 
-        soundHandler.playSound(a, 75, 250, 0.5);
-        soundHandler.playSound(a, 75, 250, 0.5);
 
     }
 
@@ -66,7 +64,7 @@ public class GameEngine {
         new AnimationTimer() {
             @Override
             public synchronized void handle(long now) {
-                soundHandler.playSound(a, 75, 250, 0.5);
+                soundHandler.playSound(a, 75, 250, 0.5, false);
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
