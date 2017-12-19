@@ -69,7 +69,9 @@ public class GameEngine {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-                for (GameObject gameObject : gameObjects) {
+            	GameObject gameObject;
+                for (int i = gameObjects.size() - 1; i >= 0; i--) {
+                	gameObject = gameObjects.get(i);
                     gameObject.update();
                 }
                 testAllInput();
@@ -141,9 +143,7 @@ public class GameEngine {
      */
     public void destroyGameObject(GameObject destroyed) {
     	gameObjects.remove(destroyed);
-    	if (destroyed instanceof CollidableGameObject) {
-    		pane.getChildren().remove((destroyed).getImageView());
-    	}
+    	pane.getChildren().remove((destroyed).getImageView());
     }
 
     public Weapon getWeapon() {
