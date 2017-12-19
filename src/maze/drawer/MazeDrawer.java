@@ -17,6 +17,8 @@ import mine.HealthMine;
 import mine.MineEasyFactory;
 import objects.CollidableGameObject;
 import objects.GameObject;
+import pickup.AbstractPickupFactory;
+import pickup.PickupEasyFactory;
 import wall.DWall;
 import wall.NDWall;
 
@@ -65,8 +67,8 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
-            wall = new Image(new FileInputStream("wall.png"));
-            destructableWall = new Image(new FileInputStream("wall.jpg"));
+            wall = new Image(new FileInputStream("wall.jpg"));
+            destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
             bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
             bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
@@ -117,7 +119,7 @@ public class MazeDrawer {
                 } else if (maze[i][j] == '4') {
                 	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
                 	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
-                	mine.draw(this.mine);                
+                	mine.draw(this.mine);   
                 } else if (maze[i][j] == '5') {
 //                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 //                	wall.draw(this.bigMineRight);
@@ -129,8 +131,9 @@ public class MazeDrawer {
 //	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 //                	wall.draw(this.bigMineDown);
 	            } else if (maze[i][j] == '8') {
-	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.gift);
+	            	AbstractPickupFactory mineFactory = new PickupEasyFactory(this.gameManager);
+                	CollidableGameObject gift = (CollidableGameObject) mineFactory.createPickup(5 + j * cellSize, 5 + i * cellSize);
+                	gift.draw(this.gift);
 	            }
             }
 

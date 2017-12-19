@@ -4,6 +4,8 @@ import java.util.List;
 
 import game.GameEngine;
 import javafx.scene.image.ImageView;
+import mine.Mine;
+import wall.Wall;
 
 /**
  * Represents a game object that may collide with other objects.
@@ -35,7 +37,7 @@ public abstract class CollidableGameObject extends GameObject {
 	public boolean isCollided(final ImageView objectImage) {
 		List<GameObject> gameObjects = gameEngine.getGameObjects();
 		for (GameObject gameObject : gameObjects) {
-			if (this != gameObject && this.collides(objectImage, gameObject)) {
+			if (this != gameObject && Wall.class.isInstance(gameObject) && this.collides(objectImage, gameObject)) {
 				return true;
 			}
 		}
