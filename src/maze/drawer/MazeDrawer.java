@@ -112,20 +112,22 @@ public class MazeDrawer {
                 	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
                 	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
-                	CollidableGameObject mine = mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.mine);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);
                 } else if (maze[i][j] == '4') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineLeft);                 
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);                
                 } else if (maze[i][j] == '5') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineRight);
+//                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+//                	wall.draw(this.bigMineRight);
                 } else if (maze[i][j] == '6') {
-                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineUp);
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);
 	            } else if (maze[i][j] == '7') {
-	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                	wall.draw(this.bigMineDown);
+//	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+//                	wall.draw(this.bigMineDown);
 	            } else if (maze[i][j] == '8') {
 	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.gift);
