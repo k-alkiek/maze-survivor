@@ -23,10 +23,10 @@ import sound.SoundHandler;
  * Created by khaled on 12/12/17.
  */
 public class GameEngine {
-    AudioClip a = new AudioClip(new File("src/assets/player/sounds/explosion.wav").toURI().toString());
     private static GameEngine gameEngine;
     private Mouse mouse;
     private Keyboard keyboard;
+
     private SoundHandler soundHandler;
 
     private Pane pane;
@@ -64,7 +64,6 @@ public class GameEngine {
         new AnimationTimer() {
             @Override
             public synchronized void handle(long now) {
-                soundHandler.playSound(a, 75, 250, 0.5, false);
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
@@ -154,7 +153,9 @@ public class GameEngine {
 	public List<GameObject> getGameObjects() {
 		return gameObjects;
 	}
-	
 
+    public SoundHandler getSoundHandler() {
+        return soundHandler;
+    }
 
 }
