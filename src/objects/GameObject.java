@@ -21,6 +21,8 @@ public abstract class GameObject {
 	protected ImageView imageView;
 
 	protected GameEngine gameEngine;
+	
+	protected Image image;
 
 	/**
 	 * @return the gameEngine
@@ -46,6 +48,7 @@ public abstract class GameObject {
 
 		initializeImageView();
 	}
+	
 
 	public GameObject (GameEngine gameEngine, double x, double y, double angle) {
 		this.gameEngine = gameEngine;
@@ -58,6 +61,8 @@ public abstract class GameObject {
 
 	private void initializeImageView() {
 		this.imageView = new ImageView();
+		imageView.setFitHeight(70);
+		imageView.setFitWidth(70);
 		imageView.setPreserveRatio(true);
 		gameEngine.addGameObject(this);
 		gameEngine.getPane().getChildren().add(imageView);
@@ -121,11 +126,12 @@ public abstract class GameObject {
 	 * Render the game object on the screen
 	 * @param sprite image object to render
 	 */
-	protected void draw(Image sprite) {
+	public void draw(Image sprite) {
 		imageView.setImage(sprite);
 		imageView.setX(x);
 		imageView.setY(y);
         imageView.setRotate(angle);
 	}
+	
 
 }

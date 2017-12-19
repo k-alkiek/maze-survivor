@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import lib.NaturalOrderComparator;
 import maze.drawer.MazeDrawer;
+import objects.ClonedObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -68,57 +69,37 @@ public abstract class State {
         }
     }
 
-    protected void walk(Player player) {
+    protected synchronized void walk(Player player) {
         int speed = 5;
-        
-        ImageView clone = new ImageView();
-        
-        clone.setX(player.getX() + 10);
-        clone.setY(player.getY() + 10 );
-
-        //setting the fit height and width of the image view
-        clone.setFitHeight(player.getImageView().getFitHeight() - 40);
-        clone.setFitWidth(player.getImageView().getFitWidth() - 40);
-        
-        
-
-        //Setting the preserve ratio of the image view
-        clone.setPreserveRatio(true);
-        
+	    ImageView clone = ClonedObject.getClone();
         if (keyboard.isPressed(KeyCode.W)) {
-        	clone.setY(player.getY() - speed);
-        	if(!isColided(clone)) {
+    	    clone.setX(player.getX() + 10);
+        	clone.setY(player.getY() + 10 - speed);
+        	if(!player.isCollided(clone)) {
         		player.setY(player.getY() - speed);
         	}
         }
         if (keyboard.isPressed(KeyCode.S)) {
-        	clone.setY(player.getY() + speed);
-        	if(!isColided(clone)) {
+    	    clone.setX(player.getX() + 10);
+        	clone.setY(player.getY() + 10 + speed);
+        	if(!player.isCollided(clone)) {
         		player.setY(player.getY() + speed);
         	}
-        	}
+        }
         if (keyboard.isPressed(KeyCode.A)) {
-        	clone.setX(player.getX() - speed);
-        	if(!isColided(clone)) {
+    	    clone.setY(player.getY() + 10 );
+        	clone.setX(player.getX() + 10 - speed);
+        	if(!player.isCollided(clone)) {
         		player.setX(player.getX() - speed);
         	}
-        	}
+        }
         if (keyboard.isPressed(KeyCode.D)) {
-        	clone.setX(player.getX() + speed);
-        	if(!isColided(clone)) {
+    	    clone.setY(player.getY() + 10 );
+    		clone.setX(player.getX() + 10 + speed);
+        	if(!player.isCollided(clone)) {
         		player.setX(player.getX() + speed);
         	}
         }
     }
-    
-    private boolean isColided(ImageView clone) {
-    	ArrayList<ImageView> imageViews = MazeDrawer.imageViews;
-        for (ImageView obstacle : imageViews) {
-        	if(clone.getBoundsInParent().intersects(obstacle.getBoundsInParent())) {
-        		System.out.println("Colision" + obstacle.toString());
-            	return true;
-            }	
-        }
-    	return false;
-    }
+
 }

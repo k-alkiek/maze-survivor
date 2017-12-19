@@ -60,7 +60,6 @@ public abstract class MonsterState {
 
     protected void walk(Monster monster) {
         int speed = 3;
-        char[][] maze = MazeDrawer.maze;
 
     }
 }
