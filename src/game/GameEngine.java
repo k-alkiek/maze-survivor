@@ -11,6 +11,7 @@ import javafx.scene.media.AudioClip;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
+import sound.SoundHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import java.io.File;
 
 
 import gun.Weapon;
-import sound.SoundHandler;
 
 /**
  * Created by khaled on 12/12/17.
@@ -29,6 +29,7 @@ public class GameEngine {
     private Keyboard keyboard;
 
     private SoundHandler soundHandler;
+    private Player player;
 
     private Pane pane;
 
@@ -47,13 +48,17 @@ public class GameEngine {
         createGameLoop();
 
         ClonedObject.initializeClonedObjectDimentions(80);
-        Player player = new Player(this, 75, 75, null);
+        player = new Player(this, 75, 75, null);
         new Shadow(this, player);
         soundHandler = new SoundHandler(player);
 
     }
 
-    public static GameEngine getInstanceOf() {
+    public Player getPlayer() {
+		return this.player;
+	}
+
+	public static GameEngine getInstanceOf() {
         if (gameEngine == null) {
             gameEngine = new GameEngine();
         }
@@ -63,7 +68,7 @@ public class GameEngine {
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
-            public synchronized void handle(long now) {
+            public void handle(long now) {
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
