@@ -32,7 +32,7 @@ public class Shadow extends GameObject {
         super(gameEngine);
         rays = 40;
         rayLength = 300;
-        clearance = 40;
+        clearance = 70;
 
         pane = gameEngine.getPane();
         overlay = new Rectangle(0, 0, pane.getWidth(), pane.getHeight());
