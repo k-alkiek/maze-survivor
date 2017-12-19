@@ -65,7 +65,8 @@ public class Shadow extends GameObject {
 
             List<Point2D> endPoints = new ArrayList<>();
             for (GameObject gameObject : gameEngine.getGameObjects()) {
-                if (gameObject == player) continue;
+                if (!(gameObject instanceof Wall)) continue;
+//                if (gameObject == player) continue;
                 double minX = gameObject.getImageView().getBoundsInLocal().getMinX();
                 double minY = gameObject.getImageView().getBoundsInLocal().getMinY();
                 double maxX = gameObject.getImageView().getBoundsInLocal().getMaxX();

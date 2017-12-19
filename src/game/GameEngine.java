@@ -1,19 +1,24 @@
 package game;
 
+import characters.Player;
+import characters.Shadow;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.AudioClip;
+import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
 
-import com.sun.swing.internal.plaf.synth.resources.synth;
 
 import gun.Weapon;
+import sound.SoundHandler;
 
 /**
  * Created by khaled on 12/12/17.
@@ -23,6 +28,8 @@ public class GameEngine {
     private Mouse mouse;
     private Keyboard keyboard;
 
+    private SoundHandler soundHandler;
+
     private Pane pane;
 
     private List<GameObject> gameObjects;
@@ -30,6 +37,7 @@ public class GameEngine {
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
+
 	private Weapon weapon;
 
     private GameEngine() {
@@ -37,6 +45,12 @@ public class GameEngine {
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
+
+        ClonedObject.initializeClonedObjectDimentions(80);
+        Player player = new Player(this, 75, 75, null);
+        new Shadow(this, player);
+        soundHandler = new SoundHandler(player);
+
     }
 
     public static GameEngine getInstanceOf() {
@@ -56,6 +70,7 @@ public class GameEngine {
                 testAllInput();
                 refreshInput();
                 pane.requestFocus();
+//                refreshFrameRate(now);
             }
         }.start();
     }
@@ -138,7 +153,9 @@ public class GameEngine {
 	public List<GameObject> getGameObjects() {
 		return gameObjects;
 	}
-	
 
+    public SoundHandler getSoundHandler() {
+        return soundHandler;
+    }
 
 }
