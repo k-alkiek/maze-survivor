@@ -11,6 +11,8 @@ import objects.GameObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.swing.internal.plaf.synth.resources.synth;
+
 import gun.Weapon;
 
 /**
@@ -47,7 +49,7 @@ public class GameEngine {
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
-            public void handle(long now) {
+            public synchronized void handle(long now) {
                 for (GameObject gameObject : gameObjects) {
                     gameObject.update();
                 }
@@ -133,9 +135,10 @@ public class GameEngine {
 		this.weapon = weapon;
 	}
 
+	public List<GameObject> getGameObjects() {
+		return gameObjects;
+	}
+	
 
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
-    }
 
 }
