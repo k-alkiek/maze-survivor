@@ -80,7 +80,6 @@ public abstract class GameObject {
 	 */
 	public void setX(double x) {
 		this.x = x;
-//		this.redraw();
 	}
 
 	/**
@@ -95,7 +94,6 @@ public abstract class GameObject {
 	 */
 	public void setY(double y) {
 		this.y = y;
-//		this.redraw();
 	}
 
 	/**
@@ -110,7 +108,6 @@ public abstract class GameObject {
 	 */
 	public void setAngle(double angle) {
 		this.angle = angle;
-//		this.redraw();
 	}
 
 	/**
@@ -136,10 +133,5 @@ public abstract class GameObject {
         imageView.setRotate(angle);
 	}
 	
-//	private void redraw() {
-//		imageView.setX(x);
-//		imageView.setY(y);
-//        imageView.setRotate(angle);
-//	}
 
 }
