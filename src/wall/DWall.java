@@ -16,4 +16,9 @@ public class DWall extends DestructableWall {
 		
 	}
 
+	@Override
+	public void hit(int damage) {
+		gameEngine.destroyGameObject(this);
+	}
+
 }

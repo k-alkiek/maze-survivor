@@ -3,8 +3,9 @@ package wall;
 import game.GameEngine;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import objects.Destructible;
 
-public abstract class DestructableWall extends Wall implements IDestructable {
+public abstract class DestructableWall extends Wall implements Destructible {
 
 	protected final static String DESTRUCTABLE_WALL = "destructableWall";
 	private final static boolean IS_DESTRUCTABLE = true;

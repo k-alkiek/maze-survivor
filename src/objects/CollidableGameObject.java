@@ -36,10 +36,10 @@ public abstract class CollidableGameObject extends GameObject {
 		return this.getImageView().getBoundsInParent().intersects(other.getImageView().getBoundsInParent());
 	}
 	
-	public synchronized boolean isCollided(final ImageView objectColne) {
+	public synchronized boolean isCollided(final ImageView objectImage) {
 		List<GameObject> gameObjects = gameEngine.getGameObjects();
 		for (GameObject gameObject : gameObjects) {
-			if (this != gameObject && this.collides(objectColne, gameObject)) {
+			if (this != gameObject && this.collides(objectImage, gameObject)) {
 				return true;
 			}
 		}

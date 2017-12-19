@@ -3,12 +3,13 @@ package pickup;
 import game.GameEngine;
 import game.GameManager;
 import objects.CollidableGameObject;
+import objects.Destructible;
 
 /**
  * @author H
  *
  */
-public abstract class Pickup extends CollidableGameObject {
+public abstract class Pickup extends CollidableGameObject implements Destructible {
 
 	/**
 	 * Determines whether the object is picked yet.
@@ -31,5 +32,10 @@ public abstract class Pickup extends CollidableGameObject {
 	}
 
 	public abstract void onPickup();
+
+	@Override
+	public void hit(int damage) {
+		gameEngine.destroyGameObject(this);
+	}
 
 }
