@@ -3,16 +3,17 @@ package monsters.states;
 import characters.states.SpritesIterator;
 import game.Keyboard;
 import game.Mouse;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import lib.NaturalOrderComparator;
+import maze.drawer.MazeDrawer;
 import monsters.Monster;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by khaledabdelfattah on 12/17/17.
@@ -52,14 +53,14 @@ public abstract class MonsterState {
         currFrame++;
         if (currFrame >= perFrame) {
             monster.setSprite(spritesIterator.getCurrentImage());
-            framePerState ++;
+            framePerState++;
             currFrame = 0;
         }
     }
 
     protected void walk(Monster monster) {
         int speed = 3;
-        monster.setX(monster.getX() - speed);
-        monster.setY(monster.getY() - speed);
+        char[][] maze = MazeDrawer.maze;
+
     }
 }
