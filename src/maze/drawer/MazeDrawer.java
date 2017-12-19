@@ -4,11 +4,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import game.GameEngine;
+import game.GameManager;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
 import monsters.Monster;
 import objects.CollidableGameObject;
+import mine.AbstractMineFactory;
+import mine.HealthMine;
+import mine.MineEasyFactory;
+import objects.CollidableGameObject;
+import objects.GameObject;
+import wall.DWall;
 import wall.NDWall;
 
 public class MazeDrawer {
@@ -26,6 +34,7 @@ public class MazeDrawer {
     private Image bigMineDown = null;
     private Image gift = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
+    GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
 
 
     public MazeDrawer(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
@@ -99,27 +108,30 @@ public class MazeDrawer {
                     CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                     wall.draw(this.wall);
                 } else if (maze[i][j] == '2') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.destructableWall);
+                	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.mine);
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);
                 } else if (maze[i][j] == '4') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.bigMineLeft);
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);                
                 } else if (maze[i][j] == '5') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.bigMineRight);
+//                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+//                	wall.draw(this.bigMineRight);
                 } else if (maze[i][j] == '6') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.bigMineUp);
-                } else if (maze[i][j] == '7') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.bigMineDown);
-                } else if (maze[i][j] == '8') {
-                    CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
-                    wall.draw(this.gift);
-                }
+                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+                	mine.draw(this.mine);
+	            } else if (maze[i][j] == '7') {
+//	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+//                	wall.draw(this.bigMineDown);
+	            } else if (maze[i][j] == '8') {
+	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                	wall.draw(this.gift);
+	            }
             }
 
         }
@@ -157,14 +169,7 @@ public class MazeDrawer {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
-            if (maze[randomYPos][randomXPos] != '1'
-                    && maze[randomYPos][randomXPos] != '2'
-                    && maze[randomYPos][randomXPos] != '3'
-                    && maze[randomYPos][randomXPos] != '4'
-                    && maze[randomYPos][randomXPos] != '5'
-                    && maze[randomYPos][randomXPos] != '6'
-                    && maze[randomYPos][randomXPos] != '7'
-                    && maze[randomYPos][randomXPos] != '8'
+            if (maze[randomYPos][randomXPos] == ' '
                     && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '8';
             } else {

@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
  */
 public abstract class CollidableGameObject extends GameObject {
 
+
 	public CollidableGameObject(GameEngine gameEngine) {
 		super(gameEngine);
 	}
@@ -19,6 +20,7 @@ public abstract class CollidableGameObject extends GameObject {
 	public CollidableGameObject(GameEngine gameEngine, double x, double y) {
 		super(gameEngine, x, y);
 	}
+
 
     /**
      * Checks whether this game object collides with another game object.
@@ -40,8 +42,12 @@ public abstract class CollidableGameObject extends GameObject {
 		return false;
 	}
 	
-    public boolean collides(final ImageView objectImage, GameObject other) {
-        return objectImage.getBoundsInLocal().intersects(other.getImageView().getBoundsInLocal());
-    }
+	public boolean collides(final ImageView objectColne, GameObject other) {
+		return objectColne.getBoundsInLocal().intersects(other.getImageView().getBoundsInLocal());
+	}
+
+	/**
+	 * @return the fxShape
+	 */
 
 }

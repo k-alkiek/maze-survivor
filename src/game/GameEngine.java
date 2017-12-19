@@ -7,13 +7,13 @@ import javafx.scene.layout.Pane;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
+import sound.SoundHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 import gun.Weapon;
-import sound.SoundHandler;
 
 /**
  * Created by khaled on 12/12/17.
@@ -24,6 +24,7 @@ public class GameEngine {
     private Keyboard keyboard;
 
     private SoundHandler soundHandler;
+    private Player player;
 
     private Pane pane;
 
@@ -48,7 +49,11 @@ public class GameEngine {
 
     }
 
-    public static GameEngine getInstanceOf() {
+    public Player getPlayer() {
+		return this.player;
+	}
+
+	public static GameEngine getInstanceOf() {
         if (gameEngine == null) {
             gameEngine = new GameEngine();
         }
@@ -58,8 +63,10 @@ public class GameEngine {
     private void createGameLoop() {
         new AnimationTimer() {
             @Override
-            public synchronized void handle(long now) {
-                for (GameObject gameObject : gameObjects) {
+            public void handle(long now) {
+            	GameObject gameObject;
+                for (int i = gameObjects.size() - 1; i >= 0; i--) {
+                	gameObject = gameObjects.get(i);
                     gameObject.update();
                 }
                 testAllInput();
@@ -131,9 +138,7 @@ public class GameEngine {
      */
     public void destroyGameObject(GameObject destroyed) {
     	gameObjects.remove(destroyed);
-    	if (destroyed instanceof CollidableGameObject) {
-    		pane.getChildren().remove((destroyed).getImageView());
-    	}
+    	pane.getChildren().remove((destroyed).getImageView());
     }
 
     public Weapon getWeapon() {
