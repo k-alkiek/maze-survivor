@@ -37,9 +37,9 @@ public class Monster extends CollidableGameObject {
 
     @Override
     public void update() {
-        angle = Math.toDegrees(Math.atan2(-1 * imageView.getY(), -1 * imageView.getX()));
         imageView.setRotate(angle);
         currentState.update(this);
+        imageView.setRotate(angle);
         draw(image);
         if (collidedWithPlayer())
             System.out.println("Die");
@@ -63,8 +63,12 @@ public class Monster extends CollidableGameObject {
         return speed;
     }
 
-    private boolean collidedWithPlayer() {
+    public boolean collidedWithPlayer() {
         ImageView player = gameEngine.getPlayer().getImageView();
-        return player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal());
+        if (player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal())) {
+            // player's health will affected by monster's damage factor
+            return true;
+        }
+        return false;
     }
 }
