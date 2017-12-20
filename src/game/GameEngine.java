@@ -136,7 +136,9 @@ public class GameEngine {
      */
     public void destroyGameObject(GameObject destroyed) {
     	gameObjects.remove(destroyed);
-    	pane.getChildren().remove((destroyed).getImageView());
+    	if (destroyed instanceof CollidableGameObject) {
+    		pane.getChildren().remove(((CollidableGameObject) destroyed).getImageView());
+    	}
     }
 
 	public List<GameObject> getGameObjects() {

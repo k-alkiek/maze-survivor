@@ -25,7 +25,7 @@ public class Shadow extends GameObject {
     private int clearance;
     private Pane pane;
     private Shape overlay;
-    private GameObject player;
+    private Player player;
 
 
     public Shadow(GameEngine gameEngine, Player player) {
@@ -67,10 +67,11 @@ public class Shadow extends GameObject {
             for (GameObject gameObject : gameEngine.getGameObjects()) {
                 if (!(gameObject instanceof Wall)) continue;
 //                if (gameObject == player) continue;
-                double minX = gameObject.getImageView().getBoundsInLocal().getMinX();
-                double minY = gameObject.getImageView().getBoundsInLocal().getMinY();
-                double maxX = gameObject.getImageView().getBoundsInLocal().getMaxX();
-                double maxY = gameObject.getImageView().getBoundsInLocal().getMaxY();
+                Wall gameObjectWall = (Wall) gameObject;
+                double minX = gameObjectWall.getImageView().getBoundsInLocal().getMinX();
+                double minY = gameObjectWall.getImageView().getBoundsInLocal().getMinY();
+                double maxX = gameObjectWall.getImageView().getBoundsInLocal().getMaxX();
+                double maxY = gameObjectWall.getImageView().getBoundsInLocal().getMaxY();
 
                 List<Line> segments = new ArrayList<>();
                 segments.add(new Line(minX, minY, maxX, minY));

@@ -61,7 +61,7 @@ public class Bullet extends CollidableGameObject {
 			hitLine.setEndX(hitLine.getStartX() + OFFSET * Math.cos(angle));
 			hitLine.setEndY(hitLine.getStartY() + OFFSET * Math.sin(angle));
 			for (GameObject object : gameEngine.getGameObjects()) {
-				if (hitLine.intersects(object.getImageView().getBoundsInLocal())) {
+				if (object instanceof CollidableGameObject && hitLine.intersects(((CollidableGameObject) object).getImageView().getBoundsInLocal())) {
 					onFire = false;
 					gameEngine.destroyGameObject(this);
 					if (object instanceof Destructible) {

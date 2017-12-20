@@ -2,12 +2,12 @@ package gun;
 
 import characters.Player;
 
-public class WeaponBooster extends Weapon{
+public class WeaponBooster extends Weapon {
 	
 	private Weapon wrapped;
 
 	public WeaponBooster(final Weapon wrapped) {
-		super(wrapped.shooter);
+		super(wrapped.getShooter());
 		this.wrapped = wrapped;
 	}
 
