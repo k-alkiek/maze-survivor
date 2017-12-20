@@ -16,6 +16,7 @@ public class MoveDown implements MoveCommand {
         clone.setY(monster.getY() + 10 + speed);
         if (!monster.isCloneCollided(clone)) {
             monster.setY(monster.getY() + speed);
+            monster.setAngle(90.0);
             return true;
         }
         return false;
