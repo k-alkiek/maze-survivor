@@ -11,16 +11,6 @@ public class WeaponBooster extends Weapon {
 	}
 
 	@Override
-	public void fire() {
-		this.wrapped.fire();
-	}
-
-	@Override
-	public void reload() {
-		this.wrapped.reload();
-	}
-
-	@Override
 	public String toString() {
 		return this.wrapped.toString() + " BOOSTED";
 	}

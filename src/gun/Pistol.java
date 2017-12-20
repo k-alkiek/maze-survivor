@@ -29,27 +29,6 @@ public class Pistol extends Weapon {
 	}
 
 	@Override
-	public void fire() {
-		mag.fire();
-	}
-
-	@Override
-	public void reload() {
-		// TODO: Fix reload time and make reloading state.
-		if (bullets == 0) {
-			// TODO: RELOADING DOESN'T WORK.
-		} else if (bullets > Pistol.MAG_SIZE) {
-			bullets -= mag.reload();
-		} else {
-			bullets -= mag.reload(bullets);
-		}
-	}
-
-	public void addBullets(final int addedBullets) {
-		bullets += addedBullets;
-	}
-
-	@Override
 	public int getDamage() {
 		return DAMAGE;
 	}

@@ -10,6 +10,16 @@ import characters.Player;
  */
 public abstract class Weapon {
 
+	protected final static long FIRE_COOLDOWN = 250;
+
+	protected final static long RELOAD_COOLDOWN = 1500;
+
+	protected boolean cooling;
+
+	protected long lastReloadTime;
+
+	protected long lastFireTime;
+
 	/**
 	 * Number of available bullets.
 	 */
@@ -37,6 +47,14 @@ public abstract class Weapon {
 		return ranged;
 	}
 
+	protected boolean coolingNow() {
+		boolean check = lastReloadTime + RELOAD_COOLDOWN > System.currentTimeMillis() || lastFireTime + FIRE_COOLDOWN > System.currentTimeMillis();
+		if (!check) {
+			cooling = false;
+		}
+		return check;
+	}
+
 	/**
 	 * @return the damage
 	 */
@@ -59,14 +77,43 @@ public abstract class Weapon {
 	/**
 	 * Fires the gun.
 	 */
-	public void fire() {
+	public final void fire() {
+		if (cooling) {
+			if (coolingNow()) {
+				return;
+			}
+		}
+		lastFireTime = System.currentTimeMillis();
+		cooling = true;
 		mag.fire();
 	}
 
 	/**
 	 * Reloads the gun and updates the magazine.
 	 */
-	public abstract void reload();
+	public final void reload() {
+		System.out.println("In pistol reload");
+		if (cooling) {
+			if (coolingNow()) {
+				System.out.println("COOLING. CAN'T RELOAD.");
+				return;
+			}
+		}
+		cooling = true;
+		lastReloadTime = System.currentTimeMillis();
+		if (bullets == 0) {
+			// TODO: RELOADING DOESN'T WORK.
+			System.out.println("No ammo.");
+		} else if (bullets > mag.getMagSize()) {
+			bullets -= mag.reload();
+		} else {
+			bullets -= mag.reload(bullets);
+		}
+	}
+
+	public void addBullets(final int addedBullets) {
+		bullets += addedBullets;
+	}
 
 	/**
 	 * @param bullets the bullets to set

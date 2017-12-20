@@ -34,8 +34,6 @@ public abstract class Magazine {
 		if (!bullets.isEmpty()) {
 			final BulletProxy fired = bullets.pop();
 			fired.fire(shooter);
-		} else {
-			reload();
 		}
 	}
 

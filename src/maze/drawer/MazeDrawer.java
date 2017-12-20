@@ -18,8 +18,7 @@ import objects.CollidableGameObject;
 import objects.GameObject;
 import pickup.AbstractPickupFactory;
 import pickup.PickupEasyFactory;
-import wall.DWall;
-import wall.NDWall;
+import wall.*;
 
 public class MazeDrawer {
     private int size;
@@ -110,7 +109,7 @@ public class MazeDrawer {
                     CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                     wall.draw(this.wall);
                 } else if (maze[i][j] == '2') {
-                	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+                	CollidableGameObject wall = new WeakDestructibleWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
                 	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);

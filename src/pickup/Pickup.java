@@ -28,7 +28,6 @@ public abstract class Pickup extends CollidableGameObject implements Destructibl
 	@Override
 	public void update() {
 		if (picked) {
-			System.out.println("PICKED ANND DESTROYIIINGNGNGG HAHAAHHAHAHA!!!");
 			gameManager.getGameEngine().destroyGameObject(this);
 		} else if (this.collidesWith(gameManager.getPlayer())) {
 			onPickup();
@@ -40,7 +39,6 @@ public abstract class Pickup extends CollidableGameObject implements Destructibl
 	@Override
 	public void hit(int damage) {
 		Platform.runLater(() -> gameEngine.destroyGameObject(this));
-
 	}
 
 }
