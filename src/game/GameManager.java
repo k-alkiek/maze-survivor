@@ -2,17 +2,16 @@ package game;
 
 import characters.Player;
 import gun.Weapon;
+import objects.GameObject;
 
 /**
  * Manages the game in terms of win/loss and score.
  * @author H
  *
  */
-public class GameManager {
+public class GameManager extends GameObject {
 
-	private static final int MAX_HEALTH = 100;
-
-	private GameEngine gameEngine;
+	private static final int MAX_HEALTH = 10000;
 
 	private Player player;
 
@@ -28,9 +27,9 @@ public class GameManager {
 	private int food;
 
 	public GameManager(GameEngine gameEngine, Player player) {
-		this.gameEngine = gameEngine;
+		super(gameEngine);
 		this.player = player;
-		food = 1000;
+		food = MAX_HEALTH;
 		weapon = player.getWeapon();
 		health = MAX_HEALTH;
 	}
@@ -55,7 +54,9 @@ public class GameManager {
 	}
 
 	public void hungerEffect() {
-		food -= 1;
+		if (food > 0) {
+			food -= 1;
+		}
 	}
 
 	public void decreaseHealth(int decreasedHealth) {
@@ -100,6 +101,14 @@ public class GameManager {
 	 */
 	public Player getPlayer() {
 		return player;
+	}
+
+	@Override
+	public void update() {
+		hungerEffect();
+		if (food == 0) {
+			health -= 1;
+		}
 	}
 
 }
