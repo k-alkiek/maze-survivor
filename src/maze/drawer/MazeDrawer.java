@@ -7,6 +7,7 @@ import game.GameEngine;
 import game.GameManager;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
 import monsters.Monster;
@@ -35,6 +36,7 @@ public class MazeDrawer {
     private Image bigMineUp = null;
     private Image bigMineDown = null;
     private Image gift = null;
+    private Image ground = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
     GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
 
@@ -66,9 +68,10 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
+            ground = new Image(new FileInputStream("ground.jpg"));
             wall = new Image(new FileInputStream("wall.jpg"));
             destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
-            mine = new Image(new FileInputStream("mine.png"));
+            mine = new Image(new FileInputStream("mineTrans.png"));
             bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
             bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
             bigMineUp = new Image(new FileInputStream("bigMineUp.png"));
@@ -106,6 +109,17 @@ public class MazeDrawer {
         new Monster(GameEngine.getInstanceOf(), 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
+            	if (maze[i][j] != '1' && maze[i][j] != '2') {
+	            	ImageView ground = new ImageView();
+	            	ground.setX(5 + j * cellSize);
+	            	ground.setY(5 + i * cellSize);
+	            	ground.setFitWidth(70);
+	            	ground.setFitHeight(70);
+	            	ground.setPreserveRatio(true);
+	            	ground.setImage(this.ground);
+	                gameEngine.getPane().getChildren().add(ground);
+	            	ground.toBack();
+	            }
                 if (maze[i][j] == '1') {
                     CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                     wall.draw(this.wall);

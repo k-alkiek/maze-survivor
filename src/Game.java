@@ -20,7 +20,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         gameEngine = GameEngine.getInstanceOf();
         Pane pane = gameEngine.getPane();
-        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
+        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
         Scene scene = new Scene(pane, 900, 800);
