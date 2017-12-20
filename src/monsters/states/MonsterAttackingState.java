@@ -8,7 +8,7 @@ import monsters.Monster;
 public class MonsterAttackingState extends MonsterState {
     public MonsterAttackingState() {
         super();
-        loadSprites("src/assets/monsters/attack");
+        loadSprites("/Users/khaledabdelfattah/Downloads/export/attack");
     }
 
     @Override
