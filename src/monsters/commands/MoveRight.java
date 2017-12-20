@@ -16,6 +16,7 @@ public class MoveRight implements MoveCommand {
         clone.setX(monster.getX() + 10 + speed);
         if (!monster.isCloneCollided(clone)) {
             monster.setX(monster.getX() + speed);
+            monster.setAngle(0);
             return true;
         }
         return false;

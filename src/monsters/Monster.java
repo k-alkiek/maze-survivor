@@ -37,9 +37,9 @@ public class Monster extends CollidableGameObject {
 
     @Override
     public void update() {
-        angle = Math.toDegrees(Math.atan2(-1 * imageView.getY(), -1 * imageView.getX()));
         imageView.setRotate(angle);
         currentState.update(this);
+        imageView.setRotate(angle);
         draw(image);
         if (collidedWithPlayer())
             System.out.println("Die");
