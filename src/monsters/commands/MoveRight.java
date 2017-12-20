@@ -1,5 +1,7 @@
 package monsters.commands;
 
+import game.GameEngine;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import monsters.Monster;
 import objects.ClonedObject;
@@ -14,7 +16,8 @@ public class MoveRight implements MoveCommand {
         ImageView clone = ClonedObject.getClone();
         clone.setY(monster.getY() + 10);
         clone.setX(monster.getX() + 10 + speed);
-        if (!monster.isCloneCollided(clone)) {
+
+        if (!monster.isMonsterCloneCollided(clone)) {
             monster.setX(monster.getX() + speed);
             monster.setAngle(0);
             return true;

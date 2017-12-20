@@ -42,7 +42,7 @@ public class GameEngine {
 
         ClonedObject.initializeClonedObjectDimension(80);
         player = new Player(this, 75, 75, null);
-        new Shadow(this, player);
+        //new Shadow(this, player);
         soundHandler = new SoundHandler(player);
 
     }

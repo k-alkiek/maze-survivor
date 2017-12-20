@@ -40,6 +40,7 @@ public class Monster extends CollidableGameObject {
         imageView.setRotate(angle);
         currentState.update(this);
         imageView.setRotate(angle);
+        imageView.toFront();
         draw(image);
         if (collidedWithPlayer())
             System.out.println("Die");

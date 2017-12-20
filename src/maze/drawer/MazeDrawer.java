@@ -71,7 +71,7 @@ public class MazeDrawer {
             ground = new Image(new FileInputStream("ground.jpg"));
             wall = new Image(new FileInputStream("wall.jpg"));
             destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
-            mine = new Image(new FileInputStream("mineTrans.png"));
+            mine = new Image(new FileInputStream("mine.png"));
             bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
             bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
             bigMineUp = new Image(new FileInputStream("bigMineUp.png"));
@@ -151,8 +151,11 @@ public class MazeDrawer {
 	            } else if (maze[i][j] == '9') {
 	            	new Monster(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 	            }
+//                if (i == 2 && j == 1 || i == 1 && j == 2) {
+//                	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+//                	wall.draw(this.destructableWall);
+//                }
             }
-
         }
     }
 
@@ -198,7 +201,7 @@ public class MazeDrawer {
     }
     
     private void spreadMonsters() {
-        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
+        for (int i = 0; i < maze.length * maze.length * percentageOfMines * 6; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (maze[randomYPos][randomXPos] == ' '
