@@ -63,8 +63,12 @@ public class Monster extends CollidableGameObject {
         return speed;
     }
 
-    private boolean collidedWithPlayer() {
+    public boolean collidedWithPlayer() {
         ImageView player = gameEngine.getPlayer().getImageView();
-        return player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal());
+        if (player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal())) {
+            // player's health will affected by monster's damage factor
+            return true;
+        }
+        return false;
     }
 }

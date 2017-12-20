@@ -74,7 +74,7 @@ public abstract class MonsterState {
             commandIndex = new Random().nextInt(4);
             framePerState = 0;
         }
-        while (!moveCommands.get(commandIndex).execute(monster))
+        while (!moveCommands.get(commandIndex).execute(monster) && !monster.collidedWithPlayer())
             commandIndex = new Random().nextInt(4);
     }
 }
