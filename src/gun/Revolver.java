@@ -1,6 +1,7 @@
 package gun;
 
 import characters.Player;
+import game.GameEngine;
 
 /**
  * 
@@ -19,8 +20,8 @@ public class Revolver extends Weapon {
 	 */
 	private final static int MAG_SIZE = 6;
 
-	public Revolver(final Player shooter, final int bullets) {
-		super(shooter);
+	public Revolver(final int bullets) {
+		shooter = GameEngine.getInstanceOf().getPlayer();
 		mag = new InGunMag(shooter, this, Revolver.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;

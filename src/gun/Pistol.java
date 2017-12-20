@@ -1,6 +1,7 @@
 package gun;
 
 import characters.Player;
+import game.GameEngine;
 
 /**
  * Rifle gun.
@@ -20,8 +21,8 @@ public class Pistol extends Weapon {
 	 */
 	private final static int MAG_SIZE = 10;
 
-	public Pistol(final Player shooter, final int bullets) {
-		super(shooter);
+	public Pistol(final int bullets) {
+		shooter = GameEngine.getInstanceOf().getPlayer();
 		mag = new SeparateMag(shooter, this, Pistol.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = false;
@@ -55,7 +56,7 @@ public class Pistol extends Weapon {
 
 	@Override
 	public String toString() {
-		return "Rifle";
+		return "Pistol";
 	}
 
 }

@@ -1,6 +1,7 @@
 package gun;
 
 import characters.Player;
+import game.GameEngine;
 
 /**
  * 
@@ -19,8 +20,8 @@ public class Shotgun extends Weapon {
 	 */
 	private final static int MAG_SIZE = 7;
 
-	public Shotgun(final Player shooter, final int bullets) {
-		super(shooter);
+	public Shotgun(final int bullets) {
+		shooter = GameEngine.getInstanceOf().getPlayer();
 		mag = new InGunMag(shooter, this, Shotgun.MAG_SIZE);
 		this.bullets = bullets;
 		ranged = true;

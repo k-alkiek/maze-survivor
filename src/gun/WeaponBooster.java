@@ -7,7 +7,6 @@ public class WeaponBooster extends Weapon {
 	private Weapon wrapped;
 
 	public WeaponBooster(final Weapon wrapped) {
-		super(wrapped.getShooter());
 		this.wrapped = wrapped;
 	}
 

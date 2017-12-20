@@ -56,10 +56,6 @@ public abstract class Weapon {
 		return mag;
 	}
 
-	public Weapon(Player shooter) {
-		this.shooter = shooter;
-	}
-
 	/**
 	 * Fires the gun.
 	 */

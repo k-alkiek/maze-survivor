@@ -19,9 +19,8 @@ public class Player extends CollidableGameObject {
 
     private int speed = 5;
 
-    public Player(GameEngine gameEngine, double x, double y, Weapon weapon) {
+    public Player(GameEngine gameEngine, double x, double y) {
         super(gameEngine, x, y);
-        this.weapon = weapon;
         currentState = new IdleState();
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
