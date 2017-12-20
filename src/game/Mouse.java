@@ -82,6 +82,11 @@ public final class Mouse {
             y = event.getY();
             event.consume();
         });
+        pane.setOnMouseDragged(event -> {
+            x = event.getX();
+            y = event.getY();
+            event.consume();
+        });
         pane.setOnMousePressed(event -> {
             if (!buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.add(event.getButton());

@@ -16,6 +16,7 @@ public class MoveUp implements MoveCommand {
         clone.setY(monster.getY() + 10 - speed);
         if (!monster.isCloneCollided(clone)) {
             monster.setY(monster.getY() - speed);
+            monster.setAngle(270);
             return true;
         }
         return false;

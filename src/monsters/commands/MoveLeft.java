@@ -16,6 +16,7 @@ public class MoveLeft implements MoveCommand {
         clone.setX(monster.getX() + 10 - speed);
         if (!monster.isCloneCollided(clone)) {
             monster.setX(monster.getX() - speed);
+            monster.setAngle(180);
             return true;
         }
         return false;
