@@ -17,27 +17,17 @@ public abstract class GameObject {
 
     protected double angle;
 
-    protected ImageView imageView;
-
     protected GameEngine gameEngine;
 
-    protected Image image;
 
 
-    /**
-     * @return the gameEngine
-     */
-    public GameEngine getGameEngine() {
-        return gameEngine;
-    }
 
     public GameObject(GameEngine gameEngine) {
         this.gameEngine = gameEngine;
         this.x = 0;
         this.y = 0;
         this.angle = 0;
-
-        initializeImageView();
+        gameEngine.addGameObject(this);
     }
 
     public GameObject(GameEngine gameEngine, double x, double y) {
@@ -45,8 +35,7 @@ public abstract class GameObject {
         this.x = x;
         this.y = y;
         this.angle = 0;
-
-        initializeImageView();
+        gameEngine.addGameObject(this);
     }
 
 
@@ -55,17 +44,7 @@ public abstract class GameObject {
         this.x = x;
         this.y = y;
         this.angle = angle;
-
-        initializeImageView();
-    }
-
-    private void initializeImageView() {
-        this.imageView = new ImageView();
-        imageView.setFitHeight(70);
-        imageView.setFitWidth(70);
-        imageView.setPreserveRatio(true);
         gameEngine.addGameObject(this);
-        gameEngine.getPane().getChildren().add(imageView);
     }
 
     /**
@@ -115,26 +94,10 @@ public abstract class GameObject {
      */
     public abstract void update();
 
-    /**
-     * @return the image view representing the game object
-     */
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    /**
-     * Render the game object on the screen
-     *
-     * @param sprite image object to render
-     */
-    public void draw(Image sprite) {
-        imageView.setImage(sprite);
-        imageView.setX(x);
-        imageView.setY(y);
-        imageView.setRotate(angle);
-    }
-
-	public void setSprite(Image image) {
-		this.image = image;
+	/**
+	 * @return the gameEngine
+	 */
+	public GameEngine getGameEngine() {
+		return gameEngine;
 	}
 }
