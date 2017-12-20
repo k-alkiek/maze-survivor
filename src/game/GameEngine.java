@@ -43,7 +43,7 @@ public class GameEngine {
         createGameLoop();
 
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player = new Player(this, 75, 75, null);
+        player = new Player(this, 75, 75, null);
         new Shadow(this, player);
         soundHandler = new SoundHandler(player);
 
