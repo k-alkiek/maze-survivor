@@ -31,7 +31,7 @@ public class GameManager {
 		this.gameEngine = gameEngine;
 		this.player = player;
 		food = 1000;
-		weapon = gameEngine.getWeapon();
+		weapon = player.getWeapon();
 		health = MAX_HEALTH;
 	}
 

@@ -34,8 +34,6 @@ public class GameEngine {
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
 
-	private Weapon weapon;
-
     private GameEngine() {
         pane = new Pane();
         gameObjects = new ArrayList<>();
@@ -140,15 +138,6 @@ public class GameEngine {
     	gameObjects.remove(destroyed);
     	pane.getChildren().remove((destroyed).getImageView());
     }
-
-    public Weapon getWeapon() {
-    	return weapon;
-    }
-
-
-	public void setWeapon(Weapon weapon) {
-		this.weapon = weapon;
-	}
 
 	public List<GameObject> getGameObjects() {
 		return gameObjects;

@@ -15,9 +15,8 @@ public class DamageBoostPickup extends Pickup{
 	@Override
 	public void onPickup() {
 		if (!picked) {
-			WeaponBooster weaponBooster = new WeaponBooster(this
-					.getGameEngine().getWeapon());
-			this.getGameEngine().setWeapon(weaponBooster);
+			WeaponBooster weaponBooster = new WeaponBooster(gameEngine.getPlayer().getWeapon());
+			gameEngine.getPlayer().setWeapon(weaponBooster);
 			picked = true;
 		}
 	}

@@ -43,7 +43,21 @@ public class Player extends CollidableGameObject {
         this.currentState = currentState;
     }
 
-    public int getSpeed() {
+    /**
+	 * @return the weapon
+	 */
+	public Weapon getWeapon() {
+		return weapon;
+	}
+
+	/**
+	 * @param weapon the weapon to set
+	 */
+	public void setWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
+	public int getSpeed() {
         return speed;
     }
 }
