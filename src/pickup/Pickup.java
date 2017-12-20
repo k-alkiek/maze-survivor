@@ -2,6 +2,7 @@ package pickup;
 
 import game.GameEngine;
 import game.GameManager;
+import javafx.application.Platform;
 import objects.CollidableGameObject;
 import objects.Destructible;
 
@@ -38,7 +39,8 @@ public abstract class Pickup extends CollidableGameObject implements Destructibl
 
 	@Override
 	public void hit(int damage) {
-		gameEngine.destroyGameObject(this);
+		Platform.runLater(() -> gameEngine.destroyGameObject(this));
+
 	}
 
 }

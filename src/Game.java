@@ -22,13 +22,13 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         gameEngine = GameEngine.getInstanceOf();
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 30);
+        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 1);
         gameEngine.setPlayer(player);
         gameEngine.setSoundHandler(new SoundHandler(player));
 
         Pane pane = gameEngine.getPane();
 
-        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
+        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
         Scene scene = new Scene(pane, 900, 800);
