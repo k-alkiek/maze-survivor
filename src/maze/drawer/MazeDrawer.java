@@ -148,6 +148,8 @@ public class MazeDrawer {
 	            	AbstractPickupFactory mineFactory = new PickupEasyFactory(this.gameManager);
                 	CollidableGameObject gift = (CollidableGameObject) mineFactory.createPickup(5 + j * cellSize, 5 + i * cellSize);
                 	gift.draw(this.gift);
+	            } else if (maze[i][j] == '9') {
+	            	new Monster(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 	            }
             }
 
@@ -189,6 +191,19 @@ public class MazeDrawer {
             if (maze[randomYPos][randomXPos] == ' '
                     && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '8';
+            } else {
+                i--;
+            }
+        }
+    }
+    
+    private void spreadMonsters() {
+        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
+            int randomXPos = (int) (Math.random() * maze.length);
+            int randomYPos = (int) (Math.random() * maze.length);
+            if (maze[randomYPos][randomXPos] == ' '
+                    && this.positionIsValid(maze, randomXPos, randomYPos)) {
+                maze[randomYPos][randomXPos] = '9';
             } else {
                 i--;
             }
@@ -246,6 +261,7 @@ public class MazeDrawer {
         this.spreadHorizontalBigMines();
         this.spreadVerticalBigMines();
         this.spreadGifts();
+        this.spreadMonsters();
     }
 
     public void displayMaze() {
