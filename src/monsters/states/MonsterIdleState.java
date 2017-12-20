@@ -8,7 +8,7 @@ import monsters.Monster;
 public class MonsterIdleState extends MonsterState {
     public MonsterIdleState() {
         super();
-        loadSprites("/Users/khaledabdelfattah/Downloads/export/idle");
+        loadSprites("src/assets/monsters/idle");
     }
 
     @Override
