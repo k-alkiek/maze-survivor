@@ -3,6 +3,7 @@ package monsters;
 import game.GameEngine;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import maze.drawer.MazeDrawer;
 import monsters.states.MonsterIdleState;
 import monsters.states.MonsterState;
@@ -18,7 +19,6 @@ public class Monster extends CollidableGameObject {
     // monster have an instance of Monster State -> currentState
     private MonsterState currentState;
     // and have a sprite image
-    private Image sprite;
 
     private int speed = 3;
 
@@ -40,8 +40,10 @@ public class Monster extends CollidableGameObject {
         angle = Math.toDegrees(Math.atan2(-1 * imageView.getY(), -1 * imageView.getX()));
         imageView.setRotate(angle);
         currentState.update(this);
-        draw(sprite);
-        perFrame++;
+        draw(image);
+        if (collidedWithPlayer())
+            System.out.println("Die");
+//        perFrame++;
 //        if (idx < path.size() && perFrame > 20) {
 //            this.setY(5 + path.get(idx).getX() * 70);
 //            this.setX(5 + path.get(idx).getY() * 70);
@@ -56,11 +58,13 @@ public class Monster extends CollidableGameObject {
     }
 
     // method to set current state
-    public void setSprite(Image sprite) {
-        this.sprite = sprite;
-    }
 
     public int getSpeed() {
         return speed;
+    }
+
+    private boolean collidedWithPlayer() {
+        ImageView player = gameEngine.getPlayer().getImageView();
+        return player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal());
     }
 }
