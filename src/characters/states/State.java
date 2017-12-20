@@ -75,28 +75,28 @@ public abstract class State {
         if (keyboard.isPressed(KeyCode.W)) {
             clone.setX(player.getX() + 10);
             clone.setY(player.getY() + 10 - speed);
-            if (!player.isCollided(clone)) {
+            if (!player.isCloneCollided(clone)) {
                 player.setY(player.getY() - speed);
             }
         }
         if (keyboard.isPressed(KeyCode.S)) {
             clone.setX(player.getX() + 10);
             clone.setY(player.getY() + 10 + speed);
-            if (!player.isCollided(clone)) {
+            if (!player.isCloneCollided(clone)) {
                 player.setY(player.getY() + speed);
             }
         }
         if (keyboard.isPressed(KeyCode.A)) {
             clone.setY(player.getY() + 10);
             clone.setX(player.getX() + 10 - speed);
-            if (!player.isCollided(clone)) {
+            if (!player.isCloneCollided(clone)) {
                 player.setX(player.getX() - speed);
             }
         }
         if (keyboard.isPressed(KeyCode.D)) {
             clone.setY(player.getY() + 10);
             clone.setX(player.getX() + 10 + speed);
-            if (!player.isCollided(clone)) {
+            if (!player.isCloneCollided(clone)) {
                 player.setX(player.getX() + speed);
             }
         }

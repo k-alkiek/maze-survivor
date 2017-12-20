@@ -78,4 +78,13 @@ public abstract class Weapon {
 	public void setBullets(Integer bullets) {
 		this.bullets = bullets;
 	}
+
+	/**
+	 * @return the shooter
+	 */
+	public Player getShooter() {
+		return shooter;
+	}
+
+	
 }

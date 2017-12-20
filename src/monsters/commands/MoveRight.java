@@ -14,7 +14,7 @@ public class MoveRight implements MoveCommand {
         ImageView clone = ClonedObject.getClone();
         clone.setY(monster.getY() + 10);
         clone.setX(monster.getX() + 10 + speed);
-        if (!monster.isCollided(clone)) {
+        if (!monster.isCloneCollided(clone)) {
             monster.setX(monster.getX() + speed);
             return true;
         }

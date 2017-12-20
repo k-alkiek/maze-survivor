@@ -14,7 +14,7 @@ public class MoveUp implements MoveCommand {
         ImageView clone = ClonedObject.getClone();
         clone.setX(monster.getX() + 10);
         clone.setY(monster.getY() + 10 - speed);
-        if (!monster.isCollided(clone)) {
+        if (!monster.isCloneCollided(clone)) {
             monster.setY(monster.getY() - speed);
             return true;
         }
