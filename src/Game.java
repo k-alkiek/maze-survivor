@@ -12,7 +12,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import maze.drawer.MazeDrawer;
+import maze.drawer.EasyLevel;
+import maze.drawer.LevelGenerator;
 import objects.ClonedObject;
 import sound.SoundHandler;
 
@@ -33,7 +34,7 @@ public class Game extends Application {
         Pane pane = gameEngine.getPane();
         ScrollPane scrollPane = gameEngine.getScrollPane();
         scrollPane.setContent(pane);
-        MazeDrawer mazeDrawer = new MazeDrawer(pane, 50, 0.03, 0.01 /2);
+        LevelGenerator mazeDrawer = new EasyLevel(pane, 50, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
 

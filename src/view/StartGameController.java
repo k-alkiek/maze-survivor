@@ -19,7 +19,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import maze.drawer.MazeDrawer;
+import maze.drawer.*;
 import objects.ClonedObject;
 import sound.SoundHandler;
 
@@ -81,20 +81,32 @@ public class StartGameController {
     private void initialiseGameElements(String chosenWeapon, String chosenDifficulty) {
     	GameEngine gameEngine = GameEngine.getInstanceOf();
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0);
+        Player player;
+        Pane pane = gameEngine.getPane();
+        LevelGenerator mazeDrawer;
+        if (chosenDifficulty.equalsIgnoreCase("easy")) {
+        	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, true);
+            mazeDrawer= new EasyLevel(pane, 10, 0.03, 0.01);
+        } else if (chosenDifficulty.equalsIgnoreCase("medium")) {
+        	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, true);
+        	mazeDrawer = new MediumLevel(pane, 20, 0.03, 0.01);
+        } else if (chosenDifficulty.equalsIgnoreCase("hard")) {
+        	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, false);
+        	mazeDrawer = new MediumLevel(pane, 30, 0.03, 0.01);
+        } else { //Ninja level
+        	mazeDrawer = new MediumLevel(pane, 45, 0.03, 0.02);
+        	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, false);
+        }
         player.setChoosingCharacter(chosenWeapon);
         gameEngine.setPlayer(player);
         gameEngine.setSoundHandler(new SoundHandler(player));
-
-        Pane pane = gameEngine.getPane();
-        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
         player.getWeapon().setBullets((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage())) ;
 
         System.out.println((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage()));
         System.out.println(mazeDrawer.getNumOfBullets() + " " + mazeDrawer.getNumOfMonsters());
-        
+
         Pane HUDPane = new Pane();
         new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
         gameEngine.setHUDPane(HUDPane);

@@ -77,6 +77,7 @@ public class GameManager extends GameObject {
 	
 	public void lose() {
 		//TODO: lose.
+		
 		System.out.println("YOU LOSE!");
 	}
 
