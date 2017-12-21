@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -41,4 +42,19 @@ public class MenuController {
     	stage.close();
     }
 
+    @FXML
+	void changePickups() {
+    	String filePath;
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Drawing XML");
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("JPG File", "*.jpg"),
+				new FileChooser.ExtensionFilter("PNG File", "*.png"));
+		try {
+			filePath = fileChooser.showOpenDialog(new Stage()).getPath();
+			// TODO Sajed
+		} catch (Exception e) {
+
+		}
+	}
 }
