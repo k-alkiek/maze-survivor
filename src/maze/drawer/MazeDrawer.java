@@ -117,7 +117,7 @@ public class MazeDrawer {
 
     private void displayDrawables() {
         int cellSize = 70;
-        new Monster(GameEngine.getInstanceOf(), 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
+        new Monster(gameManager, 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
             	if (maze[i][j] != '1' && maze[i][j] != '2') {
@@ -178,7 +178,7 @@ public class MazeDrawer {
                 	CollidableGameObject gift = (CollidableGameObject) mineFactory.createPickup(5 + j * cellSize, 5 + i * cellSize);
                 	gift.draw(this.gift);
 	            } else if (maze[i][j] == '9') {
-	            	new Monster(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+	            	new Monster(gameManager, 5 + j * cellSize, 5 + i * cellSize);
 	            }
 //                if (i == 2 && j == 1 || i == 1 && j == 2) {
 //                	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);

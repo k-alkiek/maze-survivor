@@ -43,12 +43,7 @@ public class GameEngine {
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
-
-
 //        player = new PlayerBuilder().preparePlayerWithShotgun(this, 75, 75, 6);
-
-
-
     }
 
     public Player getPlayer() {
@@ -76,7 +71,6 @@ public class GameEngine {
                     gameObject = gameObjects.get(i);
                     gameObject.update();
                 }
-                testAllInput();
                 refreshInput();
                 pane.requestFocus();
 //                refreshFrameRate(now);

@@ -21,7 +21,7 @@ import java.util.Stack;
 /**
  * Created by khaled on 12/20/17.
  */
-public class HeadsUpDisplayUI  extends GameObject {
+public class HeadsUpDisplayUI extends GameObject {
     private Pane parentPane;
     private Pane pane;
 
@@ -48,8 +48,8 @@ public class HeadsUpDisplayUI  extends GameObject {
     public void update() {
         // TODO Khaled Barie
         Platform.runLater(() -> {
-            healthBar.setProgress(gameManager.getHealth() / gameManager.getMaxHealth());
-            hungerBar.setProgress(gameManager.getFood() / gameManager.getMaxHealth());
+            healthBar.setProgress((double) gameManager.getHealth() / gameManager.getMaxHealth());
+            hungerBar.setProgress((double) gameManager.getFood() / gameManager.getMaxHealth());
         });
         scoreLabel.setText("" + gameManager.getScore());
         ammoLabel.setText("Ammo: " + weapon.getBulletsInMag() + "/" + weapon.getBullets());

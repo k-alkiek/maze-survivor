@@ -11,7 +11,7 @@ import objects.GameObject;
  */
 public class GameManager extends GameObject {
 
-	private static final int MAX_HEALTH = 10000;
+	private static final int MAX_HEALTH = 1000;
 
 	private Player player;
 
@@ -22,7 +22,7 @@ public class GameManager extends GameObject {
 	private Weapon weapon;
 
 	/**
-	 * Full is on 1000.
+	 * Full is on MAX_HEALTH.
 	 */
 	private int food;
 

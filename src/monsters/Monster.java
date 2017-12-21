@@ -1,6 +1,7 @@
 package monsters;
 
 import game.GameEngine;
+import game.GameManager;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import monsters.states.MonsterState;
@@ -16,9 +17,11 @@ public class Monster extends CollidableGameObject implements Destructible {
     private MonsterState currentState;
     private static int speed = 3;
     private static int health = 100;
+    private GameManager gameManager;
 
-    public Monster(GameEngine gameEngine, int x, int y) {
-        super(gameEngine, x, y);
+    public Monster(GameManager gameManager, int x, int y) {
+        super(GameEngine.getInstanceOf(), x, y);
+        this.gameManager = gameManager;
         currentState = new MonsterWalkingState();
         imageView.setFitWidth(70);
     }
@@ -30,8 +33,9 @@ public class Monster extends CollidableGameObject implements Destructible {
         imageView.setRotate(angle);
         imageView.toFront();
         draw(image);
-        if (collidedWithPlayer())
-            System.out.println("Die");
+        if (collidedWithPlayer()) {
+        	//TODO:LOG.
+        }
     }
 
     public void setCurrentState(MonsterState currentState) {
@@ -45,7 +49,7 @@ public class Monster extends CollidableGameObject implements Destructible {
     public boolean collidedWithPlayer() {
         ImageView player = gameEngine.getPlayer().getImageView();
         if (player.getBoundsInLocal().intersects(this.getImageView().getBoundsInLocal())) {
-            // player's health will affected by monster's damage factor
+            gameManager.decreaseHealth(1);
             return true;
         }
         return false;
