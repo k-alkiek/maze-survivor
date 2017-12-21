@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" onKeyPressed="#mainMnue" prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="pane" onKeyPressed="#startGame" prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MenuController">
    <children>
       <Label layoutX="173.0" layoutY="38.0" prefHeight="115.0" prefWidth="462.0" text="YOU WIN" textAlignment="CENTER" textFill="RED">
          <font>
