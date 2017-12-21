@@ -103,6 +103,7 @@ public class StartGameController {
         Scene scene = new Scene(stackPane, 900, 800);
         Stage stage = (Stage) easy.getScene().getWindow();
         stage.setScene(scene);
+        gameEngine.primaryStage = stage;
 
     }
 
