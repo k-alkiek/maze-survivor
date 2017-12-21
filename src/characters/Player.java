@@ -60,4 +60,8 @@ public class Player extends CollidableGameObject {
     public int getSpeed() {
         return speed;
     }
+
+    public void setChoosingCharacter(String choosingCharacter) {
+        this.choosingCharacter = choosingCharacter;
+    }
 }
