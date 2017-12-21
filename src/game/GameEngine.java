@@ -7,6 +7,7 @@ import gun.Shotgun;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
@@ -38,6 +39,7 @@ public class GameEngine {
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
+    public static Stage primaryStage;
 
     private GameEngine() {
         pane = new Pane();
