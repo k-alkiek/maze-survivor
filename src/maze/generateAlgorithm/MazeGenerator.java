@@ -4,6 +4,8 @@ package maze.generateAlgorithm;
 import java.util.Arrays;
 import java.util.Collections;
 
+import game.DBLogger;
+
 /**
  * Created by khaledabdelfattah on 12/12/17.
  */
@@ -12,6 +14,7 @@ public class MazeGenerator {
     private final int[][] maze;
 
     public MazeGenerator(int width, int height) {
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         this.width = width;
         this.height = height;
         maze = new int[this.width][this.height];

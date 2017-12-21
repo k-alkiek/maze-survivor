@@ -30,7 +30,7 @@ public class GameEngine {
 
     private Player player;
 
-    private ScrollPane pane;
+    private Pane pane;
     private Pane HUDPane;
 
     private List<GameObject> gameObjects;
@@ -40,7 +40,8 @@ public class GameEngine {
     private boolean arrayFilled = false;
 
     private GameEngine() {
-        pane = new ScrollPane();
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
+        pane = new Pane();
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
@@ -85,7 +86,7 @@ public class GameEngine {
         }.start();
     }
 
-    public ScrollPane getPane() {
+    public Pane getPane() {
         return pane;
     }
 

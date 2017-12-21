@@ -1,5 +1,6 @@
 package monsters;
 
+import game.DBLogger;
 import game.GameEngine;
 import javafx.application.Platform;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,7 @@ public class Monster extends CollidableGameObject implements Destructible {
 
     public Monster(GameEngine gameEngine, int x, int y) {
         super(gameEngine, x, y);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         currentState = new MonsterWalkingState();
         imageView.setFitWidth(70);
     }

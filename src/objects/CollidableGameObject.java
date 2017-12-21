@@ -3,6 +3,7 @@ package objects;
 import java.util.List;
 
 import characters.Player;
+import game.DBLogger;
 import game.GameEngine;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,6 +24,7 @@ public abstract class CollidableGameObject extends GameObject {
 
 	public CollidableGameObject(GameEngine gameEngine) {
 		super(gameEngine);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
 		initializeImageView();
 	}
 

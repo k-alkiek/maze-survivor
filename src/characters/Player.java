@@ -1,6 +1,7 @@
 package characters;
 
 import characters.states.*;
+import game.DBLogger;
 import game.GameEngine;
 import game.Mouse;
 import gun.Weapon;
@@ -20,6 +21,7 @@ public class Player extends CollidableGameObject {
 
     public Player(GameEngine gameEngine, double x, double y) {
         super(gameEngine, x, y);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
         System.out.println(imageView.getBoundsInLocal());

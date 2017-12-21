@@ -77,31 +77,31 @@ public final class Mouse {
         return isScrollingDown;
     }
 
-    public void initialize(ScrollPane pane) {
-        pane.setOnMouseMoved(event -> {
+    public void initialize(Pane hUDPane) {
+        hUDPane.setOnMouseMoved(event -> {
             x = event.getX();
             y = event.getY();
             event.consume();
         });
-        pane.setOnMouseDragged(event -> {
+        hUDPane.setOnMouseDragged(event -> {
             x = event.getX();
             y = event.getY();
             event.consume();
         });
-        pane.setOnMousePressed(event -> {
+        hUDPane.setOnMousePressed(event -> {
             if (!buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.add(event.getButton());
             }
             event.consume();
         });
-        pane.setOnMouseReleased(event -> {
+        hUDPane.setOnMouseReleased(event -> {
             if (buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.remove(event.getButton());
             }
             event.consume();
         });
 
-        pane.setOnScroll(event -> {
+        hUDPane.setOnScroll(event -> {
             if (event.getDeltaY() < 0) {
                 isScrollingDown = true;
                 isScrollingUp = false;
@@ -117,4 +117,6 @@ public final class Mouse {
         isScrollingDown = false;
         isScrollingUp = false;
     }
+
+
 }

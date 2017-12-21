@@ -18,6 +18,7 @@ public class HeadsUpDisplay extends GameObject {
 
     public HeadsUpDisplay(GameEngine gameEngine, Canvas canvas) {
         super(gameEngine);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         this.canvas = canvas;
         gc = canvas.getGraphicsContext2D();
         pane = GameEngine.getInstanceOf().getPane();

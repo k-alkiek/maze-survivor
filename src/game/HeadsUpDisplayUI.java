@@ -30,6 +30,7 @@ public class HeadsUpDisplayUI  extends GameObject {
 
     public HeadsUpDisplayUI(GameEngine gameEngine, Pane pane) {
         super(gameEngine);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         this.pane = pane;
         parentPane = GameEngine.getInstanceOf().getPane();
         initializeBars();

@@ -28,6 +28,7 @@ public class GameManager extends GameObject {
 
 	public GameManager(GameEngine gameEngine, Player player) {
 		super(gameEngine);
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
 		this.player = player;
 		food = MAX_HEALTH;
 		weapon = player.getWeapon();

@@ -3,6 +3,7 @@ package maze.drawer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import game.DBLogger;
 import game.GameEngine;
 import game.GameManager;
 import javafx.scene.Group;
@@ -39,6 +40,7 @@ public class MazeDrawer {
 
     public MazeDrawer(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
         super();
+    	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         this.size = size;
         this.root = root;
         this.percentageOfDestructableWalls = percentageOfDestructableWalls;
@@ -101,7 +103,6 @@ public class MazeDrawer {
 
     private void displayDrawables() {
         int cellSize = 70;
-        new Monster(GameEngine.getInstanceOf(), 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
             	if (maze[i][j] != '1' && maze[i][j] != '2') {
