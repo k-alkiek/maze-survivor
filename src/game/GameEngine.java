@@ -5,6 +5,7 @@ import characters.PlayerBuilder;
 import characters.Shadow;
 import gun.Shotgun;
 import javafx.animation.AnimationTimer;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
@@ -29,7 +30,7 @@ public class GameEngine {
 
     private Player player;
 
-    private Pane pane;
+    private ScrollPane pane;
     private Pane HUDPane;
 
     private List<GameObject> gameObjects;
@@ -39,7 +40,7 @@ public class GameEngine {
     private boolean arrayFilled = false;
 
     private GameEngine() {
-        pane = new Pane();
+        pane = new ScrollPane();
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
@@ -84,7 +85,7 @@ public class GameEngine {
         }.start();
     }
 
-    public Pane getPane() {
+    public ScrollPane getPane() {
         return pane;
     }
 

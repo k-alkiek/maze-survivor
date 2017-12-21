@@ -1,5 +1,6 @@
 package game;
 
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -76,7 +77,7 @@ public final class Mouse {
         return isScrollingDown;
     }
 
-    public void initialize(Pane pane) {
+    public void initialize(ScrollPane pane) {
         pane.setOnMouseMoved(event -> {
             x = event.getX();
             y = event.getY();
