@@ -103,6 +103,27 @@ public class GameManager extends GameObject {
 		return player;
 	}
 
+	/**
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * @return the health
+	 */
+	public int getHealth() {
+		return health;
+	}
+
+	/**
+	 * @return the food
+	 */
+	public int getFood() {
+		return food;
+	}
+
 	@Override
 	public void update() {
 		hungerEffect();

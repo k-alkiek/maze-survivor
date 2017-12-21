@@ -122,6 +122,10 @@ public abstract class Weapon {
 		this.bullets = bullets;
 	}
 
+	public int getBulletsInMag() {
+		return mag.getBulletsInMag();
+	}
+
 	/**
 	 * @return the shooter
 	 */

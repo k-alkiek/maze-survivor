@@ -7,7 +7,9 @@ import com.jfoenix.controls.JFXRadioButton;
 import characters.Player;
 import characters.PlayerBuilder;
 import game.GameEngine;
+import game.GameManager;
 import game.HeadsUpDisplayUI;
+import gun.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,10 +90,13 @@ public class StartGameController {
         MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
-        player.getWeapon().setBullets(15);
+        player.getWeapon().setBullets((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage())) ;
 
+        System.out.println((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage()));
+        System.out.println(mazeDrawer.getNumOfBullets() + " " + mazeDrawer.getNumOfMonsters());
+        
         Pane HUDPane = new Pane();
-        new HeadsUpDisplayUI(gameEngine, HUDPane);
+        new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
         gameEngine.setHUDPane(HUDPane);
         StackPane stackPane = new StackPane(pane, HUDPane);
 

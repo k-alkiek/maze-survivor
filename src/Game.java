@@ -2,7 +2,6 @@ import characters.Player;
 import characters.PlayerBuilder;
 import characters.Shadow;
 import game.GameEngine;
-import game.HeadsUpDisplay;
 import game.HeadsUpDisplayUI;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -36,7 +35,7 @@ public class Game extends Application {
         mazeDrawer.displayMaze();
 
         Pane HUDPane = new Pane();
-        new HeadsUpDisplayUI(gameEngine, HUDPane);
+        new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
         gameEngine.setHUDPane(HUDPane);
         StackPane stackPane = new StackPane(pane, HUDPane);
 
