@@ -1,6 +1,7 @@
 package mine;
 
 import game.GameManager;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import objects.CollidableGameObject;
 
