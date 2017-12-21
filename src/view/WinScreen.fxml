@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" onKeyPressed="#mainMnue" prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: brown;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="173.0" layoutY="38.0" prefHeight="115.0" prefWidth="462.0" text="YOU WIN" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Andalus" size="72.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="500.0" prefHeight="17.0" prefWidth="546.0" text="Developed by Hesham Medhat, Khaled Barie, Sajed Hassan and Khaled Abdelfattah, 2017." textFill="#ff6e00">
+         <font>
+            <Font name="Agency FB" size="16.0" />
+         </font>
+      </Label>
+      <JFXTextField focusColor="#ff0900" layoutX="136.0" layoutY="247.0" prefHeight="74.0" prefWidth="248.0" text="Your Score : " unFocusColor="RED">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="score" layoutX="406.0" layoutY="271.0" prefHeight="27.0" prefWidth="215.0">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </JFXTextField>
+      <Label layoutX="112.0" layoutY="425.0" text="press any key to continue">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
