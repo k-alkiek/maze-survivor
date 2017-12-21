@@ -140,7 +140,7 @@ public class GameEngine {
     /**
      * Unsubscribes the game object and removes it from the list of
      * regularly updated game objects.
-     * 
+     *
      * @param destroyed
      */
     public void destroyGameObject(GameObject destroyed) {
