@@ -76,11 +76,11 @@ public class StartGameController {
     	initialiseGameElements(chosenWeapon.getText(), chosenDifficulty.getText());
     }
 
-    private void initialiseGameElements(String choosingCharacter, String chosenDifficulty) {
+    private void initialiseGameElements(String chosenWeapon, String chosenDifficulty) {
     	GameEngine gameEngine = GameEngine.getInstanceOf();
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 1);
-        player.setChoosingCharacter(choosingCharacter);
+        Player player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0);
+        player.setChoosingCharacter(chosenWeapon);
         gameEngine.setPlayer(player);
         gameEngine.setSoundHandler(new SoundHandler(player));
 
@@ -88,6 +88,7 @@ public class StartGameController {
         MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
+        player.getWeapon().setBullets(15);
 
         Pane HUDPane = new Pane();
         new HeadsUpDisplayUI(gameEngine, HUDPane);
@@ -95,6 +96,8 @@ public class StartGameController {
         StackPane stackPane = new StackPane(pane, HUDPane);
 
         Scene scene = new Scene(stackPane, 900, 800);
+        Stage stage = (Stage) easy.getScene().getWindow();
+        stage.setScene(scene);
 
     }
 
