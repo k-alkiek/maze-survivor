@@ -27,6 +27,7 @@ public class Main extends Application {
 			primaryStage.show();
 			scene.setOnKeyPressed(e -> {
 			        try {
+			        	primaryStage.hide();
 						Parent menuRoot = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 						Scene menuScene = new Scene(menuRoot);
 						primaryStage.setScene(menuScene);
