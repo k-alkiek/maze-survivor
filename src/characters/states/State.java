@@ -1,6 +1,7 @@
 package characters.states;
 
 import characters.Player;
+import game.GameEngine;
 import game.Keyboard;
 import game.Mouse;
 import javafx.scene.image.Image;
@@ -26,7 +27,6 @@ public abstract class State {
     protected Keyboard keyboard;
     protected Mouse mouse;
     protected int perFrame = 4, currFrame = 0, framePerState = 0;
-
     public abstract void update(Player player);
 
     public State() {

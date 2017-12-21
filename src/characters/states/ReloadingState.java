@@ -10,15 +10,13 @@ import java.io.File;
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class ReloadingState extends State {
-    private static AudioClip reloadSound = new AudioClip(new File("src/assets/player/sounds/reload.wav").toURI().toString());
-
-    public ReloadingState() {
+    public ReloadingState(String character) {
         super();
-        loadSprites("src/assets/player/handgun/reload");
+        String path = "src/assets/player/" + character + "/reload";
+        loadSprites(path);
         framePerState = 0;
-
-        GameEngine.getInstanceOf().getSoundHandler().playSound(reloadSound, 0.5, true);
     }
+
     @Override
     public void update(Player player) {
         walk(player);

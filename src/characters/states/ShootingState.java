@@ -1,16 +1,19 @@
 package characters.states;
 
 import characters.Player;
+import game.GameEngine;
 
 /**
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class ShootingState extends State {
-    public ShootingState() {
+    public ShootingState(String character) {
         super();
-        loadSprites("src/assets/player/handgun/shoot");
+        String path = "src/assets/player/" + character + "/shoot";
+        loadSprites(path);
         framePerState = 0;
     }
+
     @Override
     public void update(Player player) {
         walk(player);
