@@ -43,6 +43,7 @@ public class Game extends Application {
         new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
         gameEngine.setHUDPane(HUDPane);
         StackPane stackPane = new StackPane(scrollPane, HUDPane);
+        
 
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

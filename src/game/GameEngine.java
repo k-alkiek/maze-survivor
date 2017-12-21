@@ -5,6 +5,7 @@ import characters.PlayerBuilder;
 import characters.Shadow;
 import gun.Shotgun;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -70,9 +71,9 @@ public class GameEngine {
             @Override
             public void handle(long now) {
                 pane.requestFocus();
-
-                scrollPane.setVvalue(player.getImageView().getY()/pane.getHeight());
-                scrollPane.setHvalue(player.getImageView().getX()/pane.getWidth());
+                	scrollPane.setVvalue(player.getImageView().getY()/pane.getHeight());
+                    scrollPane.setHvalue(player.getImageView().getX()/pane.getWidth());	
+                
                 System.out.println(mouse.getX());
                 GameObject gameObject;
                 for (int i = gameObjects.size() - 1; i >= 0; i--) {

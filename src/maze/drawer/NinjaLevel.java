@@ -5,17 +5,19 @@ import javafx.scene.layout.Pane;
 import mine.AbstractMineFactory;
 import mine.BigHealthMine;
 import mine.BigScoreMine;
-import mine.MineEasyFactory;
+import mine.MineHardFactory;
+import mine.MineNinjaFactory;
 import monsters.Monster;
 import objects.CollidableGameObject;
 import pickup.AbstractPickupFactory;
-import pickup.PickupEasyFactory;
+import pickup.PickupHardFactory;
+import pickup.PickupNinjaFactory;
 import wall.NDWall;
 import wall.WeakDestructibleWall;
 
-public class EasyLevel extends LevelGenerator {
+public class NinjaLevel extends LevelGenerator {
 
-	public EasyLevel(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
+	public NinjaLevel(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
 		super(root, size, percentageOfDestructableWalls, percentageOfMines);
 	}
 
@@ -54,7 +56,7 @@ public class EasyLevel extends LevelGenerator {
                 	CollidableGameObject wall = new WeakDestructibleWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '4') {
-                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	AbstractMineFactory mineFactory = new MineNinjaFactory(this.gameManager);
                 	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
                 	if (mine instanceof BigHealthMine || mine instanceof BigScoreMine) {
                         mine.draw(this.horizontalBigMine);
@@ -62,23 +64,24 @@ public class EasyLevel extends LevelGenerator {
                         mine.draw(this.mine);
                     }
                 } else if (maze[i][j] == '6') {
-                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+                	AbstractMineFactory mineFactory = new MineNinjaFactory(this.gameManager);
                 	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
                     if (mine instanceof BigHealthMine || mine instanceof BigScoreMine) {
                         mine.draw(this.verticalBigMine);
                     } else {
                         mine.draw(this.mine);
-                    }
+                    }	            
                 }  else if (maze[i][j] == '8') {
-	            	AbstractPickupFactory mineFactory = new PickupEasyFactory(this.gameManager);
+	            	AbstractPickupFactory mineFactory = new PickupNinjaFactory(this.gameManager);
                 	CollidableGameObject gift = (CollidableGameObject) mineFactory.createPickup(5 + j * cellSize, 5 + i * cellSize);
                 	gift.draw(this.gift);
 	            } else if (maze[i][j] == '9') {
 	            	new Monster(gameManager, 5 + j * cellSize, 5 + i * cellSize);
 	            }
             }
-        }
+        }		
 	}
 
-	
+
+
 }

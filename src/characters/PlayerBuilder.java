@@ -49,7 +49,6 @@ public class PlayerBuilder {
     		new Shadow(GameEngine.getInstanceOf(), player);
     	}
         player.setWeapon(weapon);
-        new Shadow(GameEngine.getInstanceOf(), player);
         return player;
     }
 

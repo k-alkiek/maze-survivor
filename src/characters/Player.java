@@ -26,6 +26,7 @@ public class Player extends CollidableGameObject {
         super(gameEngine, x, y);
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
+        imageView.toFront();
         System.out.println(imageView.getBoundsInLocal());
         StatesPool.setStatesPool(choosingCharacter);
         currentState = StatesPool.getNextState("IdleState");
