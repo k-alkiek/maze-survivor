@@ -20,12 +20,12 @@ public class WalkingState extends State {
         walk(player);
         setSpritesPerFrame(player);
         if (!walking()) {
-            if (mouse.isPressed(MouseButton.PRIMARY)) {
+            if (mouse.isPressed(MouseButton.PRIMARY) || keyboard.isPressed(KeyCode.SPACE)) {
                 player.setCurrentState(StatesPool.getNextState("ShootingState"));
             } else {
                 player.setCurrentState(StatesPool.getNextState("IdleState"));
             }
-        } else if (mouse.isPressed(MouseButton.PRIMARY) && walking()) {
+        } else if ((mouse.isPressed(MouseButton.PRIMARY) && walking()) || keyboard.isPressed(KeyCode.SPACE)) {
             player.setCurrentState(StatesPool.getNextState("ShootingState"));
         } else if (keyboard.isPressed(KeyCode.R)) {
             player.setCurrentState(StatesPool.getNextState("ReloadingState"));
