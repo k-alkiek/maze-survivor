@@ -1,5 +1,6 @@
 package game;
 
+import java.io.FileWriter;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXTextField;
@@ -88,12 +89,11 @@ public class GameManager extends GameObject {
 	public void lose() {
 		GameEngine.lastScore = score + health + food;
 		try {
-    		Stage stage = GameEngine.primaryStage;
-    		Parent root = (Parent)FXMLLoader.load(Main.class.getResource("GameOverScreen.fxml"));
-    		gameEngine.getGameObjects().clear();
-    		Scene scene = new Scene(root);
-    		stage.setScene(scene);
-    		stage.show();
+			Stage stage = GameEngine.primaryStage;
+    		FileWriter fw = new FileWriter("RESULTS.txt");
+    		fw.write("Unfortunately, you lost with score " + GameEngine.lastScore + ". However, we know how this game is addictive and you will start it up again ^^ Thank you for playing.");
+    		fw.close();
+    		stage.close();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}
@@ -105,13 +105,10 @@ public class GameManager extends GameObject {
 		GameEngine.lastScore = score + health + food;
 		try {
     		Stage stage = GameEngine.primaryStage;
-    		System.out.println(getClass());
-    		Parent root = (Parent)FXMLLoader.load(Main.class.getResource("GameOverScreen.fxml"));
-
-    		gameEngine.getGameObjects().clear();
-    		Scene scene = new Scene(root);
-    		stage.setScene(scene);
-    		stage.show();
+    		FileWriter fw = new FileWriter("RESULTS.txt");
+    		fw.write("Actually, you won with score " + GameEngine.lastScore + ". However, we know how this game is addictive and you will start it up again ^^ Thank you for playing.");
+    		fw.close();
+    		stage.close();
     	} catch (IOException e) {
     		e.printStackTrace();
     	}

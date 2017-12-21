@@ -120,8 +120,8 @@ public class StartGameController {
         gameEngine.setSoundHandler(new SoundHandler(player));
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
-        player.getWeapon().setBullets((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage())) ;
-
+        //player.getWeapon().setBullets((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage())) ;
+        player.getWeapon().setBullets(6);
         System.out.println((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage()));
         System.out.println(mazeDrawer.getNumOfBullets() + " " + mazeDrawer.getNumOfMonsters());
 
