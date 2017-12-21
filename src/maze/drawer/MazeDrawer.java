@@ -28,6 +28,7 @@ public class MazeDrawer {
     private double percentageOfMines;
     private char[][] maze;
     private Image wall = null;
+    private Image destroyedWall = null;
     private Image destructableWall = null;
     private Image mine = null;
     private Image bigMineRight = null;
@@ -67,7 +68,8 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
-            ground = new Image(new FileInputStream("ground.jpg"));
+            ground = new Image(new FileInputStream("floor.jpg"));
+            destroyedWall = new Image(new FileInputStream("floorDestroyed.png"));
             wall = new Image(new FileInputStream("wall.jpg"));
             destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
@@ -119,6 +121,17 @@ public class MazeDrawer {
 	                gameEngine.getPane().getChildren().add(ground);
 	            	ground.toBack();
 	            }
+                if (maze[i][j] == '2') {
+                    ImageView ground = new ImageView();
+                    ground.setX(5 + j * cellSize);
+                    ground.setY(5 + i * cellSize);
+                    ground.setFitWidth(70);
+                    ground.setFitHeight(70);
+                    ground.setPreserveRatio(true);
+                    ground.setImage(this.destroyedWall);
+                    gameEngine.getPane().getChildren().add(ground);
+                    ground.toBack();
+                }
                 if (maze[i][j] == '1') {
                     CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                     wall.draw(this.wall);
