@@ -2,6 +2,8 @@ package game;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXTextField;
+
 import characters.Player;
 import gun.Weapon;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import objects.GameObject;
+import view.Main;
+import view.WinAndLoseController;
 
 /**
  * Manages the game in terms of win/loss and score.
@@ -85,7 +89,7 @@ public class GameManager extends GameObject {
 		GameEngine.lastScore = score + health + food;
 		try {
     		Stage stage = GameEngine.primaryStage;
-    		Parent root = FXMLLoader.load(getClass().getResource("LoseScreen.fxml"));
+    		Parent root = (Parent)FXMLLoader.load(Main.class.getResource("GameOverScreen.fxml"));
     		gameEngine.getGameObjects().clear();
     		Scene scene = new Scene(root);
     		stage.setScene(scene);
@@ -101,7 +105,9 @@ public class GameManager extends GameObject {
 		GameEngine.lastScore = score + health + food;
 		try {
     		Stage stage = GameEngine.primaryStage;
-    		Parent root = FXMLLoader.load(getClass().getResource("WinScreen.fxml"));
+    		System.out.println(getClass());
+    		Parent root = (Parent)FXMLLoader.load(Main.class.getResource("GameOverScreen.fxml"));
+
     		gameEngine.getGameObjects().clear();
     		Scene scene = new Scene(root);
     		stage.setScene(scene);
