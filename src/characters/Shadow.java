@@ -3,6 +3,7 @@ package characters;
 import game.GameEngine;
 import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -24,13 +25,14 @@ public class Shadow extends GameObject {
     private int rayLength;
     private int clearance;
     private Pane pane;
+    private ScrollPane scrollPane;
     private Shape overlay;
     private Player player;
 
 
     public Shadow(GameEngine gameEngine, Player player) {
         super(gameEngine);
-        rays = 40;
+        rays = 15;
         rayLength = 300;
         clearance = 70;
 
