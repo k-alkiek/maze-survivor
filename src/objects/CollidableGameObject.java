@@ -2,10 +2,12 @@ package objects;
 
 import java.util.List;
 
+import characters.Player;
 import game.GameEngine;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mine.Mine;
+import monsters.Monster;
 import wall.Wall;
 
 /**
@@ -55,6 +57,16 @@ public abstract class CollidableGameObject extends GameObject {
 		List<GameObject> gameObjects = gameEngine.getGameObjects();
 		for (GameObject gameObject : gameObjects) {
 			if (gameObject instanceof Wall && this.collides(objectImage, (Wall) gameObject)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean isMonsterCloneCollided(final ImageView objectImage) {
+		List<GameObject> gameObjects = gameEngine.getGameObjects();
+		for (GameObject gameObject : gameObjects) {
+			if (this != gameObject && (gameObject instanceof Wall || gameObject instanceof Player || gameObject instanceof Monster)&& this.collides(objectImage,(CollidableGameObject) gameObject)) {
 				return true;
 			}
 		}

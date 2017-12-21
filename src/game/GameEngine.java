@@ -44,7 +44,6 @@ public class GameEngine {
         createGameLoop();
 
 
-
 //        player = new PlayerBuilder().preparePlayerWithShotgun(this, 75, 75, 6);
 
 
