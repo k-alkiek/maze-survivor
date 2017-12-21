@@ -19,9 +19,8 @@ public class Player extends CollidableGameObject {
 
     private int speed = 5;
 
-    public Player(GameEngine gameEngine, double x, double y, Weapon weapon) {
+    public Player(GameEngine gameEngine, double x, double y) {
         super(gameEngine, x, y);
-        this.weapon = weapon;
         currentState = new IdleState();
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
@@ -29,8 +28,9 @@ public class Player extends CollidableGameObject {
     }
 
     @Override
-    public synchronized void update() {
+    public void update() {
         //imageView.setFitWidth(250);
+
         Mouse mouse = gameEngine.getMouse();
         // TODO REFACTOR khaled barie
         angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));

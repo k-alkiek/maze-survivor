@@ -1,6 +1,7 @@
 package mine;
 
 import game.GameManager;
+import javafx.application.Platform;
 import objects.CollidableGameObject;
 import objects.Destructible;
 
@@ -45,7 +46,7 @@ public abstract class ScoreMine extends CollidableGameObject implements Mine, De
 
 	@Override
 	public void hit(int damage) {
-		gameEngine.destroyGameObject(this);
+		Platform.runLater(() -> gameEngine.destroyGameObject(this));
 	}
 
 }

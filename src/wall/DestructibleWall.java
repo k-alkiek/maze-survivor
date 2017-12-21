@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import objects.Destructible;
 
-public abstract class DestructableWall extends Wall implements Destructible {
+public abstract class DestructibleWall extends Wall implements Destructible {
 
 	protected final static String DESTRUCTABLE_WALL = "destructableWall";
 	private final static boolean IS_DESTRUCTABLE = true;
@@ -13,10 +13,10 @@ public abstract class DestructableWall extends Wall implements Destructible {
 	private boolean isDestructed;
 
 	public static void setWallShape(Image wallShape) {
-		DestructableWall.wallShape = wallShape;
+		DestructibleWall.wallShape = wallShape;
 	}
 
-	public DestructableWall(GameEngine gameEngine, int x, int y) {
+	public DestructibleWall(GameEngine gameEngine, int x, int y) {
 		super(gameEngine, x, y, IS_DESTRUCTABLE);
 	}
 	

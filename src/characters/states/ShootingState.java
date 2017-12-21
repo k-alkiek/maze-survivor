@@ -15,6 +15,9 @@ public class ShootingState extends State {
     public void update(Player player) {
         walk(player);
         setSpritesPerFrame(player);
+
+        player.getWeapon().fire();
+
         if (framePerState == sprites.size()) {
             framePerState = 0;
             if (walking()) {
