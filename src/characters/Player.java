@@ -1,7 +1,6 @@
 package characters;
 
-import characters.states.IdleState;
-import characters.states.State;
+import characters.states.*;
 import game.GameEngine;
 import game.Mouse;
 import gun.Weapon;
@@ -16,15 +15,16 @@ import objects.*;
 public class Player extends CollidableGameObject {
     private Weapon weapon;
     private State currentState;
-
+    private String choosingCharacter = "handgun";
     private int speed = 5;
 
     public Player(GameEngine gameEngine, double x, double y) {
         super(gameEngine, x, y);
-        currentState = new IdleState();
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
         System.out.println(imageView.getBoundsInLocal());
+        StatesPool.setStatesPool(choosingCharacter);
+        currentState = StatesPool.getNextState("IdleState");
     }
 
     @Override
@@ -44,20 +44,24 @@ public class Player extends CollidableGameObject {
     }
 
     /**
-	 * @return the weapon
-	 */
-	public Weapon getWeapon() {
-		return weapon;
-	}
+     * @return the weapon
+     */
+    public Weapon getWeapon() {
+        return weapon;
+    }
 
-	/**
-	 * @param weapon the weapon to set
-	 */
-	public void setWeapon(Weapon weapon) {
-		this.weapon = weapon;
-	}
+    /**
+     * @param weapon the weapon to set
+     */
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
 
-	public int getSpeed() {
+    public int getSpeed() {
         return speed;
+    }
+
+    public void setChoosingCharacter(String choosingCharacter) {
+        this.choosingCharacter = choosingCharacter;
     }
 }

@@ -1,6 +1,7 @@
 package characters.states;
 
 import characters.Player;
+import game.GameEngine;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
@@ -8,9 +9,10 @@ import javafx.scene.input.MouseButton;
  * Created by khaled on 12/13/17.
  */
 public class IdleState extends State {
-    public IdleState() {
+    public IdleState(String character) {
         super();
-        loadSprites("src/assets/player/handgun/idle");
+        String path = "src/assets/player/" + character + "/idle";
+        loadSprites(path);
     }
 
     @Override

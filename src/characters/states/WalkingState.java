@@ -1,6 +1,7 @@
 package characters.states;
 
 import characters.Player;
+import game.GameEngine;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 
@@ -8,9 +9,10 @@ import javafx.scene.input.MouseButton;
  * Created by khaledabdelfattah on 12/13/17.
  */
 public class WalkingState extends State {
-    public WalkingState() {
+    public WalkingState(String character) {
         super();
-        loadSprites("src/assets/player/handgun/move");
+        String path = "src/assets/player/" + character + "/move";
+        loadSprites(path);
     }
 
     @Override
