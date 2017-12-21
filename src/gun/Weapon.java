@@ -1,6 +1,10 @@
 package gun;
 
 import characters.Player;
+import game.GameEngine;
+import javafx.scene.media.AudioClip;
+import java.io.File;
+import java.net.URI;
 
 /**
  * For different types of guns.
@@ -9,6 +13,9 @@ import characters.Player;
  *
  */
 public abstract class Weapon {
+
+	private final static AudioClip RELOAD_SOUND = new AudioClip(new File("src/assets/player/sounds/reload.wav").toURI().toString());
+	private final static AudioClip SHOT_SOUND = new AudioClip(new File("src/assets/player/sounds/shot.aiff").toURI().toString());
 
 	protected final static long FIRE_COOLDOWN = 250;
 
@@ -78,12 +85,15 @@ public abstract class Weapon {
 		lastFireTime = System.currentTimeMillis();
 		cooling = true;
 		mag.fire();
+
+		GameEngine.getInstanceOf().getSoundHandler().playSound(SHOT_SOUND, 0.5, true);
 	}
 
 	/**
 	 * Reloads the gun and updates the magazine.
 	 */
 	public final void reload() {
+        GameEngine.getInstanceOf().getSoundHandler().playSound(RELOAD_SOUND, 0.5, false);
 		System.out.println("In pistol reload");
 		if (cooling) {
 			if (coolingNow()) {

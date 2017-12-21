@@ -9,11 +9,13 @@ public class MonsterWalkingState extends MonsterState {
     public MonsterWalkingState() {
         super();
         loadSprites("src/assets/monsters/move");
+
     }
 
     @Override
     public void update(Monster monster) {
         setSpritesPerFrame(monster);
         walk(monster);
+        System.out.println("attack");
     }
 }

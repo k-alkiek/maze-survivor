@@ -9,6 +9,7 @@ public class MonsterAttackingState extends MonsterState {
     public MonsterAttackingState() {
         super();
         loadSprites("src/assets/monsters/attack");
+
     }
 
     @Override
