@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
@@ -9,8 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import maze.drawer.LevelGenerator;
 
 /**
  * Controller of the main menu.
@@ -53,6 +56,8 @@ public class MenuController {
 		try {
 			filePath = fileChooser.showOpenDialog(new Stage()).getPath();
 			// TODO Sajed
+			LevelGenerator.gift = new Image(new FileInputStream(filePath));
+
 		} catch (Exception e) {
 
 		}

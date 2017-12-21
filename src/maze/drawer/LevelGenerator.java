@@ -17,14 +17,14 @@ public abstract class LevelGenerator {
     protected double percentageOfDestructableWalls;
     protected double percentageOfMines;
     protected char[][] maze;
-    protected Image wall = null;
-    protected Image destroyedWall = null;
-    protected Image destructableWall = null;
-    protected Image mine = null;
-    protected Image horizontalBigMine = null;
-    protected Image verticalBigMine = null;
-    protected Image gift = null;
-    protected Image ground = null;
+    protected static Image wall = null;
+    protected static Image destroyedWall = null;
+    protected static Image destructableWall = null;
+    protected static Image mine = null;
+    protected static Image horizontalBigMine = null;
+    protected static Image verticalBigMine = null;
+    public static Image gift = null;
+    protected static Image ground = null;
     protected int numOfBullets;
     protected int numOfMonsters;
     protected GameEngine gameEngine = GameEngine.getInstanceOf();
@@ -70,15 +70,31 @@ public abstract class LevelGenerator {
 
 	private void initializeDrawables() {
         try {
+        	if (ground == null) {
             ground = new Image(new FileInputStream("floor.jpg"));
+        	}
+            if (destroyedWall == null) {
             destroyedWall = new Image(new FileInputStream("floorDestroyed.png"));
+            }
+            if (wall == null) {
             wall = new Image(new FileInputStream("wall.jpg"));
+            }
+            if (destructableWall == null) {
             destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
+            }
+            if (mine == null) {
             mine = new Image(new FileInputStream("mine.png"));
+            }
+            if (horizontalBigMine == null) {
             horizontalBigMine = new Image(new FileInputStream("dynamite-horizontal.png"));
+            }
+            if (verticalBigMine == null) {
             verticalBigMine = new Image(new FileInputStream("dynamite-vertical.png"));
+            }
+            if (gift == null) {
             gift = new Image(new FileInputStream("gift.jpg"));
-        } catch (FileNotFoundException e) {
+            }
+            } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
