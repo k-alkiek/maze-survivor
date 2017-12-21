@@ -27,7 +27,6 @@ public class Game extends Application {
         gameEngine.setSoundHandler(new SoundHandler(player));
 
         Pane pane = gameEngine.getPane();
-
         MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
