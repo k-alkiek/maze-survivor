@@ -1,7 +1,9 @@
 package game;
 
 import characters.Player;
+import characters.PlayerBuilder;
 import characters.Shadow;
+import gun.Shotgun;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import objects.ClonedObject;
@@ -24,9 +26,11 @@ public class GameEngine {
     private Keyboard keyboard;
 
     private SoundHandler soundHandler;
+
     private Player player;
 
     private Pane pane;
+    private Pane HUDPane;
 
     private List<GameObject> gameObjects;
 
@@ -40,16 +44,20 @@ public class GameEngine {
         initializeInput();
         createGameLoop();
 
-        ClonedObject.initializeClonedObjectDimension(80);
-        player = new Player(this, 75, 75, null);
-        new Shadow(this, player);
-        soundHandler = new SoundHandler(player);
+
+//        player = new PlayerBuilder().preparePlayerWithShotgun(this, 75, 75, 6);
+
+
 
     }
 
     public Player getPlayer() {
 		return this.player;
 	}
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
 	public static GameEngine getInstanceOf() {
         if (gameEngine == null) {
@@ -62,9 +70,10 @@ public class GameEngine {
         new AnimationTimer() {
             @Override
             public void handle(long now) {
-            	GameObject gameObject;
+                pane.requestFocus();
+                GameObject gameObject;
                 for (int i = gameObjects.size() - 1; i >= 0; i--) {
-                	gameObject = gameObjects.get(i);
+                    gameObject = gameObjects.get(i);
                     gameObject.update();
                 }
                 testAllInput();
@@ -149,4 +158,13 @@ public class GameEngine {
         return soundHandler;
     }
 
+    public void setHUDPane(Pane HUDPane) {
+        this.HUDPane = HUDPane;
+        keyboard.initialize(HUDPane);
+        mouse.initialize(HUDPane);
+    }
+
+    public void setSoundHandler(SoundHandler soundHandler) {
+        this.soundHandler = soundHandler;
+    }
 }

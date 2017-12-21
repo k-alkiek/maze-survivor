@@ -3,6 +3,7 @@ package gun;
 import java.util.Stack;
 
 import characters.Player;
+import game.GameEngine;
 
 /**
  * Pool of bullets following the Pool Design Pattern.
@@ -32,7 +33,7 @@ public class BulletPool {
 
 	public Bullet acquireReusable() {
 		if (pool.isEmpty()) {
-			return new Bullet(shooter.getGameEngine());
+			return new Bullet(GameEngine.getInstanceOf());
 		} else {
 			return pool.pop();
 		}

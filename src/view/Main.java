@@ -3,9 +3,12 @@ package view;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,6 +20,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+	
 	@Override
 	public void start(final Stage primaryStage) {
 		try {
@@ -27,6 +31,7 @@ public class Main extends Application {
 			primaryStage.show();
 			scene.setOnKeyPressed(e -> {
 			        try {
+			        	primaryStage.hide();
 						Parent menuRoot = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 						Scene menuScene = new Scene(menuRoot);
 						primaryStage.setScene(menuScene);
@@ -38,6 +43,7 @@ public class Main extends Application {
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**

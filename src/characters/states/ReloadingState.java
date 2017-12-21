@@ -22,6 +22,7 @@ public class ReloadingState extends State {
         walk(player);
         setSpritesPerFrame(player);
 
+        player.getWeapon().reload();
 
         if (framePerState == sprites.size()) {
             framePerState = 0;

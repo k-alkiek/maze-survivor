@@ -23,9 +23,12 @@ public class SeparateMag extends Magazine {
 	}
 
 	@Override
-	public int reload(final int leftBullets) {
-		while (!objectsPool.isEmpty()) {
+	public int reload(int leftBullets) {
+		while (bullets.size() < leftBullets) {
 			bullets.push(objectsPool.pop());
+		}
+		while (bullets.size() > leftBullets) {
+			objectsPool.push(bullets.pop());
 		}
 		return leftBullets;
 	}
