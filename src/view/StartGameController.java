@@ -139,7 +139,6 @@ public class StartGameController {
         Stage stage = (Stage) easy.getScene().getWindow();
         stage.setScene(scene);
         gameEngine.primaryStage = stage;
-
     }
 
     @FXML

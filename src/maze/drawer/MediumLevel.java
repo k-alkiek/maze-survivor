@@ -22,7 +22,6 @@ public class MediumLevel extends LevelGenerator {
 	@Override
 	public void displayDrawables() {
 		int cellSize = 70;
-        new Monster(gameManager, 5 + (maze.length - 3) * cellSize, 5 + (maze.length - 3) * cellSize);
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze.length; j++) {
             	if (maze[i][j] != '1' && maze[i][j] != '2') {
