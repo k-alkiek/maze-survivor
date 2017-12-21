@@ -1,12 +1,13 @@
 package wall;
 
 import game.GameEngine;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class DWall extends DestructableWall {
+public class WeakDestructibleWall extends DestructibleWall {
 
-	public DWall(GameEngine gameEngine, int x, int y) {
+	public WeakDestructibleWall(GameEngine gameEngine, int x, int y) {
 		super(gameEngine, x, y);
 	}
 
@@ -18,7 +19,7 @@ public class DWall extends DestructableWall {
 
 	@Override
 	public void hit(int damage) {
-		gameEngine.destroyGameObject(this);
+		Platform.runLater(() -> gameEngine.destroyGameObject(this));
 	}
 
 }

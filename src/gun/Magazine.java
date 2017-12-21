@@ -31,8 +31,10 @@ public abstract class Magazine {
 	}
 
 	public void fire() {
-		final BulletProxy fired = bullets.pop();
-		fired.fire(shooter);
+		if (!bullets.isEmpty()) {
+			final BulletProxy fired = bullets.pop();
+			fired.fire(shooter);
+		}
 	}
 
 	public abstract int reload();

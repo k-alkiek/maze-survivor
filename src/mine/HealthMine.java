@@ -1,6 +1,7 @@
 package mine;
 
 import game.GameManager;
+import javafx.application.Platform;
 import objects.CollidableGameObject;
 import objects.Destructible;
 
@@ -42,7 +43,7 @@ public abstract class HealthMine extends CollidableGameObject implements Mine, D
 
 	@Override
 	public void hit(int damage) {
-		gameEngine.destroyGameObject(this);
+		Platform.runLater(() -> gameEngine.destroyGameObject(this));
 	}
 
 }

@@ -10,7 +10,7 @@ public class wallFactory {
 
 	      if(wall.equals(NDWall.NOT_DESTRUCTABLE_WALL)) {
 
-	      } else if (wall.equals(DestructableWall.DESTRUCTABLE_WALL)) {
+	      } else if (wall.equals(DestructibleWall.DESTRUCTABLE_WALL)) {
 
 	      }
 	      return null;

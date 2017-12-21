@@ -1,9 +1,11 @@
 package gun;
 
+import java.util.Iterator;
 import java.util.List;
 
 import characters.Player;
 import game.GameEngine;
+import javafx.application.Platform;
 import javafx.scene.shape.Line;
 import objects.*;
 
@@ -15,7 +17,7 @@ import objects.*;
  */
 public class Bullet extends CollidableGameObject {
 
-	private static final int LETHAL_RANGE = 25;
+	private static final int LETHAL_RANGE = 100;
 
 	/**
 	 * Flag for whether this bullet is on action for collision with something.
@@ -28,24 +30,27 @@ public class Bullet extends CollidableGameObject {
 
 	private Line hitLine;
 
-	private static final int OFFSET = 10;
+	private static final int OFFSET = 20;
 
 	public Bullet(GameEngine gameEngine) {
 		super(gameEngine);
 	}
 
 	public void fire(Player shooter, Weapon weapon) {
-		x = shooter.getX();
-		y = shooter.getY();
-		angle = shooter.getAngle();
+		System.out.println(this.hashCode());
+		Player player = GameEngine.getInstanceOf().getPlayer();
+		x = player.getX() + player.getImageView().getFitWidth() / 2;
+		y = player.getY() + player.getImageView().getFitHeight() / 2;
+		angle = player.getAngle();
+		System.out.println(player.getAngle() + "ana ahoo");
 		this.weapon = weapon;
 		maxDamage = weapon.getDamage();
 		onFire = true;
 		hitLine = new Line(x, y, x, y);
+		gameEngine.getPane().getChildren().add(hitLine);
 		if (weapon.isRanged()) {
 			hitLine.setStrokeWidth(5.0);
 		}
-		gameEngine.addGameObject(this);
 	}
 
 	/**
@@ -58,17 +63,22 @@ public class Bullet extends CollidableGameObject {
 	@Override
 	public void update() {
 		if (onFire) {
-			hitLine.setEndX(hitLine.getStartX() + OFFSET * Math.cos(angle));
-			hitLine.setEndY(hitLine.getStartY() + OFFSET * Math.sin(angle));
-			for (GameObject object : gameEngine.getGameObjects()) {
-				if (object instanceof CollidableGameObject && hitLine.intersects(((CollidableGameObject) object).getImageView().getBoundsInLocal())) {
+			hitLine.setEndX(hitLine.getEndX() + OFFSET * Math.cos(Math.toRadians(angle)));
+			hitLine.setEndY(hitLine.getEndY() + OFFSET * Math.sin(Math.toRadians(angle)));
+			Iterator<GameObject> i = gameEngine.getGameObjects().iterator();
+			while (i.hasNext()) {
+				GameObject object = i.next();
+				if (object != gameEngine.getPlayer() && object instanceof CollidableGameObject
+						&& hitLine.intersects(((CollidableGameObject) object).getImageView().getBoundsInLocal())) {
 					onFire = false;
-					gameEngine.destroyGameObject(this);
+					BulletPool.getInstance(gameEngine.getPlayer()).releaseReusable(this);
+					gameEngine.getPane().getChildren().remove(hitLine);
 					if (object instanceof Destructible) {
 						((Destructible) object).hit(getHitDamage());
 					}
 				}
 			}
+
 		}
 	}
 
