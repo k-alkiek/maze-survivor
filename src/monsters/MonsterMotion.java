@@ -1,7 +1,6 @@
 package monsters;
 
 import javafx.geometry.Point2D;
-import maze.drawer.MazeDrawer;
 
 import java.util.*;
 

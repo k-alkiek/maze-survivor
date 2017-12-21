@@ -36,7 +36,7 @@ public class PlayerBuilder {
         return player;
     }
 
-    public Player buildPlayerWithWeapon(String chosenWeapon, double x, double y, int bullets) {
+    public Player buildPlayerWithWeapon(String chosenWeapon, double x, double y, int bullets, boolean shadow) {
     	Player player = new Player(GameEngine.getInstanceOf(), x, y);
     	Weapon weapon;
     	switch (chosenWeapon) {
@@ -44,6 +44,9 @@ public class PlayerBuilder {
 	    	case "Shotgun": weapon = new Shotgun(bullets); break;
 	    	case "Rifle": weapon = new Revolver(bullets); break;
 	    	default: weapon = new Pistol(bullets);
+    	}
+    	if (shadow) {
+    		new Shadow(GameEngine.getInstanceOf(), player);
     	}
         player.setWeapon(weapon);
         new Shadow(GameEngine.getInstanceOf(), player);

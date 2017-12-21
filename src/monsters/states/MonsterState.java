@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import lib.NaturalOrderComparator;
-import maze.drawer.MazeDrawer;
 import monsters.Monster;
 import monsters.commands.*;
 
