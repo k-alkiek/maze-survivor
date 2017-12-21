@@ -3,6 +3,8 @@ package game;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.sun.javafx.fxml.builder.JavaFXFontBuilder;
+
+import gun.Weapon;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
@@ -19,17 +21,23 @@ import java.util.Stack;
 /**
  * Created by khaled on 12/20/17.
  */
-public class HeadsUpDisplayUI  extends GameObject {
-    Pane parentPane;
-    Pane pane;
+public class HeadsUpDisplayUI extends GameObject {
+    private Pane parentPane;
+    private Pane pane;
 
-    ProgressBar healthBar;
-    ProgressBar hungerBar;
-    Label scoreLabel;
-    Label ammoLabel;
+    private ProgressBar healthBar;
+    private ProgressBar hungerBar;
+    private Label scoreLabel;
+    private Label ammoLabel;
 
-    public HeadsUpDisplayUI(GameEngine gameEngine, Pane pane) {
-        super(gameEngine);
+    private GameManager gameManager;
+
+    private Weapon weapon;
+
+    public HeadsUpDisplayUI(GameManager gameManager, Pane pane) {
+        super(GameEngine.getInstanceOf());
+        this.gameManager = gameManager;
+        weapon = gameEngine.getPlayer().getWeapon();
     	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         this.pane = pane;
         parentPane = GameEngine.getInstanceOf().getPane();
@@ -41,11 +49,11 @@ public class HeadsUpDisplayUI  extends GameObject {
     public void update() {
         // TODO Khaled Barie
         Platform.runLater(() -> {
-            healthBar.setProgress(0);
-            hungerBar.setProgress(0);
+            healthBar.setProgress((double) gameManager.getHealth() / gameManager.getMaxHealth());
+            hungerBar.setProgress((double) gameManager.getFood() / gameManager.getMaxHealth());
         });
-        scoreLabel.setText("" + 0);
-        ammoLabel.setText("Ammo: " + 0 + "/" + 0);
+        scoreLabel.setText("" + gameManager.getScore());
+        ammoLabel.setText("Ammo: " + weapon.getBulletsInMag() + "/" + weapon.getBullets());
         scoreLabel.setLayoutX(parentPane.getWidth() / 2);
         ammoLabel.setLayoutX(parentPane.getWidth() - 120);
     }

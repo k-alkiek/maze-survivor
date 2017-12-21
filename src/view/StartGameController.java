@@ -4,13 +4,24 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXRadioButton;
 
+import characters.Player;
+import characters.PlayerBuilder;
+import game.GameEngine;
+import game.GameManager;
+import game.HeadsUpDisplayUI;
+import gun.Weapon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import maze.drawer.MazeDrawer;
+import objects.ClonedObject;
+import sound.SoundHandler;
 
 /**
  * Controller for the page of starting a new game.
@@ -19,9 +30,11 @@ import javafx.stage.Stage;
  */
 public class StartGameController {
 
+	@FXML
+    private JFXRadioButton easy;
 
     @FXML
-    private JFXRadioButton easy;
+    private ToggleGroup difficulty;
 
     @FXML
     private JFXRadioButton medium;
@@ -33,7 +46,16 @@ public class StartGameController {
     private JFXRadioButton ninja;
 
     @FXML
-    private ToggleGroup difficulty;
+    private JFXRadioButton shotgun;
+
+    @FXML
+    private ToggleGroup weapon;
+
+    @FXML
+    private JFXRadioButton handgun;
+
+    @FXML
+    private JFXRadioButton rifle;
 
     @FXML
     void mainMenu(ActionEvent event) {
@@ -51,7 +73,38 @@ public class StartGameController {
 
     @FXML
     void play(ActionEvent event) {
-    	//TODO: PLAY. START GAME.
+    	JFXRadioButton chosenDifficulty = (JFXRadioButton) difficulty.getSelectedToggle();
+    	JFXRadioButton chosenWeapon = (JFXRadioButton) weapon.getSelectedToggle();
+    	initialiseGameElements(chosenWeapon.getText(), chosenDifficulty.getText());
+    }
+
+    private void initialiseGameElements(String chosenWeapon, String chosenDifficulty) {
+    	GameEngine gameEngine = GameEngine.getInstanceOf();
+        ClonedObject.initializeClonedObjectDimension(80);
+        Player player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0);
+        player.setChoosingCharacter(chosenWeapon);
+        gameEngine.setPlayer(player);
+        gameEngine.setSoundHandler(new SoundHandler(player));
+
+        Pane pane = gameEngine.getPane();
+        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
+        mazeDrawer.constructMaze();
+        mazeDrawer.displayMaze();
+        player.getWeapon().setBullets((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage())) ;
+
+        System.out.println((int)Math.floor((double)(mazeDrawer.getNumOfBullets() + mazeDrawer.getNumOfMonsters()) / 100 * player.getWeapon().getDamage()));
+        System.out.println(mazeDrawer.getNumOfBullets() + " " + mazeDrawer.getNumOfMonsters());
+        
+        Pane HUDPane = new Pane();
+        new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
+        gameEngine.setHUDPane(HUDPane);
+        StackPane stackPane = new StackPane(pane, HUDPane);
+
+        Scene scene = new Scene(stackPane, 900, 800);
+        Stage stage = (Stage) easy.getScene().getWindow();
+        stage.setScene(scene);
+        gameEngine.primaryStage = stage;
+
     }
 
     @FXML

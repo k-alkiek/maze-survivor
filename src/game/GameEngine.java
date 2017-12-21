@@ -7,6 +7,7 @@ import gun.Shotgun;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import objects.ClonedObject;
 import objects.CollidableGameObject;
 import objects.GameObject;
@@ -32,25 +33,22 @@ public class GameEngine {
 
     private Pane pane;
     private Pane HUDPane;
+    private ScrollPane scrollPane;
 
     private List<GameObject> gameObjects;
-
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0;
     private boolean arrayFilled = false;
+    public static Stage primaryStage;
 
     private GameEngine() {
     	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         pane = new Pane();
+        scrollPane = new ScrollPane(pane);
         gameObjects = new ArrayList<>();
         initializeInput();
         createGameLoop();
-
-
 //        player = new PlayerBuilder().preparePlayerWithShotgun(this, 75, 75, 6);
-
-
-
     }
 
     public Player getPlayer() {
@@ -73,15 +71,19 @@ public class GameEngine {
             @Override
             public void handle(long now) {
                 pane.requestFocus();
+
+                scrollPane.setVvalue(player.getImageView().getY()/pane.getHeight());
+                scrollPane.setHvalue(player.getImageView().getX()/pane.getWidth());
+                System.out.println(mouse.getX());
                 GameObject gameObject;
                 for (int i = gameObjects.size() - 1; i >= 0; i--) {
                     gameObject = gameObjects.get(i);
                     gameObject.update();
                 }
-                testAllInput();
                 refreshInput();
                 pane.requestFocus();
-//                refreshFrameRate(now);
+
+                //refreshFrameRate(now);
             }
         }.start();
     }
@@ -168,5 +170,13 @@ public class GameEngine {
 
     public void setSoundHandler(SoundHandler soundHandler) {
         this.soundHandler = soundHandler;
+    }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(ScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
     }
 }

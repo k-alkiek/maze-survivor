@@ -1,6 +1,7 @@
 package game;
 
 import javafx.scene.control.ScrollPane;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -77,31 +78,32 @@ public final class Mouse {
         return isScrollingDown;
     }
 
-    public void initialize(Pane hUDPane) {
-        hUDPane.setOnMouseMoved(event -> {
+
+    public void initialize(Node pane) {
+        pane.setOnMouseMoved(event -> {
+            x = event.getSceneX();
+            y = event.getSceneY();
+            event.consume();
+        });
+        pane.setOnMouseDragged(event -> {
             x = event.getX();
             y = event.getY();
             event.consume();
         });
-        hUDPane.setOnMouseDragged(event -> {
-            x = event.getX();
-            y = event.getY();
-            event.consume();
-        });
-        hUDPane.setOnMousePressed(event -> {
+        pane.setOnMousePressed(event -> {
             if (!buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.add(event.getButton());
             }
             event.consume();
         });
-        hUDPane.setOnMouseReleased(event -> {
+        pane.setOnMouseReleased(event -> {
             if (buttonsPressed.contains(event.getButton())) {
                 buttonsPressed.remove(event.getButton());
             }
             event.consume();
         });
 
-        hUDPane.setOnScroll(event -> {
+        pane.setOnScroll(event -> {
             if (event.getDeltaY() < 0) {
                 isScrollingDown = true;
                 isScrollingUp = false;

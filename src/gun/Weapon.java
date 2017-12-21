@@ -47,14 +47,6 @@ public abstract class Weapon {
 		return ranged;
 	}
 
-	protected boolean coolingNow() {
-		boolean check = lastReloadTime + RELOAD_COOLDOWN > System.currentTimeMillis() || lastFireTime + FIRE_COOLDOWN > System.currentTimeMillis();
-		if (!check) {
-			cooling = false;
-		}
-		return check;
-	}
-
 	/**
 	 * @return the damage
 	 */
@@ -99,6 +91,7 @@ public abstract class Weapon {
 				return;
 			}
 		}
+		System.out.println("OK I'LL RELOAD");
 		cooling = true;
 		lastReloadTime = System.currentTimeMillis();
 		if (bullets == 0) {
@@ -115,11 +108,23 @@ public abstract class Weapon {
 		bullets += addedBullets;
 	}
 
+	protected boolean coolingNow() {
+		boolean check = lastReloadTime + RELOAD_COOLDOWN > System.currentTimeMillis() || lastFireTime + FIRE_COOLDOWN > System.currentTimeMillis();
+		if (!check) {
+			cooling = false;
+		}
+		return check;
+	}
+
 	/**
 	 * @param bullets the bullets to set
 	 */
 	public void setBullets(Integer bullets) {
 		this.bullets = bullets;
+	}
+
+	public int getBulletsInMag() {
+		return mag.getBulletsInMag();
 	}
 
 	/**

@@ -48,4 +48,8 @@ public abstract class Magazine {
 		return magSize;
 	}
 
+	public int getBulletsInMag() {
+		return bullets.size();
+	}
+
 }

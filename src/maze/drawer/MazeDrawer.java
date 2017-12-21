@@ -34,9 +34,25 @@ public class MazeDrawer {
     private Image verticalBigMine = null;
     private Image gift = null;
     private Image ground = null;
-    GameEngine gameEngine = GameEngine.getInstanceOf();
-    GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
+    private int numOfBullets;
+    private int numOfMonsters;
+    private GameEngine gameEngine = GameEngine.getInstanceOf();
+    public GameManager gameManager = new GameManager(gameEngine, gameEngine.getPlayer());
+    
 
+    /**
+	 * @return the numOfBullets
+	 */
+	public int getNumOfBullets() {
+		return numOfBullets;
+	}
+
+	/**
+	 * @return the numOfMonsters
+	 */
+	public int getNumOfMonsters() {
+		return numOfMonsters;
+	}
 
     public MazeDrawer(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
         super();
@@ -163,7 +179,7 @@ public class MazeDrawer {
                 	CollidableGameObject gift = (CollidableGameObject) mineFactory.createPickup(5 + j * cellSize, 5 + i * cellSize);
                 	gift.draw(this.gift);
 	            } else if (maze[i][j] == '9') {
-	            	new Monster(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
+	            	new Monster(gameManager, 5 + j * cellSize, 5 + i * cellSize);
 	            }
 //                if (i == 2 && j == 1 || i == 1 && j == 2) {
 //                	CollidableGameObject wall = new DWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
@@ -174,14 +190,13 @@ public class MazeDrawer {
     }
 
     private void spreadDestructibleWalls() {
-        int numOfDestructableWallsInFreePath = 0;
         for (int i = 0; i < maze.length * maze.length * percentageOfDestructableWalls; i++) {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (maze[randomYPos][randomXPos] != '2' && this.positionIsValid(maze, randomXPos, randomYPos)) {
                 maze[randomYPos][randomXPos] = '2';
                 if (maze[randomYPos][randomXPos] == ' ') {
-                    numOfDestructableWallsInFreePath++;
+                	numOfBullets++;
                 }
             } else {
                 i--;
@@ -189,17 +204,6 @@ public class MazeDrawer {
         }
     }
 
-    private void spreadMines() {
-        for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
-            int randomXPos = (int) (Math.random() * maze.length);
-            int randomYPos = (int) (Math.random() * maze.length);
-            if (maze[randomYPos][randomXPos] == ' ' && this.positionIsValid(maze, randomXPos, randomYPos)) {
-                maze[randomYPos][randomXPos] = '3';
-            } else {
-                i--;
-            }
-        }
-    }
 
     private void spreadGifts() {
         for (int i = 0; i < maze.length * maze.length * percentageOfMines; i++) {
@@ -220,6 +224,7 @@ public class MazeDrawer {
             int randomYPos = (int) (Math.random() * maze.length);
             if (maze[randomYPos][randomXPos] == ' '
                     && this.positionIsValid(maze, randomXPos, randomYPos)) {
+            	this.numOfMonsters++;
                 maze[randomYPos][randomXPos] = '9';
             } else {
                 i--;
@@ -240,6 +245,7 @@ public class MazeDrawer {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (this.notHorizontalMine(randomYPos, randomXPos) && this.notHorizontalMine(randomYPos, randomXPos + 1)) {
+            	this.numOfBullets++;
                 maze[randomYPos][randomXPos] = '4';
                 maze[randomYPos][randomXPos + 1] = '5';
             } else {
@@ -262,6 +268,7 @@ public class MazeDrawer {
             int randomXPos = (int) (Math.random() * maze.length);
             int randomYPos = (int) (Math.random() * maze.length);
             if (this.notVerticalMine(randomYPos, randomXPos) && this.notVerticalMine(randomYPos + 1, randomXPos)) {
+            	this.numOfBullets++;
                 maze[randomYPos][randomXPos] = '6';
                 maze[randomYPos + 1][randomXPos] = '7';
             } else {
