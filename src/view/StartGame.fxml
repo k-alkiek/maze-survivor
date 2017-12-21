@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MenuController">
+<AnchorPane prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartGameController">
    <children>
       <Label layoutX="101.0" layoutY="42.0" prefHeight="115.0" prefWidth="535.0" text="MAZE SURVIVOR" textAlignment="CENTER" textFill="RED">
          <font>
@@ -67,5 +67,23 @@
             <Font name="Nyala" size="21.0" />
          </font>
       </Label>
+      <JFXRadioButton fx:id="shotgun" layoutX="146.0" layoutY="324.0" selected="true" text="Shotgun" textFill="RED">
+         <font>
+            <Font name="Nyala" size="20.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="weapon" />
+         </toggleGroup>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="handgun" layoutX="327.0" layoutY="324.0" text="Handgun" textFill="RED" toggleGroup="$weapon">
+         <font>
+            <Font name="Nyala" size="20.0" />
+         </font>
+      </JFXRadioButton>
+      <JFXRadioButton fx:id="rifle" layoutX="503.0" layoutY="324.0" text="Rifle" textFill="RED" toggleGroup="$weapon">
+         <font>
+            <Font name="Nyala" size="20.0" />
+         </font>
+      </JFXRadioButton>
    </children>
 </AnchorPane>
