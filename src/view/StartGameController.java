@@ -4,13 +4,22 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXRadioButton;
 
+import characters.Player;
+import characters.PlayerBuilder;
+import game.GameEngine;
+import game.HeadsUpDisplayUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import maze.drawer.MazeDrawer;
+import objects.ClonedObject;
+import sound.SoundHandler;
 
 /**
  * Controller for the page of starting a new game.
@@ -19,9 +28,11 @@ import javafx.stage.Stage;
  */
 public class StartGameController {
 
+	@FXML
+    private JFXRadioButton easy;
 
     @FXML
-    private JFXRadioButton easy;
+    private ToggleGroup difficulty;
 
     @FXML
     private JFXRadioButton medium;
@@ -33,7 +44,16 @@ public class StartGameController {
     private JFXRadioButton ninja;
 
     @FXML
-    private ToggleGroup difficulty;
+    private JFXRadioButton shotgun;
+
+    @FXML
+    private ToggleGroup weapon;
+
+    @FXML
+    private JFXRadioButton handgun;
+
+    @FXML
+    private JFXRadioButton rifle;
 
     @FXML
     void mainMenu(ActionEvent event) {
@@ -51,7 +71,31 @@ public class StartGameController {
 
     @FXML
     void play(ActionEvent event) {
-    	//TODO: PLAY. START GAME.
+    	JFXRadioButton chosenDifficulty = (JFXRadioButton) difficulty.getSelectedToggle();
+    	JFXRadioButton chosenWeapon = (JFXRadioButton) weapon.getSelectedToggle();
+    	initialiseGameElements(chosenWeapon.getText(), chosenDifficulty.getText());
+    }
+
+    private void initialiseGameElements(String choosingCharacter, String chosenDifficulty) {
+    	GameEngine gameEngine = GameEngine.getInstanceOf();
+        ClonedObject.initializeClonedObjectDimension(80);
+        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 1);
+        player.setChoosingCharacter(choosingCharacter);
+        gameEngine.setPlayer(player);
+        gameEngine.setSoundHandler(new SoundHandler(player));
+
+        Pane pane = gameEngine.getPane();
+        MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
+        mazeDrawer.constructMaze();
+        mazeDrawer.displayMaze();
+
+        Pane HUDPane = new Pane();
+        new HeadsUpDisplayUI(gameEngine, HUDPane);
+        gameEngine.setHUDPane(HUDPane);
+        StackPane stackPane = new StackPane(pane, HUDPane);
+
+        Scene scene = new Scene(stackPane, 900, 800);
+
     }
 
     @FXML
