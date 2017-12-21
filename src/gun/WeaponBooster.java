@@ -7,18 +7,7 @@ public class WeaponBooster extends Weapon {
 	private Weapon wrapped;
 
 	public WeaponBooster(final Weapon wrapped) {
-		super(wrapped.getShooter());
 		this.wrapped = wrapped;
-	}
-
-	@Override
-	public void fire() {
-		this.wrapped.fire();
-	}
-
-	@Override
-	public void reload() {
-		this.wrapped.reload();
 	}
 
 	@Override

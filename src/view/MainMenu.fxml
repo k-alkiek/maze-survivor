@@ -43,7 +43,7 @@
             <Font name="Nyala" size="20.0" />
          </font>
       </JFXRadioButton>
-      <JFXButton layoutX="53.0" layoutY="252.0" prefHeight="49.0" prefWidth="111.0" text="SETTINGS" textFill="WHITE">
+      <JFXButton fx:id="settingButton"  onAction="#settingOnClick" layoutX="53.0" layoutY="252.0" prefHeight="49.0" prefWidth="111.0" text="SETTINGS" textFill="WHITE">
          <font>
             <Font name="Nyala" size="20.0" />
          </font>

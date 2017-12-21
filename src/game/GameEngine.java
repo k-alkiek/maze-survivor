@@ -1,7 +1,9 @@
 package game;
 
 import characters.Player;
+import characters.PlayerBuilder;
 import characters.Shadow;
+import gun.Shotgun;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import objects.ClonedObject;
@@ -24,6 +26,7 @@ public class GameEngine {
     private Keyboard keyboard;
 
     private SoundHandler soundHandler;
+
     private Player player;
 
     private Pane pane;
@@ -41,16 +44,20 @@ public class GameEngine {
         initializeInput();
         createGameLoop();
 
-        ClonedObject.initializeClonedObjectDimension(80);
-        player = new Player(this, 75, 75, null);
-        new Shadow(this, player);
-        soundHandler = new SoundHandler(player);
+
+//        player = new PlayerBuilder().preparePlayerWithShotgun(this, 75, 75, 6);
+
+
 
     }
 
     public Player getPlayer() {
 		return this.player;
 	}
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
 	public static GameEngine getInstanceOf() {
         if (gameEngine == null) {
@@ -157,5 +164,7 @@ public class GameEngine {
         mouse.initialize(HUDPane);
     }
 
-
+    public void setSoundHandler(SoundHandler soundHandler) {
+        this.soundHandler = soundHandler;
+    }
 }
