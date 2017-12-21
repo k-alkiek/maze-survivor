@@ -15,6 +15,7 @@ import wall.WeakDestructibleWall;
 
 public class MediumLevel extends LevelGenerator {
 
+	
 	public MediumLevel(Pane root, int size, double percentageOfDestructableWalls, double percentageOfMines) {
 		super(root, size, percentageOfDestructableWalls, percentageOfMines);
 	}
