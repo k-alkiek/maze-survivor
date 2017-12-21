@@ -2,9 +2,13 @@ package characters;
 
 import characters.states.*;
 import game.GameEngine;
+import game.Keyboard;
 import game.Mouse;
 import gun.Weapon;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import objects.*;
 
 /**
@@ -33,7 +37,16 @@ public class Player extends CollidableGameObject {
 
         Mouse mouse = gameEngine.getMouse();
         // TODO REFACTOR khaled barie
-        angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));
+//        angle = Math.toDegrees(Math.atan2(mouse.getY() - imageView.getY(), mouse.getX() - imageView.getX()));
+        Keyboard keyboard =  Keyboard.getInstanceOf();
+        if (keyboard.isPressed(KeyCode.W))
+            angle = 270;
+        else if (keyboard.isPressed(KeyCode.D))
+            angle = 0;
+        else if (keyboard.isPressed(KeyCode.A))
+            angle = 180;
+        else if (keyboard.isPressed(KeyCode.S))
+            angle = 90;
         imageView.setRotate(angle);
         currentState.update(this);
         draw(image);
