@@ -10,11 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import maze.generateAlgorithm.MazeGenerator;
+import mine.*;
 import monsters.Monster;
 import objects.CollidableGameObject;
-import mine.AbstractMineFactory;
-import mine.HealthMine;
-import mine.MineEasyFactory;
 import objects.CollidableGameObject;
 import objects.GameObject;
 import pickup.AbstractPickupFactory;
@@ -28,12 +26,11 @@ public class MazeDrawer {
     private double percentageOfMines;
     private char[][] maze;
     private Image wall = null;
+    private Image destroyedWall = null;
     private Image destructableWall = null;
     private Image mine = null;
-    private Image bigMineRight = null;
-    private Image bigMineLeft = null;
-    private Image bigMineUp = null;
-    private Image bigMineDown = null;
+    private Image horizontalBigMine = null;
+    private Image verticalBigMine = null;
     private Image gift = null;
     private Image ground = null;
     GameEngine gameEngine = GameEngine.getInstanceOf();
@@ -67,14 +64,13 @@ public class MazeDrawer {
 
     private void initializeDrawables() {
         try {
-            ground = new Image(new FileInputStream("ground.jpg"));
+            ground = new Image(new FileInputStream("floor.jpg"));
+            destroyedWall = new Image(new FileInputStream("floorDestroyed.png"));
             wall = new Image(new FileInputStream("wall.jpg"));
             destructableWall = new Image(new FileInputStream("D_Wall.jpg"));
             mine = new Image(new FileInputStream("mine.png"));
-            bigMineRight = new Image(new FileInputStream("bigMineRight.png"));
-            bigMineLeft = new Image(new FileInputStream("bigMineLeft.png"));
-            bigMineUp = new Image(new FileInputStream("bigMineUp.png"));
-            bigMineDown = new Image(new FileInputStream("bigMineDown.png"));
+            horizontalBigMine = new Image(new FileInputStream("dynamite-horizontal.png"));
+            verticalBigMine = new Image(new FileInputStream("dynamite-vertical.png"));
             gift = new Image(new FileInputStream("gift.jpg"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -119,6 +115,17 @@ public class MazeDrawer {
 	                gameEngine.getPane().getChildren().add(ground);
 	            	ground.toBack();
 	            }
+                if (maze[i][j] == '2') {
+                    ImageView ground = new ImageView();
+                    ground.setX(5 + j * cellSize);
+                    ground.setY(5 + i * cellSize);
+                    ground.setFitWidth(70);
+                    ground.setFitHeight(70);
+                    ground.setPreserveRatio(true);
+                    ground.setImage(this.destroyedWall);
+                    gameEngine.getPane().getChildren().add(ground);
+                    ground.toBack();
+                }
                 if (maze[i][j] == '1') {
                     CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                     wall.draw(this.wall);
@@ -126,21 +133,28 @@ public class MazeDrawer {
                 	CollidableGameObject wall = new WeakDestructibleWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
                 	wall.draw(this.destructableWall);
                 } else if (maze[i][j] == '3') {
-                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
-                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
-                	mine.draw(this.mine);
+//                	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
+//                	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
+//                	mine.draw(this.mine);
                 } else if (maze[i][j] == '4') {
                 	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
                 	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
-                	mine.draw(this.mine);   
+                	if (mine instanceof BigHealthMine || mine instanceof BigScoreMine) {
+                        mine.draw(this.horizontalBigMine);
+                    } else {
+                        mine.draw(this.mine);
+                    }
                 } else if (maze[i][j] == '5') {
 //                	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 //                	wall.draw(this.bigMineRight);
                 } else if (maze[i][j] == '6') {
                 	AbstractMineFactory mineFactory = new MineEasyFactory(this.gameManager);
                 	CollidableGameObject mine = (CollidableGameObject) mineFactory.createMine(5 + j * cellSize, 5 + i * cellSize);
-                	mine.draw(this.mine);
-	            } else if (maze[i][j] == '7') {
+                    if (mine instanceof BigHealthMine || mine instanceof BigScoreMine) {
+                        mine.draw(this.verticalBigMine);
+                    } else {
+                        mine.draw(this.mine);
+                    }	            } else if (maze[i][j] == '7') {
 //	            	CollidableGameObject wall = new NDWall(gameEngine, 5 + j * cellSize, 5 + i * cellSize);
 //                	wall.draw(this.bigMineDown);
 	            } else if (maze[i][j] == '8') {
@@ -259,7 +273,7 @@ public class MazeDrawer {
         this.initializeDrawables();
         this.generateMaze();
         this.spreadDestructibleWalls();
-        this.spreadMines();
+        //this.spreadMines();
         this.spreadHorizontalBigMines();
         this.spreadVerticalBigMines();
         this.spreadGifts();

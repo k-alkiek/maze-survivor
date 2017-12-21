@@ -26,7 +26,7 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         gameEngine = GameEngine.getInstanceOf();
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 1);
+        Player player = new PlayerBuilder().preparePlayerWithPistol(75, 75, 30);
         gameEngine.setPlayer(player);
         gameEngine.setSoundHandler(new SoundHandler(player));
 
