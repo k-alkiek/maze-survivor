@@ -106,12 +106,16 @@ public class StartGameController {
         LevelGenerator mazeDrawer;
         if (chosenDifficulty.equalsIgnoreCase("easy")) {
             mazeDrawer= new EasyLevel(pane, 10, 0.03, 0.01);
+            gameEngine.mazeLength = 10;
         } else if (chosenDifficulty.equalsIgnoreCase("medium")) {
         	mazeDrawer = new MediumLevel(pane, 20, 0.03, 0.01);
+        	gameEngine.mazeLength = 20;
         } else if (chosenDifficulty.equalsIgnoreCase("hard")) {
         	mazeDrawer = new HardLevel(pane, 30, 0.03, 0.01);
+        	gameEngine.mazeLength = 30;
         } else { //Ninja level
         	mazeDrawer = new NinjaLevel(pane, 45, 0.03, 0.02);
+        	gameEngine.mazeLength = 40;
         }
         gameEngine.setSoundHandler(new SoundHandler(player));
         mazeDrawer.constructMaze();
