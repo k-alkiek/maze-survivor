@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -79,26 +80,43 @@ public class StartGameController {
     }
 
     private void initialiseGameElements(String chosenWeapon, String chosenDifficulty) {
-    	GameEngine gameEngine = GameEngine.getInstanceOf();
+    	
+        GameEngine gameEngine = GameEngine.getInstanceOf();
         ClonedObject.initializeClonedObjectDimension(80);
-        Player player;
+        Player dummyPlayer = new PlayerBuilder().preparePlayerWithPistol(75, 75, 30);
+        gameEngine.setPlayer(dummyPlayer);
+        ClonedObject.initializeClonedObjectDimension(80);
+        
         Pane pane = gameEngine.getPane();
-        LevelGenerator mazeDrawer;
+        ScrollPane scrollPane = gameEngine.getScrollPane();
+        scrollPane.setContent(pane);
+
+        Player player;
         if (chosenDifficulty.equalsIgnoreCase("easy")) {
         	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, true);
-            mazeDrawer= new EasyLevel(pane, 10, 0.03, 0.01);
         } else if (chosenDifficulty.equalsIgnoreCase("medium")) {
         	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, true);
-        	mazeDrawer = new MediumLevel(pane, 20, 0.03, 0.01);
         } else if (chosenDifficulty.equalsIgnoreCase("hard")) {
         	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, false);
-        	mazeDrawer = new MediumLevel(pane, 30, 0.03, 0.01);
         } else { //Ninja level
-        	mazeDrawer = new MediumLevel(pane, 45, 0.03, 0.02);
         	player = new PlayerBuilder().buildPlayerWithWeapon(chosenWeapon, 75, 75, 0, false);
         }
-        player.setChoosingCharacter(chosenWeapon);
         gameEngine.setPlayer(player);
+        gameEngine.destroyGameObject(dummyPlayer);
+        LevelGenerator mazeDrawer;
+        if (chosenDifficulty.equalsIgnoreCase("easy")) {
+            mazeDrawer= new EasyLevel(pane, 10, 0.03, 0.01);
+            gameEngine.mazeLength = 10;
+        } else if (chosenDifficulty.equalsIgnoreCase("medium")) {
+        	mazeDrawer = new MediumLevel(pane, 20, 0.03, 0.01);
+        	gameEngine.mazeLength = 20;
+        } else if (chosenDifficulty.equalsIgnoreCase("hard")) {
+        	mazeDrawer = new HardLevel(pane, 30, 0.03, 0.01);
+        	gameEngine.mazeLength = 30;
+        } else { //Ninja level
+        	mazeDrawer = new NinjaLevel(pane, 45, 0.03, 0.02);
+        	gameEngine.mazeLength = 40;
+        }
         gameEngine.setSoundHandler(new SoundHandler(player));
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
@@ -110,7 +128,12 @@ public class StartGameController {
         Pane HUDPane = new Pane();
         new HeadsUpDisplayUI(mazeDrawer.gameManager, HUDPane);
         gameEngine.setHUDPane(HUDPane);
-        StackPane stackPane = new StackPane(pane, HUDPane);
+
+        StackPane stackPane = new StackPane(scrollPane, HUDPane);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        
 
         Scene scene = new Scene(stackPane, 900, 800);
         Stage stage = (Stage) easy.getScene().getWindow();

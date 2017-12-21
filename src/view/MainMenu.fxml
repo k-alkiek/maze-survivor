@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MenuController">
+<AnchorPane prefHeight="534.0" prefWidth="737.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MenuController">
    <children>
       <Label layoutX="101.0" layoutY="42.0" prefHeight="115.0" prefWidth="535.0" text="MAZE SURVIVOR" textAlignment="CENTER" textFill="RED">
          <font>
@@ -17,22 +17,22 @@
             <Font name="Agency FB" size="16.0" />
          </font>
       </Label>
-      <JFXButton fx:id="playButton" layoutX="53.0" layoutY="168.0" onAction="#startGame" prefHeight="49.0" prefWidth="153.0" text="START GAME" textFill="WHITE">
+      <JFXButton fx:id="playButton" layoutX="53.0" layoutY="168.0" onAction="#startGame" prefHeight="49.0" prefWidth="225.0" text="START GAME" textFill="WHITE">
          <font>
             <Font name="Nyala" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="53.0" layoutY="252.0" prefHeight="49.0" prefWidth="153.0" text="SETTINGS" textFill="WHITE">
+      <JFXButton layoutX="53.0" layoutY="252.0" onAction="#changePickups" prefHeight="49.0" prefWidth="225.0" text="CHANGE PICKUPS" textFill="WHITE">
          <font>
             <Font name="Nyala" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="53.0" layoutY="336.0" prefHeight="49.0" prefWidth="153.0" text="RANKINGS" textFill="WHITE">
+      <JFXButton layoutX="53.0" layoutY="336.0" prefHeight="49.0" prefWidth="225.0" text="RANKINGS" textFill="WHITE">
          <font>
             <Font name="Nyala" size="20.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="53.0" layoutY="422.0" onAction="#quit" prefHeight="49.0" prefWidth="153.0" text="QUIT" textFill="WHITE">
+      <JFXButton layoutX="53.0" layoutY="422.0" onAction="#quit" prefHeight="49.0" prefWidth="225.0" text="QUIT" textFill="WHITE">
          <font>
             <Font name="Nyala" size="20.0" />
          </font>

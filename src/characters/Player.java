@@ -28,6 +28,7 @@ public class Player extends CollidableGameObject {
     	DBLogger.getInstance().log.info(this.getClass().getSimpleName() + " created.");
         imageView.setFitWidth(50);
         imageView.setFitHeight(50);
+        imageView.toFront();
         System.out.println(imageView.getBoundsInLocal());
         StatesPool.setStatesPool(choosingCharacter);
         currentState = StatesPool.getNextState("IdleState");

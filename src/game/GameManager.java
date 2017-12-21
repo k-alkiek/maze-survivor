@@ -1,7 +1,13 @@
 package game;
 
+import java.io.IOException;
+
 import characters.Player;
 import gun.Weapon;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import objects.GameObject;
 
 /**
@@ -76,14 +82,33 @@ public class GameManager extends GameObject {
 	
 	
 	public void lose() {
-		//TODO: lose.
-		
+		GameEngine.lastScore = score + health + food;
+		try {
+    		Stage stage = GameEngine.primaryStage;
+    		Parent root = FXMLLoader.load(getClass().getResource("LoseScreen.fxml"));
+    		gameEngine.getGameObjects().clear();
+    		Scene scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
 		System.out.println("YOU LOSE!");
 	}
 
 	
 	public void win() {
-		//TODO: win.
+		GameEngine.lastScore = score + health + food;
+		try {
+    		Stage stage = GameEngine.primaryStage;
+    		Parent root = FXMLLoader.load(getClass().getResource("WinScreen.fxml"));
+    		gameEngine.getGameObjects().clear();
+    		Scene scene = new Scene(root);
+    		stage.setScene(scene);
+    		stage.show();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
 	}
 	
 
@@ -131,6 +156,9 @@ public class GameManager extends GameObject {
 		hungerEffect();
 		if (food == 0) {
 			health -= 1;
+		}
+		if (player.getX() > (gameEngine.mazeLength - 3) * 70 + 5 && player.getY() > (gameEngine.mazeLength - 3) * 70 + 5) {
+			win();
 		}
 	}
 
