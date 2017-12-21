@@ -30,7 +30,7 @@ public class PlayerBuilder {
         Player player = new Player(GameEngine.getInstanceOf(), x, y);
         Pistol pistol = new Pistol(bullets);
         player.setWeapon(pistol);
-        new Shadow(GameEngine.getInstanceOf(), player);
+//        new Shadow(GameEngine.getInstanceOf(), player);
         return player;
     }
 }

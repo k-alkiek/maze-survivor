@@ -1,5 +1,6 @@
 package game;
 
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -42,7 +43,7 @@ public final class Keyboard {
         return keysPressed.contains(keyCode);
     }
 
-    public void initialize(Pane pane) {
+    public void initialize(Node pane) {
         pane.setOnKeyPressed(event -> {
             if (!keysPressed.contains(event.getCode())) {
                 keysPressed.add(event.getCode());
