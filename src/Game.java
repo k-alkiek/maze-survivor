@@ -2,10 +2,14 @@ import characters.Player;
 import characters.PlayerBuilder;
 import characters.Shadow;
 import game.GameEngine;
+import game.HeadsUpDisplay;
+import game.HeadsUpDisplayUI;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import maze.drawer.MazeDrawer;
@@ -30,7 +34,13 @@ public class Game extends Application {
         MazeDrawer mazeDrawer = new MazeDrawer(pane, 10, 0.03, 0.01 /2);
         mazeDrawer.constructMaze();
         mazeDrawer.displayMaze();
-        Scene scene = new Scene(pane, 900, 800);
+
+        Pane HUDPane = new Pane();
+        new HeadsUpDisplayUI(gameEngine, HUDPane);
+        gameEngine.setHUDPane(HUDPane);
+        StackPane stackPane = new StackPane(pane, HUDPane);
+
+        Scene scene = new Scene(stackPane, 900, 800);
         primaryStage.setScene(scene);
 
 
